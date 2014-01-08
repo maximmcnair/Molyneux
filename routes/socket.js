@@ -78,7 +78,7 @@ module.exports = function (socket) {
       userNames.free(oldName);
 
       name = data.name;
-      
+
       socket.broadcast.emit('change:name', {
         oldName: oldName,
         newName: name
@@ -88,6 +88,14 @@ module.exports = function (socket) {
     } else {
       fn(false);
     }
+  });
+
+  // broadcast a user's project to other users
+  socket.on('send:project', function (data) {
+    socket.broadcast.emit('send:project', {
+      title: data.title,
+      description: data.description
+    });
   });
 
   // clean up when a user leaves, and broadcast it to other users
