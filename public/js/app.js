@@ -23,7 +23,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'SocketImCtrl'
     }).
     otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/projects'
     });
 
   $locationProvider.html5Mode(true);

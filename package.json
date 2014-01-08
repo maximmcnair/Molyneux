@@ -1,10 +1,39 @@
 {
-  "name": "application-name",
-  "version": "0.0.0",
-  "private": true,
+  "name": "mean",
+  "version": "0.0.1",
+  "description": "Synth's take on the mean stack",
+  "main": "server.js",
   "dependencies": {
+    "lodash": "~2.3.0",
+    "bunyan": "~0.22.0",
+    "express": "~3.4.4",
     "socket.io": "~0.9.16",
-    "express": "~3.2.6",
-    "jade": "~0.31.2"
+    "jade": "~0.35.0",
+    "mongoose": "~3.8.0",
+    "mongoose-types": "~1.0.3",
+    "bcrypt": ">= 0.0.0",
+
+    "connect-flash": "~0.1.1",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.2",
+    "passport-github": "~0.1.5",
+    "passport-google-oauth": "~0.1.5",
+    "passport-twitter": "~1.0.2",
+    "connect-mongo": "~0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "istanbul": "~0.1.44",
+    "should": "~2.1.0",
+    "supertest": "~0.8.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- --recursive -R spec -t 5000",
+    "start": "node server.js | ./node_modules/.bin/bunyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/synthmedia/mean"
   }
 }

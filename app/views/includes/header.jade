@@ -1,0 +1,13 @@
+.header-container
+  if (req.user)
+    ul
+      li
+        a(href='/auth/log-out', target="_self") Sign Out
+
+    p Hello #{req.user.username}
+  else
+    ul
+      li
+        a(href='/sign-in', target="_self") Sign In
+      li
+        a(href='/sign-up', target="_self") Register
