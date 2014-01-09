@@ -53,7 +53,20 @@ var teamUsers = {
 , '2': []
 }
 
-// var projects = {}
+var teamProjects = {
+  '1':  [ { title: 'TreePress'
+          , description: 'A couple laps in BMW\'s latest autonomous driving demo, taking place here at CES this week, are all it took to get me feeling a little woozy. '
+          }
+        , { title: 'Fosters Events'
+          , description: 'As thrilling and entertaining as the ride was, there\'s actually method to BMW\'s madness. The company notes that self-driving systems won\'t really be ready for prime time until they\'re able to handle all road situations.'
+          }
+        ]
+, '2':  [ { title: 'Creo Medical'
+          , description: 'The demonstration was an exclamation point that researchers in the auto industry are starting to get a handle on making self-driving cars practical (and safe) in even non-optimal driving conditions, but there\s still lots of work to do.'
+          }
+        ]
+}
+
 
 // export function for listening to the socket
 module.exports = function (socket) {
@@ -75,6 +88,7 @@ module.exports = function (socket) {
     name: user.username
   , team: team
   , users: teamUsers[team]
+  , projects: teamProjects[team]
   })
 
   // notify other clients that a new user has joined
@@ -84,10 +98,12 @@ module.exports = function (socket) {
 
   // broadcast a user's project to other users
   socket.on('send:project', function (data) {
-    socket.broadcast.in(team).emit('send:project', {
+    var project = {
       title: data.title,
       description: data.description
-    })
+    }
+    socket.broadcast.in(team).emit('send:project', project)
+    teamProjects[team].push(project)
   })
 
   // clean up when a user leaves, and broadcast it to other users

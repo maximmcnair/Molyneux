@@ -4,10 +4,13 @@
 
 angular.module('myApp.controllers', [])
   .controller('ProjectsCtrl', function ($scope, socket) {
+    $scope.projects = []
+
     socket.on('init', function (data) {
       $scope.name = data.name
       $scope.team = data.team
       $scope.users = data.users
+      $scope.projects = data.projects
     })
 
     socket.on('user:join', function (data) {
@@ -26,18 +29,6 @@ angular.module('myApp.controllers', [])
       }
     })
 
-
-
-    // $scope.projects = [
-    //   { title: 'TreePress'
-    //   , description: 'A couple laps in BMW\'s latest autonomous driving demo, taking place here at CES this week, are all it took to get me feeling a little woozy. '}
-    // , { title: 'Fosters Events'
-    //   , description: 'As thrilling and entertaining as the ride was, there\'s actually method to BMW\'s madness. The company notes that self-driving systems won\'t really be ready for prime time until they\'re able to handle all road situations.'}
-    // , { title: 'Creo Medical'
-    //   , description: 'The demonstration was an exclamation point that researchers in the auto industry are starting to get a handle on making self-driving cars practical (and safe) in even non-optimal driving conditions, but there\s still lots of work to do.'}
-    // ]
-
-    $scope.projects = []
 
     socket.on('send:project', function (project) {
       $scope.projects.push(project)
