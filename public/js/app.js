@@ -22,8 +22,12 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/socket-im',
       controller: 'SocketImCtrl'
     }).
+    when('/login', {
+      templateUrl: 'partials/login',
+      controller: 'LoginCtrl'
+    }).
     otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/projects'
     });
 
   $locationProvider.html5Mode(true);

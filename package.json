@@ -1,10 +1,53 @@
 {
-  "name": "application-name",
-  "version": "0.0.0",
-  "private": true,
+  "name": "molyneux",
+  "description": "Hit those deadlines",
+  "version": "0.0.1-101",
+  "private": "true",
   "dependencies": {
     "socket.io": "~0.9.16",
     "express": "~3.2.6",
-    "jade": "~0.31.2"
+    "path": "~0.4",
+    "mongoose": "~3.6",
+    "mongoose-types": "~1.0.3",
+    "jade": "*",
+    "stylus": "*",
+    "underscore": "~1.4",
+    "bcrypt": ">= 0.0.0",
+    "passport": "~0.1",
+    "passport-twitter": "~0.1",
+    "passport-local": "~0.1.6",
+    "service-locator": "0.0.2",
+    "mandrill-send": "~0.1.0",
+    "stripe": "~1.3.0",
+    "async": "0.2.9",
+    "bunyan": "~0.21.4",
+    "lodash": "~2.2.1",
+    "cookie": "~0.1.0",
+    "connect": "~2.12.0",
+    "passport.socketio": "~2.2.0",
+    "connect-mongo": "~0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4",
+    "path": "~0.4",
+    "grunt-cli": "~0.1",
+    "grunt-reload": "~0.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-contrib-stylus": "~0.5.0",
+    "grunt-browserify2": "~0.1.7",
+    "grunt-mocha-phantomjs": "~0.3.0",
+    "through": "~2.3.4",
+    "mocha": "~1.12.0",
+    "chai": "~1.7.2",
+    "sinon": "~1.7.3",
+    "grunt-mocha": "~0.4.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "nodemon --exec 'mocha -R min' test"
+  },
+  "subdomain": "molyneux",
+  "engines": {
+    "node": "0.10.x"
   }
 }

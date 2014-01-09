@@ -50,6 +50,10 @@ var userNames = (function () {
 
 // export function for listening to the socket
 module.exports = function (socket) {
+  // console.log(socket.namespace.manager.handshaken)
+  // console.log(socket.namespace.manager.handshaken[0].headers)
+  // console.log(socket.manager.handshaken[socket.store.id].headers)
+  // console.log(socket.store.id)
   var name = userNames.getGuestName();
 
   // send the new user their name and a list of users

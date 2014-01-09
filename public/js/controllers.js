@@ -180,6 +180,58 @@ angular.module('myApp.controllers', [])
   //     $scope.time = data.time;
   //   });
   // }).
-  // controller('MyCtrl2', function ($scope) {
-  //   // write Ctrl here
-  // });
+  .controller('LoginCtrl', function ($scope, $location) {
+    $('.js-login-bob').on('click', function () {
+      $.ajax({
+        url: '/login'
+      , type: 'post'
+      , data: {
+          'username' : 'bob'
+        , 'email' : 'bob@synthmedia.co.uk'
+        , 'password' : 'cheese cake'
+        }
+      , success: function (res) {
+          console.log(res)
+          $scope.$apply(function () {
+            $location.path('/')
+          });
+        }
+      })
+    })
+
+    $('.js-login-mark').on('click', function () {
+      $.ajax({
+        url: '/login'
+      , type: 'post'
+      , data: {
+          'username' : 'mark'
+        , 'email' : 'mark@synthmedia.co.uk'
+        , 'password' : 'cheese cake'
+        }
+      , success: function (res) {
+          console.log(res)
+          $scope.$apply(function () {
+            $location.path('/')
+          });
+        }
+      })
+    })
+
+    $('.js-login-steve').on('click', function () {
+      $.ajax({
+        url: '/login'
+      , type: 'post'
+      , data: {
+          'username' : 'steve'
+        , 'email' : 'steve@synthmedia.co.uk'
+        , 'password' : 'cheese cake'
+        }
+      , success: function (res) {
+          console.log(res)
+          $scope.$apply(function () {
+            $location.path('/')
+          });
+        }
+      })
+    })
+  });
