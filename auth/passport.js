@@ -38,7 +38,7 @@ UserModel.findOne({ email: 'mark@synthmedia.co.uk'}, function (err, doc){
   }
 })
 
-// Create user hillary
+// Create user steve
 UserModel.findOne({ email: 'steve@synthmedia.co.uk'}, function (err, doc){
  if(doc === null){
     var newUser = new UserModel({
