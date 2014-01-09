@@ -4,7 +4,10 @@
 
 angular.module('myApp.controllers', [])
   .controller('ProjectsCtrl', function ($scope, socket) {
-    $scope.projects = []
+      $scope.name = []
+      $scope.team = []
+      $scope.users = []
+      $scope.projects = []
 
     socket.on('init', function (data) {
       $scope.name = data.name
