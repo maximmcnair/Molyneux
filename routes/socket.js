@@ -48,10 +48,12 @@
 //   }
 // }())
 
-var teams = {
+var teamUsers = {
   '1': []
 , '2': []
 }
+
+// var projects = {}
 
 // export function for listening to the socket
 module.exports = function (socket) {
@@ -64,15 +66,15 @@ module.exports = function (socket) {
   socket.join(team)
 
   // Register user in team
-  if(!teams[team][user.username]){
-    teams[team].push(user.username)
+  if(!teamUsers[team][user.username]){
+    teamUsers[team].push(user.username)
   }
 
   // send the new user their name and a list of users
   socket.emit('init', {
     name: user.username
   , team: team
-  , users: teams[team]
+  , users: teamUsers[team]
   })
 
   // notify other clients that a new user has joined
@@ -93,9 +95,9 @@ module.exports = function (socket) {
     socket.broadcast.in(team).emit('user:left', {
       name: user.username
     })
-    var index = teams[team].indexOf(user.username)
+    var index = teamUsers[team].indexOf(user.username)
     if (index > -1) {
-      teams[team].splice(index, 1);
+      teamUsers[team].splice(index, 1);
     }
   })
 }
