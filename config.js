@@ -2,7 +2,7 @@ module.exports = {
   db: {
     development: "mongodb://localhost/molyneux-api"
   // , test: "mongodb://localhost/molyneux-api-test"
-  // , production: "mongodb://maxim:synth001@paulo.mongohq.com:10016/molyneux-api"
+  , production: "mongodb://maxim:synth001@dharma.mongohq.com:10097/molyneux"
   }
 , saltWorkFactor: 10
 , twitter: {
