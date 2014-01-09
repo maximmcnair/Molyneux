@@ -136,6 +136,23 @@ io.set('authorization', passportSocketIo.authorize({
   fail:        onAuthorizeFail,
 }))
 
+io.configure('production', function(){
+  io.enable('browser client etag');
+  io.set('log level', 1);
+
+  io.set('transports', [
+    'websocket'
+  , 'flashsocket'
+  , 'htmlfile'
+  , 'xhr-polling'
+  , 'jsonp-polling'
+  ]);
+});
+
+io.configure('development', function(){
+  io.set('transports', ['websocket']);
+});
+
 io.sockets.on('connection', require('./routes/socket'))
 
 function onAuthorizeSuccess(data, accept){
