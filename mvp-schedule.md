@@ -5,7 +5,7 @@ Basic node/angular exp with sockets, editable collection of projects in realtime
 - ~~socket.io setup~~
 - ~~socket.io teams~~
 - ~~user generation~~
-- Projects saved to database
+- ~~Projects saved to database~~
 - Image uploading
 
 ## Pre start
