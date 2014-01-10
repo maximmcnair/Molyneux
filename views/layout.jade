@@ -7,6 +7,12 @@ html(ng-app="myApp")
     link(rel='stylesheet', href='/css/app.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
   body
+    header.container
+      .row
+        if username
+          h2 Logged in as: #{username}
+          a(href="/logout", target="_self") Logout
+
     block body
 
     script(src='/js/lib/jquery-2.0.3.min.js')
