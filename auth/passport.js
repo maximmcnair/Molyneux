@@ -10,7 +10,7 @@ UserModel.findOne({ email: 'bob@synthmedia.co.uk'}, function (err, doc){
     , email: 'bob@synthmedia.co.uk'
     , password: 'cheese cake'
     , team: '1'
-    , admin: true
+    , avatar: 'sam.jpg'
     })
 
     newUser.save(function (err, user) {
@@ -28,7 +28,7 @@ UserModel.findOne({ email: 'mark@synthmedia.co.uk'}, function (err, doc){
     , email: 'mark@synthmedia.co.uk'
     , password: 'cheese cake'
     , team: '1'
-    , admin: true
+    , avatar: 'mark.jpg'
     })
 
     newUser.save(function (err, user) {
@@ -46,7 +46,7 @@ UserModel.findOne({ email: 'steve@synthmedia.co.uk'}, function (err, doc){
     , email: 'steve@synthmedia.co.uk'
     , password: 'cheese cake'
     , team: '2'
-    , admin: true
+    , avatar: 'magnus.jpg'
     })
 
     newUser.save(function (err, user) {

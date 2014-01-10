@@ -10,7 +10,10 @@ html(ng-app="myApp")
     header.container
       .row
         if username
-          h2 Logged in as: #{username}
+          h2
+            |Logged in as: 
+            img(src="/imgs/users/#{avatar}")
+            | #{username}
           a(href="/logout", target="_self") Logout
 
     block body
