@@ -3,10 +3,14 @@
  */
 
 exports.index = function(req, res){
-  res.render('index');
-};
+  if (req.isAuthenticated()) {
+    res.render('index')
+  } else {
+    res.redirect('/login')
+  }
+}
 
 exports.partials = function (req, res) {
-  var name = req.params.name;
-  res.render('partials/' + name);
-};
+  var name = req.params.name
+  res.render('partials/' + name)
+}

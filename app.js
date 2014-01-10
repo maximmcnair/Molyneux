@@ -87,31 +87,39 @@ app.get('/partials/:name', routes.partials);
 app.get('/api/name', api.name);
 
 // Basic auth routes
+app.get('/login', function (req, res) {
+  res.render('login')
+})
 app.post('/login', function (req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       console.log(err)
-      return res.send(401)
+      res.redirect('/')
     }
 
-    if (!user) {
-      console.log(err)
-      return res.send(401)
-    }
+    // if (!user) {
+    //   console.log(err)
+    //   return res.send(401)
+    // }
 
     req.logIn(user, function(err) {
       if (err) {
         console.log(err)
-        return res.send(401)
+        res.redirect('/')
       }
 
       console.log('Login success: ', user)
-      res.json({
-        name: user.username
-      , email: user.email
-      })
+      // res.json({
+      //   name: user.username
+      // , email: user.email
+      // })
+      res.redirect('/')
     })
   })(req, res, next)
+})
+app.get('/logout', function(req, res){
+  req.logout()
+  res.redirect('/')
 })
 
 // redirect all others to the index (HTML5 history)

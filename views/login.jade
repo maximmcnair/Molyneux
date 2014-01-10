@@ -1,0 +1,26 @@
+extends layout
+
+block body
+  h1 Login
+
+  h4 Choose user
+  
+  strong Team 1
+  form(action="/login", method="post")
+    input(type="text", name="email", placeholder="Email", tabindex="1", data-type="email", value="bob@synthmedia.co.uk")
+    input(type="password", name="password", placeholder="Password", tabindex="2", value="cheese cake")
+
+    input(type="submit", value="Login as Bob")
+      
+  form(action="/login", method="post")
+    input(type="text", name="email", placeholder="Email", tabindex="1", data-type="email", value="mark@synthmedia.co.uk")
+    input(type="password", name="password", placeholder="Password", tabindex="2", value="cheese cake")
+
+    input(type="submit", value="Login as Mark")
+  
+  strong Team 2
+  form(action="/login", method="post")
+    input(type="text", name="email", placeholder="Email", tabindex="1", data-type="email", value="steve@synthmedia.co.uk")
+    input(type="password", name="password", placeholder="Password", tabindex="2", value="cheese cake")
+
+    input(type="submit", value="Login as Steve")
