@@ -53,19 +53,7 @@ var teamUsers = {
 , '2': []
 }
 
-var teamProjects = {
-  '1':  [ { title: 'TreePress'
-          , description: 'A couple laps in BMW\'s latest autonomous driving demo, taking place here at CES this week, are all it took to get me feeling a little woozy. '
-          }
-        , { title: 'Fosters Events'
-          , description: 'As thrilling and entertaining as the ride was, there\'s actually method to BMW\'s madness. The company notes that self-driving systems won\'t really be ready for prime time until they\'re able to handle all road situations.'
-          }
-        ]
-, '2':  [ { title: 'Creo Medical'
-          , description: 'The demonstration was an exclamation point that researchers in the auto industry are starting to get a handle on making self-driving cars practical (and safe) in even non-optimal driving conditions, but there\s still lots of work to do.'
-          }
-        ]
-}
+var ProjectModel = require('../models/project.js').ProjectModel
 
 
 // export function for listening to the socket
@@ -84,11 +72,13 @@ module.exports = function (socket) {
   }
 
   // send the new user their name and a list of users
-  socket.emit('init', {
-    name: user.username
-  , team: team
-  , users: teamUsers[team]
-  , projects: teamProjects[team]
+  ProjectModel.find({ team: team}, function (err, doc){
+    socket.emit('init', {
+      name: user.username
+    , team: team
+    , users: teamUsers[team]
+    , projects: doc
+    })
   })
 
   // notify other clients that a new user has joined
@@ -102,8 +92,19 @@ module.exports = function (socket) {
       title: data.title,
       description: data.description
     }
+    // Send project to other users
     socket.broadcast.in(team).emit('send:project', project)
-    teamProjects[team].push(project)
+
+    // Save project to db
+    var newProject = new ProjectModel({
+      title: project.title
+    , description: project.description
+    , team: team
+    })
+    newProject.save(function (err, project) {
+      if(err) console.log(err)
+      console.log(project)
+    })
   })
 
   // clean up when a user leaves, and broadcast it to other users
