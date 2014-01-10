@@ -1,6 +1,7 @@
 # MVP Schedule
 
 ## Proof of concept
+Basic node/angular exp with sockets, editable collection of projects in realtime.
 - ~~socket.io setup~~
 - ~~socket.io teams~~
 - ~~user generation~~
@@ -9,8 +10,6 @@
 
 ## Pre start
 - Propsal/Feature outline
-- Basic node/angular exp with sockets, editable collection of projects in realtime.
-- 
 
 ## Week 1
 - HTML templates/wireframes
