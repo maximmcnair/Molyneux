@@ -5,6 +5,7 @@
         .thumbnail
           h2 {{project.title}}
           p {{project.description}}
+          a(ng-click="removeProject(project.title)") Delete
 
     form(role="form")
       h2 Add Project

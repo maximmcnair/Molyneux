@@ -16,7 +16,7 @@ passport.serializeUser(function(user, done) {
           return done(null, user.get('accessToken'));
         })
       }
-    });
+    })
   };
 
   if ( user._id ) {

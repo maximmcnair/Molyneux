@@ -32,15 +32,18 @@ angular.module('myApp.controllers', [])
       }
     })
 
-
-    socket.on('send:project', function (project) {
+    //========================================================
+    //  Projects
+    //========================================================
+    // Add project
+    socket.on('project:add', function (project) {
       $scope.projects.push(project)
     })
 
     $scope.addProject = function () {
-      socket.emit('send:project', {
-        title: $scope.project.title,
-        description: $scope.project.description
+      socket.emit('project:add', {
+        title: $scope.project.title
+      , description: $scope.project.description
       })
 
       // add the projects to our model locally
@@ -48,6 +51,32 @@ angular.module('myApp.controllers', [])
 
       // clear projects box
       $scope.project = ''
+    }
+
+
+    // Remove project when someone else deletes it
+    socket.on('project:remove', function (projectTitle) {
+      var i
+      for (i = 0; i < $scope.projects.length; i++) {
+        var project = $scope.projects[i]
+        if (project.title === projectTitle) {
+          $scope.projects.splice(i, 1)
+          break
+        }
+      }
+    })
+
+    $scope.removeProject = function (projectTitle) {
+      var i
+      for (i = 0; i < $scope.projects.length; i++) {
+        var project = $scope.projects[i]
+        if (project.title === projectTitle) {
+          $scope.projects.splice(i, 1)
+          break
+        }
+      }
+
+      socket.emit('project:remove', projectTitle)
     }
   })
   .controller('SocketImCtrl', function ($scope, socket) {
