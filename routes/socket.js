@@ -1,7 +1,7 @@
-var teamUsers = {
-  '1': []
-, '2': []
-}
+// var teamUsers = {
+//   '1': []
+// , '2': []
+// }
 
 var ProjectModel = require('../models/project.js').ProjectModel
 
@@ -17,24 +17,25 @@ module.exports = function (socket) {
   socket.join(team)
 
   // Register user in team
-  if(!teamUsers[team][user.username]){
-    teamUsers[team].push(user.username)
-  }
+  // if(!teamUsers[team][user.username]){
+  //   teamUsers[team].push(user.username)
+  // }
 
   // send the new user their name and a list of users
   ProjectModel.find({ team: team}, function (err, doc){
     socket.emit('init', {
-      name: user.username
-    , team: team
-    , users: teamUsers[team]
-    , projects: doc
+    //   name: user.username
+    // , team: team
+    // , users: teamUsers[team]
+    // ,
+    projects: doc
     })
   })
 
   // notify other clients that a new user has joined
-  socket.broadcast.in(team).emit('user:join', {
-    name: user.username
-  })
+  // socket.broadcast.in(team).emit('user:join', {
+  //   name: user.username
+  // })
 
   // broadcast a user's project to other users
   socket.on('project:add', function (data) {
@@ -77,9 +78,9 @@ module.exports = function (socket) {
     socket.broadcast.in(team).emit('user:left', {
       name: user.username
     })
-    var index = teamUsers[team].indexOf(user.username)
-    if (index > -1) {
-      teamUsers[team].splice(index, 1);
-    }
+    // var index = teamUsers[team].indexOf(user.username)
+    // if (index > -1) {
+    //   teamUsers[team].splice(index, 1);
+    // }
   })
 }
