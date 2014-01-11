@@ -1,6 +1,7 @@
 var usersOnline = {}
 
 var ProjectModel = require('../models/project.js').ProjectModel
+  , ProjectService = require('../controllers/project')
   , TeamService = require('../controllers/team')
   , async = require('async')
 
@@ -23,7 +24,7 @@ module.exports = function (socket) {
   // send the new user their name and a list of users
   async.parallel([
     function(callback){
-      ProjectModel.find({ team: teamId}, function (err, projects){
+      ProjectService.list(teamId, function (err, projects) {
         callback(err, projects)
       })
     },
@@ -80,13 +81,13 @@ module.exports = function (socket) {
     socket.broadcast.in(teamId).emit('project:add', project)
 
     // Save project to db
-    var newProject = new ProjectModel({
+    var newProject = {
       title: project.title
     , description: project.description
     , team: teamId
     , thumbnail: project.thumbnail
-    })
-    newProject.save(function (err, project) {
+    }
+    ProjectService.create(newProject, function (err, project) {
       if(err) console.log(err)
       console.log(project)
     })
@@ -94,6 +95,9 @@ module.exports = function (socket) {
 
   // Remove projects
   socket.on('project:remove', function (projectTitle) {
+    // ProjectService.delete('52d15d8155a18bcc3d000001', function (err) {
+    //   console.log(err)
+    // })
     ProjectModel.findOne({title: projectTitle}, function (err, project) {
       project.remove( function (err) {
         if(err) {
