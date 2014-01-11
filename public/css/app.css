@@ -2,19 +2,17 @@
     background: #F8F8F8;
     border: 5px dashed #DDD;
     width: 200px;
-    height: 65px;
+    height: 200px;
     text-align: center;
-    padding-top: 35px;
+    padding-top: 75px;
 }
 
 .drop-box.dragover {
     border: 5px dashed blue;
 }
 .bs-sidenav {
-  margin-top: 30px;
   margin-bottom: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   text-shadow: 0 1px 0 #FFF;
   background-color: #F7F5FA;
   border-radius: 5px;
@@ -24,4 +22,8 @@ img{
 }
 body {
   padding-top: 90px;
+}
+.input-box{
+  font-size: 11px;
+  margin-top: 20px;
 }
