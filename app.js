@@ -6,6 +6,7 @@ var express = require('express')
   , routes = require('./routes')
   , api = require('./routes/api')
   , file = require('./routes/file')
+  , team = require('./routes/team')
   , http = require('http')
   , path = require('path')
   , MongoStore = require('connect-mongo')(express)
@@ -78,23 +79,6 @@ if (app.get('env') === 'production') {
 /**
  * Routes
  */
-var teamService = require('./controllers/team')
-
-// teamService.create({name: 'Clock'}, function (err, team) {
-//   console.log(team)
-// })
-// teamService.detail('52d155ed8d94e2e235000001', function (err, team) {
-//   console.log(team)
-// })
-// teamService.update('52d155ed8d94e2e235000001', {name: 'Synth Media'}, function (err, team) {
-//   console.log(team)
-// })
-// teamService.delete('52d15d8155a18bcc3d000001', function (err) {
-//   console.log(err)
-// })
-// teamService.getMembers('52d155ed8d94e2e235000001', function (err, users) {
-//   console.log(users)
-// })
 
 
 
@@ -104,6 +88,9 @@ app.get('/partials/:name', routes.partials)
 
 // JSON API
 app.post('/api/file/upload', file.upload)
+
+// Team API
+app.get('/api/team/:teamId/members', team.getMembers)
 
 // Basic auth routes
 app.get('/login', function (req, res) {
