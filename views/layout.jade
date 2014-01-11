@@ -5,16 +5,20 @@ html(ng-app="myApp")
     base(href='/')
     title Molyneux
     link(rel='stylesheet', href='/css/app.css')
-    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css')
   body
-    header.container
-      .row
-        if username
-          h2
-            |Logged in as: 
-            img(src="/imgs/users/#{avatar}")
-            | #{username}
-          a(href="/logout", target="_self") Logout
+    header(role="banner").navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        nav(role="navigation").collapse.navbar-collapse.bs-navbar-collapse
+          if username
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="/logout", target="_self") Logout
+              li
+                | Logged in as: 
+                img(src="/imgs/users/#{avatar}")
+                | #{username}
 
     block body
 
