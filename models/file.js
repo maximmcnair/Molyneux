@@ -7,6 +7,7 @@ var FileSchema = new Schema({
 , size: {type: Number}
 , type: {type: String}
 , filename: {type: String}
+, userId: {type: String}
 })
 
 exports.FileModel = mongoose.model('File', FileSchema)

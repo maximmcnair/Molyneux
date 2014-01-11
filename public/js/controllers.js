@@ -8,16 +8,13 @@ angular.module('myApp.controllers', [])
       $scope.team = []
       $scope.users = []
       $scope.projects = []
+      $scope.project = []
 
     //========================================================
     //  File Upload
     //========================================================
     $scope.upload = []
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function () {
-      window.location.hash = $scope.angularVersion;
-      window.location.reload(true);
-    }
     $scope.hasUploader = function (index) {
       return $scope.upload[index] != null;
     };
@@ -25,7 +22,6 @@ angular.module('myApp.controllers', [])
       $scope.upload[index].abort();
       $scope.upload[index] = null;
     };
-    $scope.angularVersion = window.location.hash.length > 1 ? window.location.hash.substring(1) : '1.2.0';
     $scope.onFileSelect = function ($files) {
       $scope.selectedFiles = [];
       $scope.progress = [];
@@ -78,6 +74,8 @@ angular.module('myApp.controllers', [])
         file: $scope.selectedFiles[index],
         fileFormDataName: 'myFile'
       }).then(function (response) {
+        console.log('response', response)
+        $scope.project.thumbnail = response.data.path
         $scope.uploadResult.push(response.data.result);
       }, null, function (evt) {
         $scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
@@ -126,6 +124,7 @@ angular.module('myApp.controllers', [])
       socket.emit('project:add', {
         title: $scope.project.title
       , description: $scope.project.description
+      , thumbnail: $scope.project.thumbnail
       })
 
       // add the projects to our model locally

@@ -15,6 +15,9 @@ var ProjectSchema = new Schema({
   { type: String
   , required: true
   }
+, thumbnail: 
+  { type: String
+  }
 })
 
 var ProjectModel = mongoose.model('Project', ProjectSchema)

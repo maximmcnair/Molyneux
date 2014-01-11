@@ -39,8 +39,9 @@ module.exports = function (socket) {
   // broadcast a user's project to other users
   socket.on('project:add', function (data) {
     var project = {
-      title: data.title,
-      description: data.description
+      title: data.title
+    , description: data.description
+    , thumbnail: data.thumbnail
     }
     // Send project to other users
     socket.broadcast.in(team).emit('project:add', project)
@@ -50,6 +51,7 @@ module.exports = function (socket) {
       title: project.title
     , description: project.description
     , team: team
+    , thumbnail: project.thumbnail
     })
     newProject.save(function (err, project) {
       if(err) console.log(err)

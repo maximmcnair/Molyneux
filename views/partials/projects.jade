@@ -3,38 +3,42 @@
     section.projects.row.clearfix
       div(ng-repeat="project in projects").col-md-4
         .thumbnail
+          img(src="{{project.thumbnail}}")
           h2 {{project.title}}
           p {{project.description}}
           a(ng-click="removeProject(project.title)") Delete
 
-    //- form(role="form")
-    //-   h2 Add Project
-    //-   div.form-group
-    //-     label(for="title") Title
-    //-       input(type="text", id="title", ng-model="project.title").form-control
-    //-   div.form-group
-    //-     label(for="description") Description
-    //-       textarea(id="description", ng-model="project.description").form-control
-    //-   button(type="submit", ng-click="addProject()").btn.btn-default Submit
+    form(role="form")
+      h2 Add Project
+      div.form-group
+        label(for="title") Title
+          input(type="text", id="title", ng-model="project.title").form-control
+      div.form-group
+        label(for="description") Description
+          textarea(id="description", ng-model="project.description").form-control
+      div.form-group
+        label(for="thumbnail") Thumbnail
+          textarea(id="thumbnail", ng-model="project.thumbnail").form-control
+      button(type="submit", ng-click="addProject()").btn.btn-default Submit
 
 
     div
-      span title: 
-        input(type="text", ng-model="title")
-      br
-      span author: 
-        input(type="text", ng-model="author")
-      br
-      span description: 
-        input(type="text", ng-model="description")
-      br
+      //- span title: 
+      //-   input(type="text", ng-model="title")
+      //- br
+      //- span author: 
+      //-   input(type="text", ng-model="author")
+      //- br
+      //- span description: 
+      //-   input(type="text", ng-model="description")
+      //- br
       span choose a single file: 
         input(type="file", ng-file-select="onFileSelect($files)")
       br
-      span or multiple files: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        input(type="file", ng-file-select="onFileSelect($files)", multiple)
-      br
-      br
+      //- span or multiple files: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      //-   input(type="file", ng-file-select="onFileSelect($files)", multiple)
+      //- br
+      //- br
 
       div(ng-show="dropSupported", class="drop-box", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") or drop files here
       div(ng-show="!dropSupported") HTML5 Drop File is not supported on this browser
