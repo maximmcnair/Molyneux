@@ -7,15 +7,64 @@
           p {{project.description}}
           a(ng-click="removeProject(project.title)") Delete
 
-    form(role="form")
-      h2 Add Project
-      div.form-group
-        label(for="title") Title
-          input(type="text", id="title", ng-model="project.title").form-control
-      div.form-group
-        label(for="description") Description
-          textarea(id="description", ng-model="project.description").form-control
-      button(type="submit", ng-click="addProject()").btn.btn-default Submit
+    //- form(role="form")
+    //-   h2 Add Project
+    //-   div.form-group
+    //-     label(for="title") Title
+    //-       input(type="text", id="title", ng-model="project.title").form-control
+    //-   div.form-group
+    //-     label(for="description") Description
+    //-       textarea(id="description", ng-model="project.description").form-control
+    //-   button(type="submit", ng-click="addProject()").btn.btn-default Submit
+
+
+    div
+      span title: 
+        input(type="text", ng-model="title")
+      br
+      span author: 
+        input(type="text", ng-model="author")
+      br
+      span description: 
+        input(type="text", ng-model="description")
+      br
+      span choose a single file: 
+        input(type="file", ng-file-select="onFileSelect($files)")
+      br
+      span or multiple files: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        input(type="file", ng-file-select="onFileSelect($files)", multiple)
+      br
+      br
+
+      div(ng-show="dropSupported", class="drop-box", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") or drop files here
+      div(ng-show="!dropSupported") HTML5 Drop File is not supported on this browser
+      br
+      input(type="checkbox", ng-model="uploadRightAway") Upload right away
+      br
+      br
+      strong Progress:
+      br
+      br
+
+      div(ng-show="selectedFiles != null") 
+          div(class="sel-file", ng-repeat="f in selectedFiles") 
+              img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}") 
+              button(class="button", ng-click="start($index)", ng-show="progress[$index] < 0") Start
+          span(class="progress", ng-show="progress[$index] >= 0") 
+            div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
+              button(class="button", ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+              {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+
+      div(class="response", ng-show="uploadResult.length > 0") 
+        Server Response:
+        ul
+          li(ng-repeat="result in uploadResult") 
+            ul
+              li(ng-repeat="item in result") 
+                div(data-ng-show="item.name") file name: {{item.name}}</div>
+                div(data-ng-show="item.fieldName") name: {{item.fieldName}}</div>
+                div(data-ng-show="item.size") size on the serve: {{item.size}}</div>
+                div(data-ng-show="item.value") value: {{item.value}}</div>
 
   .col-md-4
     h3 Team {{team}} Members Online

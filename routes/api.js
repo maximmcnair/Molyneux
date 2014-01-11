@@ -1,9 +1,3 @@
-/*
- * Serve JSON to our AngularJS client
- */
-
-exports.name = function (req, res) {
-  res.json({
-  	name: 'Bob'
-  });
-};
+// exports.upload = function (req, res) {
+//   console.log(req.body)
+// }
