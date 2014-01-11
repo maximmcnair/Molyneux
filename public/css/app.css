@@ -11,3 +11,15 @@
 .drop-box.dragover {
     border: 5px dashed blue;
 }
+.bs-sidenav {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-shadow: 0 1px 0 #FFF;
+  background-color: #F7F5FA;
+  border-radius: 5px;
+}
+img{
+  max-width: 100%;
+}
