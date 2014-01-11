@@ -7,10 +7,10 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'angularFileUpload',
 
   // 3rd party dependencies
-  'btford.socket-io',
+  'angularFileUpload',
+  // 'btford.socket-io',
   'ui.bootstrap'
 ]).
 config(function ($routeProvider, $locationProvider) {

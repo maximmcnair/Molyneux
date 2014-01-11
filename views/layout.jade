@@ -26,17 +26,16 @@ html(ng-app="myApp")
                 | #{username}
 
     .container
-      block body
-    //-   .row
-    //-     .col-md-10
-    //-       block body
-
-    //-     .col-md-2
-    //-       .bs-sidenav.affix
-    //-         h3 {{team.name}} Members Online
-    //-         div(ng-repeat='user in users')
-    //-           img(src="/uploads/{{team.members[user].avatar}}")
-    //-           h5{{user}}
+      //- block body
+      .row
+        div(ng-view).col-md-10
+          // App is here
+        .col-md-2(ng-controller="OnlineCtrl")
+          .bs-sidenav.affix
+            h3 {{team.name}} Members Online
+            div(ng-repeat='user in users')
+              img(src="/uploads/{{team.members[user].avatar}}")
+              h5{{user}}
 
     script(src='/js/lib/jquery-2.0.3.min.js')
     script(src='/socket.io/socket.io.js')

@@ -1,63 +1,54 @@
-.row
-  .col-md-10
-    section.projects.row.clearfix
-      div(ng-repeat="project in projects").col-md-4
-        a(href="/projects/{{project._id}}").thumbnail
-          img(src="{{project.thumbnail}}")
-          h2 {{project.title}}
-          p {{project.description}}
-          //- a(ng-click="removeProject(project.title)") Delete
+section.projects.row.clearfix
+  div(ng-repeat="project in projects").col-md-4
+    a(href="/projects/{{project._id}}").thumbnail
+      img(src="{{project.thumbnail}}")
+      h2 {{project.title}}
+      p {{project.description}}
+      //- a(ng-click="removeProject(project.title)") Delete
 
-    .jumbotron
-      .row
-        form(role="form").col-md-8
-          h2 Add Project
-          div.form-group
-            label(for="title") Title
-            input(type="text", id="title", ng-model="project.title").form-control
-          div.form-group
-            label(for="description") Description
-            textarea(id="description", ng-model="project.description").form-control
-          div.form-group
-            label(for="thumbnail") Thumbnail
-            textarea(id="thumbnail", ng-model="project.thumbnail").form-control
-          button(type="submit", ng-click="addProject()").btn.btn-default Submit
+.jumbotron
+  .row
+    form(role="form").col-md-8
+      h2 Add Project
+      div.form-group
+        label(for="title") Title
+        input(type="text", id="title", ng-model="project.title").form-control
+      div.form-group
+        label(for="description") Description
+        textarea(id="description", ng-model="project.description").form-control
+      div.form-group
+        label(for="thumbnail") Thumbnail
+        textarea(id="thumbnail", ng-model="project.thumbnail").form-control
+      button(type="submit", ng-click="addProject()").btn.btn-default Submit
 
 
-        .col-md-4
-          div(ng-show="dropSupported", class="drop-box", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") or drop files here
-          //- div(ng-show="!dropSupported") HTML5 Drop File is not supported on this browser
-          input(type="file", ng-file-select="onFileSelect($files)").input-box
-          //- input(type="checkbox", ng-model="uploadRightAway") Upload right away
-          br
-          br
-          strong Progress:
-          br
-          br
+    .col-md-4
+      div(ng-show="dropSupported", class="drop-box", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") or drop files here
+      //- div(ng-show="!dropSupported") HTML5 Drop File is not supported on this browser
+      input(type="file", ng-file-select="onFileSelect($files)").input-box
+      //- input(type="checkbox", ng-model="uploadRightAway") Upload right away
+      br
+      br
+      strong Progress:
+      br
+      br
 
-          div(ng-show="selectedFiles != null") 
-            div(class="sel-file", ng-repeat="f in selectedFiles") 
-              img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}") 
-              button(class="button", ng-click="start($index)", ng-show="progress[$index] < 0") Start
-            span(class="progress", ng-show="progress[$index] >= 0") 
-              div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
-                button(class="button", ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
-                {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+      div(ng-show="selectedFiles != null") 
+        div(class="sel-file", ng-repeat="f in selectedFiles") 
+          img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}") 
+          button(class="button", ng-click="start($index)", ng-show="progress[$index] < 0") Start
+        span(class="progress", ng-show="progress[$index] >= 0") 
+          div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
+            button(class="button", ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+            {{f.name}} - size: {{f.size}}B - type: {{f.type}}
 
-          div(ng-show="uploadResult.length > 0") 
-            Server Response:
+      div(ng-show="uploadResult.length > 0") 
+        Server Response:
+        ul
+          li(ng-repeat="result in uploadResult") 
             ul
-              li(ng-repeat="result in uploadResult") 
-                ul
-                  li(ng-repeat="item in result") 
-                    div(ng-show="item.name") file name: {{item.name}}
-                    div(ng-show="item.fieldName") name: {{item.fieldName}}
-                    div(ng-show="item.size") size on the serve: {{item.size}}
-                    div(ng-show="item.value") value: {{item.value}}
-
-  .col-md-2
-    .bs-sidenav.affix
-      h3 {{team.name}} Members Online
-      div(ng-repeat='user in users')
-        img(src="/uploads/{{team.members[user].avatar}}")
-        h5{{user}}
+              li(ng-repeat="item in result") 
+                div(ng-show="item.name") file name: {{item.name}}
+                div(ng-show="item.fieldName") name: {{item.fieldName}}
+                div(ng-show="item.size") size on the serve: {{item.size}}
+                div(ng-show="item.value") value: {{item.value}}

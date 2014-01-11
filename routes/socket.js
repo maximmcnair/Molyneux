@@ -22,53 +22,61 @@ module.exports = function (socket) {
   }
 
   // send the new user their name and a list of users
-  async.parallel([
-    function(callback){
-      ProjectService.list(teamId, function (err, projects) {
-        callback(err, projects)
-      })
-    },
-    function(callback){
-      TeamService.detail(teamId, function (err, team) {
-        // console.log('**team', team)
-        callback(err, team)
-      })
-    },
-    function(callback){
-      TeamService.getMembers(teamId, function (err, users) {
-        var usersByName = {}
-          , cb = callback
 
-        async.each(users, function(user, callback){
-          // console.log(user)
-          usersByName[user.username] = user
-          callback()
-        }, function(err){
-          // console.log('callbacked', cb)
-          cb(err, usersByName)
+  socket.on('user:get', function (data) {
+    async.parallel([
+      function(callback){
+        TeamService.detail(teamId, function (err, team) {
+          // console.log('**team', team)
+          callback(err, team)
         })
+      },
+      function(callback){
+        TeamService.getMembers(teamId, function (err, users) {
+          var usersByName = {}
+            , cb = callback
 
-      })
-    }
-  ],
-  // optional callback
-  function(err, results){
-    socket.emit('init', {
-      projects: results[0]
-    , users: usersOnline[teamId]
-    , name: user.username
-    , team: {
-        name: results[1].name
-      , members: results[2]
+          async.each(users, function(user, callback){
+            // console.log(user)
+            usersByName[user.username] = user
+            callback()
+          }, function(err){
+            // console.log('callbacked', cb)
+            cb(err, usersByName)
+          })
+
+        })
       }
-    , 
+    ],
+    // optional callback
+    function(err, results){
+      socket.emit('user:get', {
+        users: usersOnline[teamId]
+      , name: user.username
+      , team: {
+          name: results[0].name
+        , members: results[1]
+        }
+      })
     })
-  });
+  })
 
   // notify other clients that a new user has joined
   socket.broadcast.in(teamId).emit('user:join', {
     name: user.username
   })
+
+
+  // send the new user their name and a list of users
+  socket.on('project:get', function (data) {
+    ProjectService.list(teamId, function (err, projects) {
+      socket.emit('project:get', {
+        projects: projects
+      })
+    })
+  })
+
+
 
   // broadcast a user's project to other users
   socket.on('project:add', function (data) {
