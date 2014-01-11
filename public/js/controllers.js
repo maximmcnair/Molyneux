@@ -3,12 +3,24 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
+  .controller('ProjectCtrl', function ($scope, $http, $routeParams) {
+    $scope.project = {}
+    $http({method: 'GET', url: '/api/projects/' + $routeParams.projectId})
+      .success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        $scope.project = data
+      })
+      .error(function(data, status, headers, config) {
+        console.log('error getting project:', data)
+      })
+  })
   .controller('ProjectsCtrl', function ($scope, socket, $http, $timeout, $upload) {
-      $scope.name = []
-      $scope.team = []
-      $scope.users = []
-      $scope.projects = []
-      $scope.project = []
+    $scope.name = []
+    $scope.team = []
+    $scope.users = []
+    $scope.projects = []
+    $scope.project = []
 
     //========================================================
     //  File Upload

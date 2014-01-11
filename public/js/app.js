@@ -19,6 +19,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/projects',
       controller: 'ProjectsCtrl'
     }).
+    when('/projects/:projectId', {
+      templateUrl: 'partials/project',
+      controller: 'ProjectCtrl'
+    }).
     when('/socket', {
       templateUrl: 'partials/socket-im',
       controller: 'SocketImCtrl'

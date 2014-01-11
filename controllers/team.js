@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
   , ProjectModel = require('../models/project.js').ProjectModel
   , UserModel = require('../models/user.js').UserModel
 
-console.log('team')
+// console.log('team')
 
 module.exports.create = function (data, callback) {
   var newTeam = new TeamModel(data)
@@ -51,7 +51,7 @@ module.exports.delete = function (teamId, callback) {
 }
 
 module.exports.getMembers = function (teamId, callback) {
-  UserModel.find({team: teamId}, function (err, users) {
+  UserModel.find({team: teamId}, 'username team email avatar', function (err, users) {
     if(err) callback(err)
     // console.log('users found', users)
     callback(null, users)  

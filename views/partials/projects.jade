@@ -1,12 +1,12 @@
 .row
-  .col-md-8
+  .col-md-10
     section.projects.row.clearfix
       div(ng-repeat="project in projects").col-md-4
-        .thumbnail
+        a(href="/projects/{{project._id}}").thumbnail
           img(src="{{project.thumbnail}}")
           h2 {{project.title}}
           p {{project.description}}
-          a(ng-click="removeProject(project.title)") Delete
+          //- a(ng-click="removeProject(project.title)") Delete
 
     .jumbotron
       .row
@@ -36,13 +36,13 @@
           br
 
           div(ng-show="selectedFiles != null") 
-              div(class="sel-file", ng-repeat="f in selectedFiles") 
-                  img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}") 
-                  button(class="button", ng-click="start($index)", ng-show="progress[$index] < 0") Start
-              span(class="progress", ng-show="progress[$index] >= 0") 
-                div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
-                  button(class="button", ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
-                  {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+            div(class="sel-file", ng-repeat="f in selectedFiles") 
+              img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}") 
+              button(class="button", ng-click="start($index)", ng-show="progress[$index] < 0") Start
+            span(class="progress", ng-show="progress[$index] >= 0") 
+              div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
+                button(class="button", ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+                {{f.name}} - size: {{f.size}}B - type: {{f.type}}
 
           div(ng-show="uploadResult.length > 0") 
             Server Response:
@@ -55,7 +55,9 @@
                     div(ng-show="item.size") size on the serve: {{item.size}}
                     div(ng-show="item.value") value: {{item.value}}
 
-  .col-md-4
+  .col-md-2
     .bs-sidenav.affix
-      h3 Team {{team}} Members Online
-      p(ng-repeat='user in users') {{user}}
+      h3 {{team.name}} Members Online
+      div(ng-repeat='user in users')
+        img(src="/uploads/{{team.members[user].avatar}}")
+        h5{{user}}

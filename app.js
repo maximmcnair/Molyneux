@@ -10,6 +10,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , MongoStore = require('connect-mongo')(express)
+  , bunyan = require('bunyan')
+  , logger = bunyan.createLogger({name: 'molyneux'})
 
 var app = module.exports = express();
 var server = require('http').createServer(app);
@@ -48,6 +50,7 @@ app.use(express.session({
   store: new MongoStore({
     db: 'molyneux-api'
   , collection: 'sessions'
+  , auto_reconnect: true
   })
 }))
 
@@ -91,6 +94,7 @@ app.post('/api/file/upload', file.upload)
 
 // Team API
 app.get('/api/team/:teamId/members', team.getMembers)
+require('./routes/project').createRoutes(app, logger)
 
 // Basic auth routes
 app.get('/login', function (req, res) {

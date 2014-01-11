@@ -11,16 +11,42 @@ html(ng-app="myApp")
     header(role="banner").navbar.navbar-inverse.navbar-fixed-top
       div.container
         nav(role="navigation").collapse.navbar-collapse.bs-navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href="/") Tallli.es
+            li
+              a(href="/projects") Projects
           if username
             ul.nav.navbar-nav.navbar-right
               li
                 a(href="/logout", target="_self") Logout
               li
                 | Logged in as: 
-                img(src="/imgs/users/#{avatar}")
+                img(src="/uploads/#{avatar}")
                 | #{username}
 
-    block body
+    .container
+      block body
+    //-   .row
+    //-     .col-md-10
+    //-       block body
+
+    //-     .col-md-2
+    //-       .bs-sidenav.affix
+    //-         h3 {{team.name}} Members Online
+    //-         div(ng-repeat='user in users')
+    //-           img(src="/uploads/{{team.members[user].avatar}}")
+    //-           h5{{user}}
 
     script(src='/js/lib/jquery-2.0.3.min.js')
-    block scripts
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/lib/angular-file-upload-shim.js')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/angular-socket-io/socket.js')
+    script(src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
+    script(src='/js/lib/angular-file-upload.js')
+    script(src='js/app.js')
+    script(src='js/services.js')
+    script(src='js/controllers.js')
+    script(src='js/filters.js')
+    script(src='js/directives.js')

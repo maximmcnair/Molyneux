@@ -1,41 +1,73 @@
-// var teamUsers = {
-//   '1': []
-// , '2': []
-// }
+var usersOnline = {}
 
 var ProjectModel = require('../models/project.js').ProjectModel
+  , TeamService = require('../controllers/team')
+  , async = require('async')
 
 
 // export function for listening to the socket
 module.exports = function (socket) {
   var user = socket.manager.handshaken[socket.store.id].user
-    , team = user.team
+    , teamId = user.team
 
-  // console.log('user: ', user)
-  // console.log('team: ', team)
-
-  socket.join(team)
+  socket.join(teamId)
 
   // Register user in team
-  // if(!teamUsers[team][user.username]){
-  //   teamUsers[team].push(user.username)
-  // }
+  if(usersOnline[teamId]) {
+    if(!usersOnline[teamId][user.username]) usersOnline[teamId].push(user.username)
+  } else {
+    usersOnline[teamId] = []
+    if(!usersOnline[teamId][user.username]) usersOnline[teamId].push(user.username)
+  }
 
   // send the new user their name and a list of users
-  ProjectModel.find({ team: team}, function (err, doc){
+  async.parallel([
+    function(callback){
+      ProjectModel.find({ team: teamId}, function (err, projects){
+        callback(err, projects)
+      })
+    },
+    function(callback){
+      TeamService.detail(teamId, function (err, team) {
+        // console.log('**team', team)
+        callback(err, team)
+      })
+    },
+    function(callback){
+      TeamService.getMembers(teamId, function (err, users) {
+        var usersByName = {}
+          , cb = callback
+
+        async.each(users, function(user, callback){
+          // console.log(user)
+          usersByName[user.username] = user
+          callback()
+        }, function(err){
+          // console.log('callbacked', cb)
+          cb(err, usersByName)
+        })
+
+      })
+    }
+  ],
+  // optional callback
+  function(err, results){
     socket.emit('init', {
-    //   name: user.username
-    // , team: team
-    // , users: teamUsers[team]
-    // ,
-    projects: doc
+      projects: results[0]
+    , users: usersOnline[teamId]
+    , name: user.username
+    , team: {
+        name: results[1].name
+      , members: results[2]
+      }
+    , 
     })
-  })
+  });
 
   // notify other clients that a new user has joined
-  // socket.broadcast.in(team).emit('user:join', {
-  //   name: user.username
-  // })
+  socket.broadcast.in(teamId).emit('user:join', {
+    name: user.username
+  })
 
   // broadcast a user's project to other users
   socket.on('project:add', function (data) {
@@ -45,13 +77,13 @@ module.exports = function (socket) {
     , thumbnail: data.thumbnail
     }
     // Send project to other users
-    socket.broadcast.in(team).emit('project:add', project)
+    socket.broadcast.in(teamId).emit('project:add', project)
 
     // Save project to db
     var newProject = new ProjectModel({
       title: project.title
     , description: project.description
-    , team: team
+    , team: teamId
     , thumbnail: project.thumbnail
     })
     newProject.save(function (err, project) {
@@ -67,7 +99,7 @@ module.exports = function (socket) {
         if(err) {
           console.log(err)
         } else {
-          socket.broadcast.in(team).emit('project:remove', projectTitle)
+          socket.broadcast.in(teamId).emit('project:remove', projectTitle)
         }
       })
     })
@@ -75,12 +107,12 @@ module.exports = function (socket) {
 
   // clean up when a user leaves, and broadcast it to other users
   socket.on('disconnect', function () {
-    socket.broadcast.in(team).emit('user:left', {
+    socket.broadcast.in(teamId).emit('user:left', {
       name: user.username
     })
-    // var index = teamUsers[team].indexOf(user.username)
-    // if (index > -1) {
-    //   teamUsers[team].splice(index, 1);
-    // }
+    var index = usersOnline[teamId].indexOf(user.username)
+    if (index > -1) {
+      usersOnline[teamId].splice(index, 1);
+    }
   })
 }
