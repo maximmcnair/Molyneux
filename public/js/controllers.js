@@ -5,10 +5,10 @@
 angular.module('myApp.controllers', [])
   .controller('OnlineCtrl', function ($scope, socket) {
     //========================================================
-    //  Socket Setup
+    //  Socket - Users
     //========================================================
-    socket.emit('user:get')
-    socket.on('user:get', function (data) {
+    socket.emit('users:get')
+    socket.on('users:get', function (data) {
       $scope.name = data.name
       $scope.team = data.team
       $scope.users = data.users
@@ -20,15 +20,12 @@ angular.module('myApp.controllers', [])
       // socket.removeListener(this);
     })
 
-    //========================================================
-    //  Socket - Users
-    //========================================================
-    socket.on('user:join', function (data) {
+    socket.on('users:join', function (data) {
       $scope.users.push(data.name)
     })
 
     // add a message to the conversation when a user disconnects or leaves the room
-    socket.on('user:left', function (data) {
+    socket.on('users:left', function (data) {
       var i, user
       for (i = 0; i < $scope.users.length; i++) {
         user = $scope.users[i]
@@ -133,10 +130,10 @@ angular.module('myApp.controllers', [])
 
 
     //========================================================
-    //  Socket Setup
+    //  Socket Projects
     //========================================================
-    socket.emit('project:get')
-    socket.on('project:get', function (data) {
+    socket.emit('projects:get')
+    socket.on('projects:get', function (data) {
       $scope.projects = data.projects
     })
 
@@ -146,35 +143,13 @@ angular.module('myApp.controllers', [])
       // socket.removeListener(this);
     })
 
-    //========================================================
-    //  Socket - Users
-    //========================================================
-    // socket.on('user:join', function (data) {
-    //   $scope.users.push(data.name)
-    // })
-
-    // // add a message to the conversation when a user disconnects or leaves the room
-    // socket.on('user:left', function (data) {
-    //   var i, user
-    //   for (i = 0; i < $scope.users.length; i++) {
-    //     user = $scope.users[i]
-    //     if (user === data.name) {
-    //       $scope.users.splice(i, 1)
-    //       break
-    //     }
-    //   }
-    // })
-
-    //========================================================
-    //  Socket - Projects
-    //========================================================
     // Add project
-    socket.on('project:add', function (project) {
+    socket.on('projects:add', function (project) {
       $scope.projects.push(project)
     })
 
     $scope.addProject = function () {
-      socket.emit('project:add', {
+      socket.emit('projects:add', {
         title: $scope.project.title
       , description: $scope.project.description
       , thumbnail: $scope.project.thumbnail
@@ -189,7 +164,7 @@ angular.module('myApp.controllers', [])
 
 
     // Remove project when someone else deletes it
-    socket.on('project:remove', function (projectTitle) {
+    socket.on('projects:remove', function (projectTitle) {
       var i
       for (i = 0; i < $scope.projects.length; i++) {
         var project = $scope.projects[i]
@@ -210,6 +185,6 @@ angular.module('myApp.controllers', [])
         }
       }
 
-      socket.emit('project:remove', projectTitle)
+      socket.emit('projects:remove', projectTitle)
     }
   })
