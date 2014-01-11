@@ -9,7 +9,7 @@ UserModel.findOne({ email: 'bob@synthmedia.co.uk'}, function (err, doc){
       username: 'bob'
     , email: 'bob@synthmedia.co.uk'
     , password: 'cheese cake'
-    , team: '1'
+    , team: '52d155ed8d94e2e235000001'
     , avatar: 'sam.jpg'
     })
 
@@ -27,7 +27,7 @@ UserModel.findOne({ email: 'mark@synthmedia.co.uk'}, function (err, doc){
       username: 'mark'
     , email: 'mark@synthmedia.co.uk'
     , password: 'cheese cake'
-    , team: '1'
+    , team: '52d155ed8d94e2e235000001'
     , avatar: 'mark.jpg'
     })
 
@@ -45,7 +45,7 @@ UserModel.findOne({ email: 'steve@synthmedia.co.uk'}, function (err, doc){
       username: 'steve'
     , email: 'steve@synthmedia.co.uk'
     , password: 'cheese cake'
-    , team: '2'
+    , team: '52d15d7503bc79c03d000001'
     , avatar: 'magnus.jpg'
     })
 
