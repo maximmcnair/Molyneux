@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies
  */
@@ -79,6 +78,9 @@ if (app.get('env') === 'production') {
 /**
  * Routes
  */
+
+
+require('./controllers/team')
 
 // serve index and view partials
 app.get('/', routes.index)
