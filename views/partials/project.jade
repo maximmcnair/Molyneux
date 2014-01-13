@@ -2,4 +2,27 @@ section.projects.row.clearfix
   img(src="{{project.thumbnail}}")
   h2 {{project.title}}
   p {{project.description}}
-  //- a(ng-click="removeProject(project.title)") Delete
+  a(ng-click="removeTask(task._id)") Delete
+
+section.tasks.row
+  h2 Tasks
+  div(ng-repeat="task in tasks").col-md-4
+    .thumbnail
+      //- a(href="/tasks/{{task._id}}")
+      h2 {{task.title}}
+      p {{task.description}}
+      strong Estimate: 45hrs
+      br
+      strong Time: 1hr 30mins
+
+.jumbotron
+  .row
+    form(role="form").col-md-8
+      h2 Add Task
+      div.form-group
+        label(for="title") Title
+        input(type="text", id="title", ng-model="task.title").form-control
+      div.form-group
+        label(for="description") Description
+        textarea(id="description", ng-model="task.description").form-control
+      button(type="submit", ng-click="addTask()").btn.btn-default Submit

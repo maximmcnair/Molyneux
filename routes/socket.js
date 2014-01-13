@@ -7,4 +7,5 @@ module.exports = function (socket) {
 
   require('./sockets/users')(socket, user, teamId)
   require('./sockets/projects')(socket, user, teamId)
+  require('./sockets/tasks')(socket, user, teamId)
 }

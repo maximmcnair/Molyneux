@@ -37,7 +37,7 @@ angular.module('myApp.controllers', [])
     })
 
   })
-  .controller('ProjectCtrl', function ($scope, $http, $routeParams) {
+  .controller('ProjectCtrl', function ($scope, socket, $http, $routeParams) {
     $scope.project = {}
     $http({method: 'GET', url: '/api/projects/' + $routeParams.projectId})
       .success(function(data, status, headers, config) {
@@ -48,6 +48,50 @@ angular.module('myApp.controllers', [])
       .error(function(data, status, headers, config) {
         console.log('error getting project:', data)
       })
+    socket.emit('tasks:get', {project: $routeParams.projectId})
+    socket.on('tasks:get', function (data) {
+      $scope.tasks = data.tasks
+    })
+    // Add task
+    socket.on('tasks:add', function (task) {
+      $scope.tasks.push(task)
+    })
+    $scope.addTask = function () {
+      socket.emit('tasks:add', {
+        title: $scope.task.title
+      , description: $scope.task.description
+      , project: $routeParams.projectId
+      })
+
+      // add the tasks to our model locally
+      $scope.tasks.push($scope.task)
+
+      // clear tasks box
+      $scope.task = ''
+    }
+    // Remove task when someone else deletes it
+    // socket.on('tasks:remove', function (taskTitle) {
+    //   var i
+    //   for (i = 0; i < $scope.tasks.length; i++) {
+    //     var task = $scope.tasks[i]
+    //     if (task.title === taskTitle) {
+    //       $scope.tasks.splice(i, 1)
+    //       break
+    //     }
+    //   }
+    // })
+    // $scope.removeTask = function (taskTitle) {
+    //   var i
+    //   for (i = 0; i < $scope.tasks.length; i++) {
+    //     var task = $scope.tasks[i]
+    //     if (task.title === taskTitle) {
+    //       $scope.tasks.splice(i, 1)
+    //       break
+    //     }
+    //   }
+
+    //   socket.emit('tasks:remove', taskTitle)
+    // }
   })
   .controller('ProjectsCtrl', function ($scope, socket, $http, $timeout, $upload) {
     $scope.name = []
