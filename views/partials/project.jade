@@ -21,9 +21,9 @@ section.tasks.row
         .panel-footer
           .row
             .col-md-6
-              strong Time: {{task.time}}
+              strong Time: {{task.time | timePretty}}
             .col-md-6
-              strong Estimate: {{task.estimate}}
+              strong Estimate: {{task.estimate | timePretty}}
 
 .row
   .well
