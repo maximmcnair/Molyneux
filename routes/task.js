@@ -1,6 +1,6 @@
 var TaskService = require('../controllers/task')
 
-module.exports.createRoutes = function (app, logger) {
+module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('task routes')
 
   // TaskService.create({
@@ -26,4 +26,20 @@ module.exports.createRoutes = function (app, logger) {
   // TaskService.list('1', function (err, tasks) {
   //   console.log(tasks)
   // })
+
+
+  app.get('/api/tasks/:tasksId', function (req, res) {
+    TaskService.detail(req.params.tasksId, function (err, task) {
+      if(err) return res.json(err, 400)
+      return res.json(task, 201)
+    })
+  })
+
+  app.post('/api/tasks', function (req, res) {
+    TaskService.create(req.body, function (err, task) {
+      if(err) return res.json(err, 400)
+      eventEmitter.emit('taskAdded', task)
+      return res.json(task, 201)
+    })
+  })
 }

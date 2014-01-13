@@ -25,6 +25,9 @@ var mongoose = require('mongoose')
   , pass = require('./auth/passport')
   , config = require('./config')
 
+  , events = require('events')
+  , eventEmitter = new events.EventEmitter()
+
 //Connect to database
 mongoose.connect( config.db[app.settings.env] )
 
@@ -94,7 +97,7 @@ app.post('/api/file/upload', file.upload)
 // Team API
 app.get('/api/team/:teamId/members', team.getMembers)
 require('./routes/project').createRoutes(app, logger)
-require('./routes/task').createRoutes(app, logger)
+require('./routes/task').createRoutes(app, logger, eventEmitter)
 
 // Basic auth routes
 app.get('/login', function (req, res) {
@@ -171,7 +174,9 @@ io.configure('development', function(){
   io.set('transports', ['websocket']);
 });
 
-io.sockets.on('connection', require('./routes/socket'))
+io.sockets.on('connection', function (socket){
+  require('./routes/socket')(socket, eventEmitter)
+})
 
 function onAuthorizeSuccess(data, accept){
   console.log('successful connection to socket.io');

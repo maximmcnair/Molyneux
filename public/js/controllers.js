@@ -1,14 +1,13 @@
 // 'use strict';
 
 /* Controllers */
-
 angular.module('myApp.controllers', [])
   .controller('OnlineCtrl', function ($scope, socket) {
     //========================================================
     //  Socket - Users
     //========================================================
-    socket.emit('users:get')
-    socket.on('users:get', function (data) {
+    socket.emit('users:join')
+    socket.on('users:join', function (data) {
       $scope.name = data.name
       $scope.team = data.team
       $scope.users = data.users
@@ -20,7 +19,7 @@ angular.module('myApp.controllers', [])
       // socket.removeListener(this);
     })
 
-    socket.on('users:join', function (data) {
+    socket.on('users:new', function (data) {
       $scope.users.push(data.name)
     })
 
@@ -35,9 +34,8 @@ angular.module('myApp.controllers', [])
         }
       }
     })
-
   })
-  .controller('ProjectCtrl', function ($scope, socket, $http, $routeParams) {
+  .controller('ProjectCtrl', function ($scope, socket, $http, $routeParams, TaskService) {
     $scope.project = {}
     $http({method: 'GET', url: '/api/projects/' + $routeParams.projectId})
       .success(function(data, status, headers, config) {
@@ -48,26 +46,34 @@ angular.module('myApp.controllers', [])
       .error(function(data, status, headers, config) {
         console.log('error getting project:', data)
       })
-    socket.emit('tasks:get', {project: $routeParams.projectId})
-    socket.on('tasks:get', function (data) {
+    socket.emit('tasks:join', {project: $routeParams.projectId})
+    socket.on('tasks:join', function (data) {
       $scope.tasks = data.tasks
     })
     // Add task
     socket.on('tasks:add', function (task) {
-      $scope.tasks.push(task)
+      // Check if task exists in array
+      addIfNotInArray($scope.tasks, task)
     })
     $scope.addTask = function () {
-      socket.emit('tasks:add', {
+      // socket.emit('tasks:add', {
+      //   title: $scope.task.title
+      // , description: $scope.task.description
+      // , project: $routeParams.projectId
+      // })
+      TaskService.post({
         title: $scope.task.title
       , description: $scope.task.description
       , project: $routeParams.projectId
+      }, function (newTask) {
+        console.log('task saved:', newTask)
+        // add the tasks to our model locally
+        // $scope.tasks.push(newTask.data)
+        addIfNotInArray($scope.tasks, newTask.data)
+
+        // clear tasks box
+        $scope.task = ''
       })
-
-      // add the tasks to our model locally
-      $scope.tasks.push($scope.task)
-
-      // clear tasks box
-      $scope.task = ''
     }
     // Remove task when someone else deletes it
     // socket.on('tasks:remove', function (taskTitle) {
@@ -232,3 +238,16 @@ angular.module('myApp.controllers', [])
       socket.emit('projects:remove', projectTitle)
     }
   })
+
+
+addIfNotInArray = function (array, object) {
+  var objectExists = false
+  for (var i = array.length - 1; i >= 0; i--) {
+    if(array[i]._id === object._id){
+      objectExists = true
+    }
+  }
+  if(objectExists === false){
+    array.push(object)
+  }
+}

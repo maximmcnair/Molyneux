@@ -13,11 +13,12 @@ module.exports = function (socket, user, teamId) {
 
   // send the new user their name and a list of users
 
-  socket.on('users:get', function (data) {
+  socket.on('users:join', function (data) {
+    socket.join('team' + teamId)
     async.parallel([
       function(callback){
         TeamService.detail(teamId, function (err, team) {
-          console.log('**team', team)
+          // console.log('**team', team)
           callback(err, team)
         })
       },
@@ -40,7 +41,7 @@ module.exports = function (socket, user, teamId) {
     ],
     // optional callback
     function(err, results){
-      socket.emit('users:get', {
+      socket.emit('users:join', {
         users: usersOnline[teamId]
       , name: user.username
       , team: {
@@ -52,13 +53,13 @@ module.exports = function (socket, user, teamId) {
   })
 
   // notify other clients that a new user has joined
-  socket.broadcast.in(teamId).emit('users:join', {
+  socket.broadcast.in('team' + teamId).emit('users:new', {
     name: user.username
   })
 
   // clean up when a user leaves, and broadcast it to other users
   socket.on('disconnect', function () {
-    socket.broadcast.in(teamId).emit('users:left', {
+    socket.broadcast.in('team' + teamId).emit('users:left', {
       name: user.username
     })
     var index = usersOnline[teamId].indexOf(user.username)

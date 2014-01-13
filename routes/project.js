@@ -1,4 +1,5 @@
 var ProjectService = require('../controllers/project')
+  , TaskService = require('../controllers/task')
 
 // ProjectService.create({name: 'Clock'}, function (err, project) {
 //   console.log(project)
@@ -29,6 +30,14 @@ module.exports.createRoutes = function (app, logger) {
   app.get('/api/projects/:projectId', function (req, res) {
     // logger.info(req)
     ProjectService.detail(req.params.projectId, function (err, projects) {
+      if(err) return res.json(err, 400)
+      return res.json(projects, 201)
+    })
+  })
+
+  //should this be joined -> should it return object with both project info and it's tasks???
+  app.get('/api/projects/:projectId/tasks', function (req, res) {
+    TaskService.list(req.params.projectId, function (err, projects) {
       if(err) return res.json(err, 400)
       return res.json(projects, 201)
     })
