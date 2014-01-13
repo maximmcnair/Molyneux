@@ -1,3 +1,5 @@
+http://bootswatch.com/flatly/
+
 # Angular Socket.io Seed
 
 Start an awesome app with AngularJS on the front, Socket.io + Express + Node on the back. This

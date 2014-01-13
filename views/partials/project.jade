@@ -1,28 +1,42 @@
-section.projects.row.clearfix
-  img(src="{{project.thumbnail}}")
-  h2 {{project.title}}
-  p {{project.description}}
-  a(ng-click="removeTask(task._id)") Delete
+section.row.clearfix
+  .jumbotron
+    .row
+      .col-lg-4
+        img(src="{{project.thumbnail}}")
+      .col-lg-8
+        h2 {{project.title}}
+        p {{project.description}}
+        //- a(ng-click="removeTask(task._id)") Delete
 
 section.tasks.row
-  h2 Tasks
-  div(ng-repeat="task in tasks").col-md-4
-    .thumbnail
-      //- a(href="/tasks/{{task._id}}")
-      h2 {{task.title}}
-      p {{task.description}}
-      strong Estimate: 45hrs
-      br
-      strong Time: 1hr 30mins
-
-.jumbotron
+  .page-header
+    h4 Tasks
   .row
-    form(role="form").col-md-8
-      h2 Add Task
-      div.form-group
-        label(for="title") Title
-        input(type="text", id="title", ng-model="task.title").form-control
-      div.form-group
-        label(for="description") Description
-        textarea(id="description", ng-model="task.description").form-control
-      button(type="submit", ng-click="addTask()").btn.btn-default Submit
+    div(ng-repeat="task in tasks").col-md-4
+      .panel.panel-default
+        .panel-body
+          //- a(href="/tasks/{{task._id}}")
+          h2 {{task.title}}
+          p {{task.description}}
+        .panel-footer
+          .row
+            .col-md-6
+              strong Time: {{task.time}}
+            .col-md-6
+              strong Estimate: {{task.estimate}}
+
+.row
+  .well
+    form(role="form").form-horizontal
+      h4 Add Task
+      .row
+        div.form-group
+          label(for="title").col-lg-2.control-label Title
+          .col-lg-10
+            input(type="text", id="title", ng-model="task.title").form-control
+        div.form-group
+          label(for="description").col-lg-2.control-label Description
+          .col-lg-10
+            textarea(id="description", ng-model="task.description").form-control
+        .col-lg-10.col-lg-offset-2
+          button(type="submit", ng-click="addTask()").btn.btn-default Submit

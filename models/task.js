@@ -18,14 +18,14 @@ var TaskSchema = new Schema({
 //   { type: String
 //   , required: true
 //   }
-// , estimate:
-//   { type: Number
-//   , required: true
-//   }
-// , time:
-//   { type: Number
-//   , required: true
-//   }
+, estimate:
+  { type: Number
+  , default: 0
+  }
+, time:
+  { type: Number
+  , default: 0
+  }
 // , team:
 //   { type: Array
 //   , required: true

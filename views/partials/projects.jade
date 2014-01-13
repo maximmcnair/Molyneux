@@ -1,10 +1,11 @@
-section.projects.row.clearfix
+section.projects.row
   div(ng-repeat="project in projects").col-md-4
-    a(href="/projects/{{project._id}}").thumbnail
+    a(href="/projects/{{project._id}}").panel.panel-default
       img(src="{{project.thumbnail}}")
-      h2 {{project.title}}
-      p {{project.description}}
-      //- a(ng-click="removeProject(project.title)") Delete
+      .panel-body
+        h2 {{project.title}}
+        p {{project.description}}
+        //- a(ng-click="removeProject(project.title)") Delete
 
 .jumbotron
   .row
@@ -16,9 +17,9 @@ section.projects.row.clearfix
       div.form-group
         label(for="description") Description
         textarea(id="description", ng-model="project.description").form-control
-      div.form-group
-        label(for="thumbnail") Thumbnail
-        textarea(id="thumbnail", ng-model="project.thumbnail").form-control
+      //- div.form-group
+      //-   label(for="thumbnail") Thumbnail
+      //-   textarea(id="thumbnail", ng-model="project.thumbnail").form-control
       button(type="submit", ng-click="addProject()").btn.btn-default Submit
 
 

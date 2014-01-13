@@ -1,15 +1,15 @@
 .drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 200px;
-    height: 200px;
-    text-align: center;
-    padding-top: 75px;
-    -webkit-transition: -webkit-transform .3s;
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  padding-top: 75px;
+  -webkit-transition: -webkit-transform .3s;
 }
 .drop-box.dragover {
-    border: 5px dashed blue;
-    -webkit-transform: scale(1.1,1.1);
+  border: 5px dashed blue;
+  -webkit-transform: scale(1.1,1.1);
 }
 .bs-sidenav {
   margin-bottom: 30px;

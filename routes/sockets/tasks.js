@@ -17,6 +17,8 @@ module.exports = function (socket, user, teamId) {
       title: data.title
     , description: data.description
     , project: data.project
+    , estimate: data.estimate
+    , time: data.time
     }
     TaskService.create(newTask, function (err, task) {
       if(err) {

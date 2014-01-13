@@ -6,9 +6,9 @@ html(ng-app="myApp")
     title Molyneux
     link(rel='stylesheet', href='/css/app.css')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
   body
-    header(role="banner").navbar.navbar-inverse.navbar-fixed-top
+    header(role="banner").navbar.navbar-default.navbar-fixed-top
       div.container
         nav(role="navigation").collapse.navbar-collapse.bs-navbar-collapse
           ul.nav.navbar-nav
@@ -31,7 +31,7 @@ html(ng-app="myApp")
         div(ng-view).col-md-10
           // App is here
         .col-md-2(ng-controller="OnlineCtrl")
-          .bs-sidenav.affix
+          .well.affix
             h3 {{team.name}} Members Online
             div(ng-repeat='user in users')
               img(src="/uploads/{{team.members[user].avatar}}")
