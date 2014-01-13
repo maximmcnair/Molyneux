@@ -84,7 +84,6 @@ if (app.get('env') === 'production') {
  */
 
 
-
 // serve index and view partials
 app.get('/', routes.index)
 app.get('/partials/:name', routes.partials)
@@ -95,6 +94,7 @@ app.post('/api/file/upload', file.upload)
 // Team API
 app.get('/api/team/:teamId/members', team.getMembers)
 require('./routes/project').createRoutes(app, logger)
+require('./routes/task').createRoutes(app, logger)
 
 // Basic auth routes
 app.get('/login', function (req, res) {

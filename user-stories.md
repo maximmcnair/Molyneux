@@ -58,65 +58,64 @@
 
 - As a team member, I want to Read the clients for a project.
 
-## Features
-- As a team member, I want to Create a feature for a project.
-- As a team member, I want to Read a feature for a project.
-- As a team member, I want to Update a feature for a project.
-- As a team member, I want to Delete a feature for a project.
+## tasks
+- As a team member, I want to Create a task for a project.
+- As a team member, I want to Read a task for a project.
+- As a team member, I want to Update a task for a project.
+- As a team member, I want to Delete a task for a project.
 
-- As a team member, I want to Read a feature's title.
-- As a team member, I want to Read a feature's description.
-- As a team member, I want to Read a feature's deadline.
-- As a team member, I want to Read a feature's assigned team.
-- As a team member, I want to Read a features' total time.
-- As a team member, I want to Read a features' estimate.
+- As a team member, I want to Read a task's title.
+- As a team member, I want to Read a task's description.
+- As a team member, I want to Read a task's deadline.
+- As a team member, I want to Read a task's assigned team.
+- As a team member, I want to Read a tasks' total time.
+- As a team member, I want to Read a tasks' estimate.
 
 
-# Feature
+# task
 
 ## Description
-- As a team member, I want to Create a feature.
-- As a team member, I want to Read a feature.
-- As a team member, I want to Update a feature.
-- As a team member, I want to Delete a feature.
-
-- As a team member, I want to Create a feature's title.
-- As a team member, I want to Read a feature's title.
-- As a team member, I want to Update a feature's title.
-
-- As a team member, I want to Create a feature's description.
-- As a team member, I want to Read a feature's description.
-- As a team member, I want to Update a feature's description.
-
-- As a team member, I want to Create a feature's deadline.
-- As a team member, I want to Read a feature's deadline.
-- As a team member, I want to Update a feature's deadline.
-
-- As a team member, I want to Read a features' total time (total of timers).
-
-## Assigned
-- As a project manager, I want to Create an assigned team member for a feature.
-- As a project manager, I want to Read the team members for a feature.
-- As a project manager, I want to Delete an assigned team member for a feature.
-
-- As a team member, I want to Read the assigned team members for a feature.
-
-## Tasks
-- As a team member, I want to Create a task for the feature.
+- As a team member, I want to Create a task.
 - As a team member, I want to Read a task.
 - As a team member, I want to Update a task.
 - As a team member, I want to Delete a task.
-- As a team member, I want to Mark a task as complete.
 
-## Tasks
-- As a team member, I want to Create an estimate for the feature.
+- As a team member, I want to Create a task's title.
+- As a team member, I want to Read a task's title.
+- As a team member, I want to Update a task's title.
+
+- As a team member, I want to Create a task's description.
+- As a team member, I want to Read a task's description.
+- As a team member, I want to Update a task's description.
+
+- As a team member, I want to Create a task's deadline.
+- As a team member, I want to Read a task's deadline.
+- As a team member, I want to Update a task's deadline.
+
+- As a team member, I want to Create an estimate for the task.
 - As a team member, I want to Read an estimate.
 - As a team member, I want to Update an estimate.
 - As a team member, I want to Delete an estimate.
 
+- As a team member, I want to Read a tasks' total time (total of timers).
+
+## Assigned
+- As a project manager, I want to Create an assigned team member for a task.
+- As a project manager, I want to Read the team members for a task.
+- As a project manager, I want to Delete an assigned team member for a task.
+
+- As a team member, I want to Read the assigned team members for a task.
+
+## Todos
+- As a team member, I want to Create a todo for the task.
+- As a team member, I want to Read a todo.
+- As a team member, I want to Update a todo.
+- As a team member, I want to Delete a todo.
+- As a team member, I want to Mark a todo as complete.
+
 ## Timers
-- As a team member, I want to Start a timer for the feature.
-- As a team member, I want to End a timer for the feature.
-- As a team member, I want to Read a features' timers.
+- As a team member, I want to Start a timer for the task.
+- As a team member, I want to End a timer for the task.
+- As a team member, I want to Read a tasks' timers.
 - As a team member, I want to Update a timer.
 - As a team member, I want to Delete a timer.

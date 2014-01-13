@@ -17,7 +17,7 @@ module.exports = function (socket, user, teamId) {
     async.parallel([
       function(callback){
         TeamService.detail(teamId, function (err, team) {
-          // console.log('**team', team)
+          console.log('**team', team)
           callback(err, team)
         })
       },
