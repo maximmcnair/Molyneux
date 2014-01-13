@@ -18,12 +18,20 @@ section.tasks.row
           //- a(href="/tasks/{{task._id}}")
           h2 {{task.title}}
           p {{task.description}}
+          .btn.btn-primary(ng-if="false", ng-click="startTimer(task)")
+            i.fa.fa-play
+            strong Start
+          .btn.btn-primary(ng-if="false", ng-click="stopTimer('52d45ebbc250deffc3da5766')")
+            i.fa.fa-stop
+            strong Stop
         .panel-footer
           .row
             .col-md-6
-              strong Time: {{task.time | timePretty}}
+              i.fa.fa-clock-o 
+              strong {{task.time | timePretty}}
             .col-md-6
-              strong Estimate: {{task.estimate | timePretty}}
+              i.fa.fa-bars 
+              strong {{task.estimate | timePretty}}
 
 .row
   .well

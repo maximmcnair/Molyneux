@@ -26,10 +26,10 @@ var TaskSchema = new Schema({
   { type: Number
   , default: 0
   }
-// , team:
-//   { type: Array
-//   , required: true
-//   }
+, users:
+  [{user: String
+  , active: Boolean
+  }]
 })
 
 var TaskModel = mongoose.model('Task', TaskSchema)

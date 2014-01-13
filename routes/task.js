@@ -1,4 +1,5 @@
 var TaskService = require('../controllers/task')
+  , TimerService = require('../controllers/timer')
 
 module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('task routes')
@@ -28,8 +29,8 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   // })
 
 
-  app.get('/api/tasks/:tasksId', function (req, res) {
-    TaskService.detail(req.params.tasksId, function (err, task) {
+  app.get('/api/tasks/:taskId', function (req, res) {
+    TaskService.detail(req.params.taskId, function (err, task) {
       if(err) return res.json(err, 400)
       return res.json(task, 201)
     })
@@ -40,6 +41,13 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
       if(err) return res.json(err, 400)
       eventEmitter.emit('taskAdded', task)
       return res.json(task, 201)
+    })
+  })
+
+  app.get('/api/tasks/:taskId/tasks', function (req, res) {
+    TimerService.list(req.params.taskId, function (err, timers) {
+      if(err) return res.json(err, 400)
+      return res.json(timers, 201)
     })
   })
 }
