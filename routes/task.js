@@ -37,8 +37,19 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   })
 
   app.post('/api/tasks', function (req, res) {
-    TaskService.create(req.body, function (err, task) {
+    var data = req.body
+    // Create a users array if it doesn't exist
+    if(!data.users)
+      data.users = []
+    // Add user to user array
+    data.users.push({
+      user: req.user._id
+    , active: false
+    })
+
+    TaskService.create(data, function (err, task) {
       if(err) return res.json(err, 400)
+      console.log(err, task)
       eventEmitter.emit('taskAdded', task)
       return res.json(task, 201)
     })

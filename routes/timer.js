@@ -51,7 +51,12 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
     TimerService.create(data, function (err, timer) {
       if(err) return res.json(err, 400)
       eventEmitter.emit('timerStarted', timer)
-      return res.json(timer, 201)
+      res.json(timer, 201)
+
+      // Update task model
+      TaskService.updateActive(timer.task, req.user._id, true, function (err, task) {
+        console.log(err, task)
+      })
     })
   })
 
@@ -61,23 +66,28 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
       eventEmitter.emit('timerStopped', timer)
       res.json(timer, 201)
 
-      // Update timer's task model
-      TimerService.list(timer.task, function (err, timers) {
-        totalTime = 0
-        async.eachSeries(timers, function (timer, callback) {
-          var start = new Date(timer.start)
-            , stop = new Date(timer.stop)
-            , total = stop - start
+      // Update task model
+      // TaskService.updateActive(timer.task, req.user._id, false, function (err, task) {
+      //   console.log(err, task)
+      // })
 
-          totalTime =+ total
-          callback(null) 
-          // console.log(totalTime)
-        }, function (err) {
-          TaskService.update(timer.task, {time: totalTime}, function (err, task) {
-            console.log(err, task)
-          })
-        })
-      })
+      // Update timer's task model
+      // TaskService.detail(timer.task, function (err, timers) {
+      //   totalTime = 0
+      //   async.eachSeries(timers, function (timer, callback) {
+      //     var start = new Date(timer.start)
+      //       , stop = new Date(timer.stop)
+      //       , total = stop - start
+
+      //     totalTime =+ total
+      //     callback(null) 
+      //     // console.log(totalTime)
+      //   }, function (err) {
+      //     TaskService.update(timer.task, {time: totalTime}, function (err, task) {
+      //       console.log(err, task)
+      //     })
+      //   })
+      // })
     })
   })
 }
