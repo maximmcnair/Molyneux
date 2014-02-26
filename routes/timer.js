@@ -30,7 +30,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('setup timer routes')
 
   app.get('/api/timer', function (req, res) {
-    var query = {userId: req.user._id}
+    var query = {}
       , options = {}
 
     // Add date query if exists
@@ -44,13 +44,17 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
     if(req.query.project){
       query.project = req.query.project
     }
+    // Add Tags to query if exists
+    if(req.query.tags && req.query.tags.length !== 0){
+      query.tags = req.query.tags
+    }
 
     // Add sort to options if exists
     if(req.query.sort){
       options.sort = req.query.sort
     }
     // Add pagination to options if exists
-    if (req.query.pagination.pageSize) {
+    if (req.query.pagination && req.query.pagination.pageSize) {
       options.limit = req.query.pagination.pageSize
       if (req.query.pagination.page) {
         options.skip = (req.query.pagination.page - 1) * req.query.pagination.pageSize
@@ -87,7 +91,6 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
 
   app.put('/api/timer/:timerId', function (req, res) {
     var data = req.body
-    // data.user = req.user._id
     TimerService.update(req.params.timerId, data, function (err, timer) {
       if(err) return res.json(err, 400)
       // eventEmitter.emit('timerAdded', timer)

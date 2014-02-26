@@ -30,14 +30,19 @@ html(ng-app="myApp")
                 | #{username}
 
     section(ng-controller="TimerCtrl").container
-      section(ng-if="currentTimer").row
-        .timer__current
-          h3(ng-bind="currentTimer.title").timer__current__title
-          h5(ng-bind="currentTimer.project").timer__current__project
-          strong(ng-bind="timePretty(currentTimer.total)").timer__current__time
+      section(ng-if="currentTimer").timer__current
+        .row
+          .col-md-4
+            h3(ng-bind="currentTimer.title").timer__current__title
+          .col-md-4
+            h5(ng-bind="currentTimer.project").timer__current__project
+          .col-md-2
+            strong(ng-bind="timePretty(currentTimer.total)").timer__current__time
+          .col-md-2
+            a(ng-click="stopTimer(currentTimer)").btn.btn-default Stop Timer
+        .row(ng-if="currentTimer.tags")
           .clearfix
             span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
-          a(ng-click="stopTimer(currentTimer)").btn Stop Timer
 
       form(name="timerForm", ng-submit="submit(timer)", novalidate, ng-if="!currentTimer").row
         //- pre Model: {{timer | json}}

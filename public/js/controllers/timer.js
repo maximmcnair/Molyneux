@@ -1,5 +1,5 @@
 angular.module('myApp.controllers')
-  .controller('TimerCtrl', function ($scope, TimerService, $timeout) {
+  .controller('TimerCtrl', function ($scope, TimerService, $timeout, $http) {
     $scope.timer = {
       tags: [
         { name: 'front end'
@@ -28,6 +28,9 @@ angular.module('myApp.controllers')
 
     $scope.timers = TimerService.get({},function (res) {
       console.log('GET', res)
+      res.filter(function(timer){
+        console.log(timer.active)
+      })
     })
 
     $scope.timePretty = timePretty
@@ -58,11 +61,17 @@ angular.module('myApp.controllers')
 
     $scope.stopTimer = function (data) {
       data.active = false
-      TimerService.update(data, {'Id': data._id}, function (res) {
-        console.log('success', res)
-        $scope.currentTimer = undefined
-        $scope.timers.push(res)
-      })
+      console.log(data)
+
+      $http.put('/api/timer/' + data._id, data).
+        success(function(data, status, headers, config) {
+          console.log('success', data)
+          $scope.currentTimer = undefined
+          $scope.timers.push(data)
+        }).
+        error(function(data, status, headers, config) {
+          console.log('error', data)
+        })
     }
 
 
