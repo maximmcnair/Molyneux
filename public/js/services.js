@@ -11,7 +11,7 @@ angular.module('myApp.services', [])
   var socket = io.connect('', { 'force new connection': true });
   return {
     on: function (eventName, callback) {
-      socket.on(eventName, function () {  
+      socket.on(eventName, function () {
         var args = arguments;
         $rootScope.$apply(function () {
           callback.apply(socket, args);
@@ -45,4 +45,21 @@ angular.module('myApp.services', [])
       })
     }
   }
+})
+.factory('TimerService', function ($resource){
+  return $resource('/api/timer/:Id'
+    , { Id: "@Id"
+      }
+    , { 'get':
+        { method: 'GET'
+        , isArray: true
+        }
+      , 'save':
+        { method: 'POST'
+        }
+      , 'update':
+        { method: 'PUT'
+        }
+      }
+    )
 })

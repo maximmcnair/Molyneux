@@ -3,15 +3,18 @@
 // Declare app level module which depends on filters, and services
 
 angular.module('myApp', [
-  'myApp.controllers',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
+  , 'myApp.controllers'
+  , 'myApp.filters'
+  , 'myApp.services'
+  , 'myApp.directives'
+  , 'ngResource'
+  , 'ngRoute'
 
   // 3rd party dependencies
-  'angularFileUpload',
-  // 'btford.socket-io',
-  'ui.bootstrap'
+  , 'angularFileUpload'
+  , 'decipher.tags'
+  // , 'btford.socket-io'
+  , 'ui.bootstrap'
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.

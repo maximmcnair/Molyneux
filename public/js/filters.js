@@ -8,6 +8,11 @@ angular.module('myApp.filters', [])
       return String(text).replace(/\%VERSION\%/mg, version);
     }
   })
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  })
   .filter('timePretty', function () {
     return function (text) {
       var milliseconds = new Date(text)
