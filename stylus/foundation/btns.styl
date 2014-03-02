@@ -1,0 +1,46 @@
+a.btn
+.btn
+button
+  font-family "proxima-nova-soft", sans-serif
+  padding 15px 30px
+  margin-right 10px
+  border-radius 4px
+  display inline-block
+  background-color #b4bac2
+  color #fff
+  font-size 15px
+  font-weight 800
+  transition background-color .3s
+  cursor pointer
+  text-align center
+  border 0
+  &:hover
+    background-color rgba(#fff, 0.3)
+  &[disabled="disabled"]
+    background #eeeff0
+    color #40484e
+    cursor not-allowed
+    &:hover
+      background #eeeff0
+      color #40484e
+
+a.btn-default
+.btn-default
+  background-color $colorBlue
+  color #fff
+  &:hover
+    background-color darken($colorBlue, 30%)
+
+a.btn-primary
+.btn-primary
+  background-color $colorGreen
+  color #fff
+  &:hover
+    background-color darken($colorGreen, 30%)
+
+a.btn-warning
+.btn-warning
+  background-color $colorRed
+  color #fff
+  &:hover
+    background-color darken($colorRed, 30%)

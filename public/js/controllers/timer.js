@@ -1,23 +1,29 @@
 angular.module('myApp.controllers')
-  .controller('TimerCtrl', function ($scope, TimerService, $timeout, $http) {
+  .controller('TimerCtrl', function ($scope, $rootScope, TimerService, $timeout, $http) {
     $scope.timer = {
       tags: [
-        { name: 'front end'
-        , value: 'front end'
-        }
+        // { name: 'front end'
+        // , value: 'front end'
+        // }
       ]
+    // , title: 'Hello'
     }
+
+    $scope.timePretty = timePretty
+
+    $scope.currentTimer = undefined
+    $scope.$on('CurrentTimerChange', function(event, currentTimer) {
+      $scope.currentTimer = currentTimer
+      increment()
+    })
+
     $scope.projects =
     [ 'Creo'
     , 'Ingredo'
     , 'Woven'
-
-    //   {value: '123', name: 'Creo'}
-    // , {value: '12345', name: 'Ingredo'}
-    // , {value: '3454', name: 'Woven'}
     ]
 
-    $scope.tags = ['front end', 'backend', 'bugs']
+    // $scope.tags = ['front end', 'backend', 'bugs']
 
     $scope.tags = [
       {value: 'front end', name: 'front end'}
@@ -25,16 +31,6 @@ angular.module('myApp.controllers')
     , {value: 'bugs', name: 'bugs'}
     , {value: 'phase 2', name: 'phase 2'}
     ]
-
-    $scope.timers = TimerService.get({},function (res) {
-      console.log('GET', res)
-      res.filter(function(timer){
-        console.log(timer.active)
-      })
-    })
-
-    $scope.timePretty = timePretty
-
 
     $scope.startTimer = function  (data) {
       var newTimer = new TimerService(data)
@@ -55,7 +51,8 @@ angular.module('myApp.controllers')
       newTimer.$save({}, function (res) {
         console.log('success', res)
         $scope.timer = {}
-        $scope.timers.push(res)
+        // $scope.timers.push(res)
+        $rootScope.$broadcast('TimersAdd', res)
       })
     }
 
@@ -67,7 +64,8 @@ angular.module('myApp.controllers')
         success(function(data, status, headers, config) {
           console.log('success', data)
           $scope.currentTimer = undefined
-          $scope.timers.push(data)
+          // $scope.timers.push(data)
+          $rootScope.$broadcast('TimersAdd', data)
         }).
         error(function(data, status, headers, config) {
           console.log('error', data)
@@ -90,68 +88,46 @@ angular.module('myApp.controllers')
       }
     }
 
-    $scope.getToday = function () {
-      $scope.timers = TimerService.get({},function (res) {
-        console.log('getToday', res)
-      })
-    }
-    $scope.getThisWeek = function () {
-      $scope.timers = TimerService.get({},function (res) {
-        console.log('getThisWeek', res)
-      })
-    }
-    $scope.getThisMonth = function () {
-      $scope.timers = TimerService.get({},function (res) {
-        console.log('getThisMonth', res)
-      })
-    }
 
+    //========================================================
+    // Date stuff
+    //========================================================
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.showWeeks = true;
+    $scope.toggleWeeks = function () {
+      $scope.showWeeks = ! $scope.showWeeks;
+    };
+
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = ( $scope.minDate ) ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      'year-format': "'yy'",
+      'starting-day': 1
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+    $scope.format = $scope.formats[0];
   })
-
-
-
-
-
-
-function hrsToMillSec(hrs){
-  return hrs * 60 * 60 * 1000
-}
-
-function minsToMillSec(mins){
-  return mins * 60 * 1000
-}
-
-function timePretty(dateObject){
-  var milliseconds = dateObject;
-
-  // TIP: to find current time in milliseconds, use:
-  // var milliseconds_now = new Date().getTime();
-
-  var seconds = milliseconds / 1000;
-  // var numyears = Math.floor(seconds / 31536000);
-  // if(numyears){
-  //     return numyears + 'year' + ((numyears > 1) ? 's' : '');
-  // }
-  // var numdays = Math.floor((seconds % 31536000) / 86400);
-  // if(numdays){
-  //     return numdays + 'day' + ((numdays > 1) ? 's' : '');
-  // }
-  var numhours = Math.floor(((seconds % 31536000)) / 3600)
-  ,   numMins = Math.round(((((seconds % 31536000)) / 3600) - numhours) * 60);
-  // console.log( (((seconds % 31536000) % 86400) / 3600) - numhours) * 60;
-  if(numhours){
-      var hours = numhours + 'hr' + ((numhours > 1) ? 's' : '')
-      ,   mins = numMins + 'min' + ((numMins > 1) ? 's' : '');
-
-      return hours + ' ' + ((numMins > 1) ? mins : '');
-  }
-  var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
-  if(numminutes){
-      return numminutes + 'min' + ((numminutes > 1) ? 's' : '');
-  }
-  var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;
-  if(numseconds){
-      return numseconds.toFixed() + 'sec' + ((numseconds > 1) ? 's' : '');
-  }
-  return '0sec'; //'just now' //or other string you like;
-}

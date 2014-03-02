@@ -1,0 +1,156 @@
+.content-wrapper
+  margin 93px 0px 0px 170px
+
+.header-timer
+  background #41494f
+  box-shadow 0px 10px rgba(#363e45, 10%)
+  position fixed
+  top 0px
+  left 0px
+  right 0px
+  z-index 999
+  padding-left 170px
+  input
+    background #535a5f
+    width 100%
+    height 51px
+    &:focus
+      background lighten(#535a5f, 10%)
+
+//==============================================================================
+//  Current Timer | ^current ^timer
+//==============================================================================
+.timer__current__basic
+  padding 10px 0px
+
+.timer__current__title
+  @extends .truncate
+  width 340px
+  float left
+  font-size 18px
+  color #ffffff
+  margin 13px 20px 0 0
+
+.timer__current__project
+  width 160px
+  float left
+  color #b4bac2
+  min-height 10px
+  font-size 18px
+  margin 13px 20px 0 0
+
+.timer__current__time
+  width 160px
+  float left
+  font-size 18px
+  color #ffffff
+  margin 13px 20px 0 0
+  i
+    margin-right 10px
+    font-size 20px
+
+.timer__current__btn
+  width 160px
+  float left
+  .btn
+    width 100%
+
+//==============================================================================
+//  Timer basic | ^timer
+//==============================================================================
+.timer__basic
+  background #41494f
+  padding 10px 0px
+  height 69px
+  clearfix()
+
+.timer__basic__title
+  width 340px
+  margin-right 20px
+  float left
+
+.timer__basic__project
+  width 340px
+  margin-right 20px
+  float left
+
+.timer__basic__btn
+  width 160px
+  float left
+  .btn
+    width 100%
+
+//==============================================================================
+//  Timer advanced | ^timer ^nav
+//==============================================================================
+.timer__advanced
+  background #384045
+  clearfix()
+  height 71px
+  padding 10px 0px
+  input
+    background #41494f
+    &:focus
+      background #41494f
+
+.timer__advanced__tags
+  width 520px
+  float left
+  margin-right 20px
+  background #41494f
+  border-radius 3px
+  input
+    min-width 160px
+    width 160px
+
+.decipher-tags-tag
+  background #2b3137
+  color #535a5f
+  padding 5px 10px
+  text-transform uppercase
+  i
+    cursor pointer
+
+.timer__advanced__time
+  width 160px
+  float left
+  margin-right 20px
+
+.timer__advanced__date
+  width 160px
+  float left
+
+.form-group
+  position relative
+  .dropdown-menu
+    position absolute
+    top 0px
+    right 0px
+    width 323px
+    button
+      padding 4px
+
+//==============================================================================
+//   Timer opening animation | ^
+//==============================================================================
+.timer__advanced
+  height 0px
+  padding 0px
+  transition height .4s, padding .4s .1s
+  overflow hidden
+
+.timer__advanced__time
+.timer__advanced__date
+.timer__advanced__tags
+  transition opacity .4s .4s
+  opacity 0
+
+.timer-focus
+  .timer__advanced
+    height 71px
+    padding 10px 0px
+    overflow visible
+  .timer__advanced__time
+  .timer__advanced__date
+  .timer__advanced__tags
+    opacity 1

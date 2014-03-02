@@ -5,128 +5,164 @@ html(ng-app="myApp")
     base(href='/')
     title Molyneux
     link(rel='stylesheet', href='/css/app.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
-    link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.css')
-    link(rel='stylesheet', href='bower_components/fangualr-tags/dist/angualr-tags-0.2.10.css')
+    //- link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    //- link(rel='stylesheet', href='/bower_components/angular-tags/dist/angular-tags-0.2.10.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/main.css')
     script.
       var user = '#{userId}'
+    script(type="text/javascript", src="//use.typekit.net/ocs1xrk.js")
+    script(type="text/javascript").
+      try{Typekit.load();}catch(e){}
   body
-    header(role="banner").navbar.navbar-default.navbar-fixed-top
-      div.container
-        nav(role="navigation").collapse.navbar-collapse.bs-navbar-collapse
-          ul.nav.navbar-nav
-            li
-              a(href="/") Tallli.es
-            li
-              a(href="/projects") Projects
-          if username
-            ul.nav.navbar-nav.navbar-right
-              li
-                a(href="/logout", target="_self") Logout
-              li
-                | Logged in as: 
-                img(src="/uploads/#{avatar}")
-                | #{username}
+    aside.aside-nav
+      header
+        h1.header-logo Talllies
+      nav.nav
+        ul
+          li.is-active
+            i.fa.fa-clock-o
+            a Timers
+            //- a(href="/projects") Timers
+          li
+            i.fa.fa-copy
+            //- a(href="/") Projects
+            a Projects
+        //- if username
+        //-   ul.nav.navbar-nav.navbar-right
+        //-     li
+        //-       a(href="/logout", target="_self") Logout
+        //-     li
+        //-       | Logged in as: 
+        //-       img(src="/uploads/#{avatar}")
+        //-       | #{username}
 
-    section(ng-controller="TimerCtrl").container
-      section(ng-if="currentTimer").timer__current
-        .row
-          .col-md-4
-            h3(ng-bind="currentTimer.title").timer__current__title
-          .col-md-4
-            h5(ng-bind="currentTimer.project").timer__current__project
-          .col-md-2
-            strong(ng-bind="timePretty(currentTimer.total)").timer__current__time
-          .col-md-2
-            a(ng-click="stopTimer(currentTimer)").btn.btn-default Stop Timer
-        .row(ng-if="currentTimer.tags")
-          .clearfix
-            span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
 
-      form(name="timerForm", ng-submit="submit(timer)", novalidate, ng-if="!currentTimer").row
+    .content-wrapper
+      section.content
         //- pre Model: {{timer | json}}
-        .timer__basic
-          .row
-            .form-group.col-md-4
-              label(for="title").sr-only Title
-              input(type="text", id="title", placeholder="Title*", ng-model="timer.title", required).form-control
-              p(ng-show="userForm.name.$invalid && !userForm.name.$pristine").form-err A title is required
-            .form-group.col-md-4
-              label(for="project").sr-only Project
-              input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project for project in projects").form-control
-            .form-group.col-md-2
-              label(for="currentTime").sr-only Current Time
-              input(type="time", id="currentTime", placeholder="Current Time", ng-model="timer.time").form-control
-            .form-group.col-md-2
-              button(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-default Start Timer
-              button(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-default Add Time
-        .timer__advanced
-          .form-group
-            label.sr-only Tags
-            tags(data-options="{addable: true}", data-src="tag.value as tag.name for tag in tags", data-model="timer.tags")
+        header(ng-controller="TimerCtrl").header-timer
+          section(ng-if="currentTimer").timer__current
+            .container
+              .clearfix.timer__current__basic
+                h3(ng-bind="currentTimer.title").timer__current__title
+                h5(ng-bind="currentTimer.project").timer__current__project
+                h3.timer__current__time
+                  i.fa.fa-clock-o
+                  | {{timePretty(currentTimer.total)}}
+                .timer__current__btn
+                  a(ng-click="stopTimer(currentTimer)").btn.btn-warning Stop Timer
+              //- div(ng-if="currentTimer.tags").clearfix.timer__current__tags
+              //-   span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
 
-      section.timers
-        //- header
-        //-   .col-md-4
-        //-     ul.nav.nav-pills
-        //-       li(ng-click="getToday()").active
-        //-         a Today
-        //-       li(ng-click="getThisWeek()")
-        //-         a This Week
-        //-       li(ng-click="getThisMonth()")
-        //-         a This Month
-        //-   .col-md-4
-        //-     .btn Start
-        //-     .btn End
+          form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': timer.title}")
+            .timer__basic
+              .container
+                .form-group.timer__basic__title
+                  label(for="title").sr-only Title
+                  input(type="text", id="title", placeholder="Title*", ng-model="timer.title", autocomplete="off", required).form-control
+                  p(ng-show="timerForm.name.$invalid && !timerForm.name.$pristine").form-err A title is required
+                .form-group.timer__basic__project
+                  label(for="project").sr-only Project
+                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project for project in projects").form-control
+                .form-group.timer__basic__btn
+                  button(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
+                  button(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time
+            .timer__advanced
+              .container
+                .form-group.timer__advanced__tags
+                  label.sr-only Tags
+                  tags(data-options="{addable: true}", data-src="tag.value as tag.name for tag in tags", data-model="timer.tags")
+                .form-group.form-icon.timer__advanced__time
+                  i.fa.fa-clock-o
+                  label(for="currentTime").sr-only Current Time
+                  input(type="time", id="currentTime", placeholder="Current Time", ng-model="timer.time").form-control
+                .form-group.form-icon.timer__advanced__date
+                  i.fa.fa-calendar-o
+                  input(type="text", datepicker-popup="{{format}}", ng-model="timer.date", is-open="opened", min="minDate", max="'2015-06-22'", datepicker-options="dateOptions", date-disabled="disabled(date, mode)", close-text="Close")
+                  //- span.input-group-btn
+                  //-   button(ng-click="open($event)").btn.btn-default
+                  //-     i.glyphicon.glyphicon-calendar
 
-        timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()")
-          .row.thumbnail
-            .col-md-10
-              h2(ng-bind="timer.title", ng-if="!editable")
+        div(ng-controller="TimersCtrl").container.timers
+          //- pre {{currentTimer | json}}
+          //- header
+          //-   .col-md-4
+          //-     ul.nav.nav-pills
+          //-       li(ng-click="getToday()").active
+          //-         a Today
+          //-       li(ng-click="getThisWeek()")
+          //-         a This Week
+          //-       li(ng-click="getThisMonth()")
+          //-         a This Month
+          //-   .col-md-4
+          //-     .btn Start
+          //-     .btn End
+
+          timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
+            .timer__desc
+              h2(ng-bind="timer.title", ng-if="!editable").timer__title
               input(ng-model="timer.title", ng-if="editable")
-              h4(ng-bind="timer.project", ng-if="!editable")
+              h4(ng-bind="timer.project", ng-if="!editable").timer__project
               input(ng-model="timer.project", ng-if="editable")
-              .clearfix
-                span(ng-repeat="tag in timer.tags", ng-bind="tag.name", ng-if="!editable").label.label-info
-            .col-md-2
-              dl
-                dt Total:
-                dd(ng-bind="timePretty(timer.total)", ng-if="!editable").badge
-                dd(ng-if="editable")
-                  input(type="time", ng-model="timer.total")
-              a(ng-click="delete(timer)")
-                .glyphicon.glyphicon-remove
-                | Delete
+              span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
+            .timer__time
+              h3
+                i.fa.fa-clock-o
+                | {{timePretty(timer.total)}}
+            .timer__btn
+              a.btn.btn-default Start Timer
+            //- h6(ng-bind="timer.date")
+            //- .clearfix
+            //- .col-md-2
+            //-   dl
+            //-     dt Total:
+            //-     dd(ng-bind="timePretty(timer.total)", ng-if="!editable").badge
+            //-     dd(ng-if="editable")
+            //-       input(type="time", ng-model="timer.total")
+            //-   a(ng-click="delete(timer)")
+            //-     .glyphicon.glyphicon-remove
+            //-     | Delete
 
-    .container
-      //- block body
-      .row
-        div(ng-view).col-md-10
-          // App is here
-        //- .col-md-2(ng-controller="OnlineCtrl")
-        //-   .well.affix
-        //-     h3 {{team.name}} Members Online
-        //-     div(ng-repeat='user in users')
-        //-       img(src="/uploads/{{team.members[user].avatar}}")
-        //-       h5{{user}}
+      //- .container
+      //-   //- block body
+      //-   .row
+      //-     div(ng-view).col-md-10
+      //-       // App is here
+      //-     //- .col-md-2(ng-controller="OnlineCtrl")
+      //-     //-   .well.affix
+      //-     //-     h3 {{team.name}} Members Online
+      //-     //-     div(ng-repeat='user in users')
+      //-     //-       img(src="/uploads/{{team.members[user].avatar}}")
+      //-     //-       h5{{user}}
 
-    script(src='/js/lib/jquery-2.0.3.min.js')
-    script(src='/socket.io/socket.io.js')
+    //- script(src='/js/lib/jquery-2.0.3.min.js')
+    //- script(src='/js/lib/angular-1.2.9.js')
     //- script(src='/js/lib/angular-file-upload-shim.js')
-    script(src='bower_components/underscore/underscore-min.js')
-    script(src='bower_components/angular/angular.js')
-    script(src='bower_components/angular-route/angular-route.js')
+    //- script(src='bower_components/underscore/underscore-min.js')
+
+
+    //- script(src='/js/lib/angular-file-upload.js')
+
+    //- script(src='/socket.io/socket.io.js')
+    //- script(src='bower_components/angular-socket-io/socket.js')
+    script(src='/bower_components/angular/angular.js')
+    script(src='/bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
+    script(src='/bower_components/angular-route/angular-route.js')
     script(src='bower_components/angular-resource/angular-resource.js')
-    script(src='bower_components/angular-socket-io/socket.js')
-    script(src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
-    script(src='bower_components/angular-tags/dist/angular-tags-0.2.10-tpls.js')
-    script(src='/js/lib/angular-file-upload.js')
+    script(src='/js/lib/angular-tags-0.2.10-tpls.js')
+
+
+
+
+    script(src='js/helpers.js')
     script(src='js/app.js')
     script(src='js/services.js')
-    script(src='js/controllers/project.js')
-    script(src='js/controllers/projects.js')
-    script(src='js/controllers/users.js')
+    //- script(src='js/controllers/project.js')
+    //- script(src='js/controllers/projects.js')
+    //- script(src='js/controllers/users.js')
     script(src='js/controllers/timer.js')
+    script(src='js/controllers/timers.js')
     script(src='js/filters.js')
     script(src='js/directives.js')

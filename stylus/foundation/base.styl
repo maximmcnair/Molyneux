@@ -1,0 +1,52 @@
+//========================================================
+
+// Project Title
+
+// INDEX:
+
+//  1 - Mixins, Variables & Reset
+//  2 - Generic Elements/Classes
+//  3 - Typography
+
+//========================================================
+
+//========================================================
+//  2 - Generic Elements/Classes
+//========================================================
+
+*
+  -moz-box-sizing border-box
+  -webkit-box-sizing border-box
+  box-sizing border-box
+
+img
+video
+  max-width 100%
+  height auto
+  width auto // ^ie8
+  vertical-align top
+
+.clearfix:before
+.clearfix:after
+  content " "
+  display table
+
+.clearfix:after
+  clear both
+
+.clearfix
+  *zoom 1
+
+.no-margin-right
+  margin-right 0px !important
+
+img.alignleft
+  float left
+  margin-right 15px
+
+img.alignright
+  float right
+  margin-left 15px
+
+.fb-like
+  margin-right 10px

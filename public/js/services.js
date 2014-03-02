@@ -63,3 +63,7 @@ angular.module('myApp.services', [])
       }
     )
 })
+
+.factory('CurrentTimer', function ($resource){
+  return {}
+})

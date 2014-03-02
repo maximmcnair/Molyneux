@@ -1,0 +1,42 @@
+.input-clear
+  outline 0
+  border 0px
+  background transparent
+
+.list-no-style
+  list-style-type none
+  margin 0
+  padding 0
+
+input
+textarea
+  font-family "proxima-nova-soft", sans-serif
+  @extends .input-clear
+  padding 15px
+  font-size 16px
+  margin-right 10px
+  border-radius 4px
+  transition background-color 1s
+  color #ffffff
+  &:focus
+    background-color #233f56
+
+.form-icon
+  position relative
+  input
+    padding-left 40px
+  i
+    position absolute
+    left 15px
+    top 15px
+    color #ffffff
+    font-size 22px
+
+::-webkit-input-placeholder
+  color #ffffff
+:-moz-placeholder
+  color #ffffff
+::-moz-placeholder
+  color #ffffff
+:-ms-input-placeholder
+  color #ffffff

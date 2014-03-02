@@ -13,6 +13,8 @@ angular.module('myApp.directives', [])
       restrict: 'E'
     , scope: true
     , controller: function ($scope, $element) {
+        $scope.timePretty = timePretty
+
         $scope.editable = false
         $scope.delete = function (data) {
           TimerService.delete({}, {'Id': data._id}).$promise.then(
