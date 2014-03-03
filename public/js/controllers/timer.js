@@ -22,15 +22,25 @@ angular.module('myApp.controllers')
     // , 'Ingredo'
     // , 'Woven'
     // ]
-    $scope.projects = [{"title":"Al Pacino","description":"He's a real man.","team":"52d155ed8d94e2e235000001","thumbnail":"/uploads/52d1875ea1c2f2cfdf000004_Screen Shot 2013-12-16 at 20.54.31.png","_id":"52d1a04c0b244861e0000002","__v":0},{"title":"Treepress","description":"sadfas","team":"52d155ed8d94e2e235000001","thumbnail":"/uploads/52d1875ea1c2f2cfdf000004_tumblr_lpu3jmP5qL1qcs4zto1_1280.jpg","_id":"52d1a6d96d53e43de1000002","__v":0}] 
+    $scope.projects = ProjectService.get({}, function (res) {
+      console.log(res)
+    })
+    $scope.$on('ProjectEdited', function(event, editedProject) {
+      for (var i = $scope.projects.length - 1; i >= 0; i--) {
+        if($scope.projects[i]._id === editedProject._id){
+          $scope.projects[i] = editedProject
+        }
+      }
+      console.log($scope.projects)
+    })
+    $scope.$on('ProjectAdded', function(event, project) {
+      $scope.projects.push(project)
+    })
 
-    // ProjectService.get({}, function (res) {
-    //   console.log(JSON.stringify(res))
-    //   var addresses = [];
-    //   angular.forEach(res.data.results, function(item){
-    //     addresses.push(item.formatted_address);
-    //   });
-    // })
+
+
+
+
     console.log($scope.projects)
 
     // $scope.tags = ['front end', 'backend', 'bugs']

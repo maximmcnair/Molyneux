@@ -10,7 +10,7 @@ module.exports.create = function (data, callback) {
 }
 
 module.exports.list = function (teamId, callback) {
-  ProjectModel.find({team: teamId}, function (err, projects) {
+  ProjectModel.find({}, function (err, projects) {
     if(err) callback(err)
     callback(null, projects)
   })

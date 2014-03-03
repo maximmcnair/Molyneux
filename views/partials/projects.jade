@@ -1,8 +1,14 @@
 .projects
-  h1 Projects
+  form(name="projectForm", novalidate)
+    input(type="text", id="title", placeholder="Title*", ng-model="project.title", autocomplete="off", required).form-control
+    button(ng-click="createProject()", ng-disabled="projectForm.$invalid").btn.btn-primary Create
+
   project(ng-repeat="project in projects | reverse", projects="projects", ng-dblclick="edit()").project
     .project__desc
       h2(ng-bind="project.title", ng-if="!editable").project__title
+      input(ng-model="project.title", ng-if="editable")
+      a(ng-click="save()", ng-if="editable").btn.btn-default Save
+      a(ng-click="remove()", ng-if="editable").btn.btn-warning Remove
 
 //- section.projects.row
 //-   div(ng-repeat="project in projects").col-md-4

@@ -35,6 +35,42 @@ module.exports.createRoutes = function (app, logger) {
     })
   })
 
+  app.post('/api/project', function (req, res) {
+    var data = req.body
+    // data.user = req.user._id
+    ProjectService.create(data, function (err, project) {
+      if(err){
+        logger.error('project save ERROR', err)
+        return res.json(err, 400)
+      } else {
+        logger.info('project save SUCCESS', project)
+        return res.json(project, 201)
+      }
+      // eventEmitter.emit('projectAdded', project)
+    })
+  })
+
+  app.put('/api/project/:projectId', function (req, res) {
+    var data = req.body
+    ProjectService.update(req.params.projectId, data, function (err, project) {
+      if(err) return res.json(err, 400)
+      // eventEmitter.emit('timerAdded', project)
+      return res.json(project, 201)
+    })
+  })
+
+  app.delete('/api/project/:projectId', function (req, res) {
+    ProjectService.delete(req.params.projectId, function (err) {
+      if(err){
+        logger.error('project delete ERROR', err)
+        return res.json(err, 400)
+      }else{
+        logger.info('project delete SUCCESS', req.params.projectId)
+        return res.json(201)
+      }
+    })
+  })
+
   //should this be joined -> should it return object with both project info and it's tasks???
   // app.get('/api/project/:projectId/tasks', function (req, res) {
   //   TaskService.list(req.params.projectId, function (err, projects) {
