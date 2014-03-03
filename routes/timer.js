@@ -87,7 +87,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
 
   app.post('/api/timer', function (req, res) {
     var data = req.body
-    // data.user = req.user._id
+    data.user = req.user._id
     TimerService.create(data, function (err, timer) {
       if(err){
         logger.error('timer save ERROR', err)

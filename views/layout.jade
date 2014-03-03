@@ -64,7 +64,7 @@ html(ng-app="myApp")
             .container
               .clearfix.timer__current__basic
                 h3(ng-bind="currentTimer.title").timer__current__title
-                h5(ng-bind="currentTimer.project").timer__current__project
+                h5(ng-bind="getProjectTitle(currentTimer.project)").timer__current__project
                 h3.timer__current__time
                   i.fa.fa-clock-o
                   | {{timePretty(currentTimer.total)}}

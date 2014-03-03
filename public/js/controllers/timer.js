@@ -97,6 +97,14 @@ angular.module('myApp.controllers')
         }, 1000)
       }
     }
+  
+    $scope.getProjectTitle = function (id) {
+      for (var i = $scope.projects.length - 1; i >= 0; i--) {
+        if($scope.projects[i]._id === id){
+          return $scope.projects[i].title
+        }
+      }
+    }
 
 
     //========================================================

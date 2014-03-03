@@ -61,3 +61,11 @@ function getTodayMorning(d) {
 
   return todayMorning
 }
+
+// function getTitle(id, array){
+//   for (var i = array.length - 1; i >= 0; i--) {
+//     if(array[i]._id === id){
+//       return array[i].title
+//     }
+//   }
+// }
