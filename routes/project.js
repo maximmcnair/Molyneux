@@ -18,7 +18,7 @@ module.exports.createRoutes = function (app, logger) {
   logger.info('project routes')
 
   // GET Projects
-  app.get('/api/projects', function (req, res) {
+  app.get('/api/project', function (req, res) {
     // logger.info(req)
     ProjectService.list(req.user.team, function (err, projects) {
       if(err) return res.json(err, 400)
@@ -27,7 +27,7 @@ module.exports.createRoutes = function (app, logger) {
   })
 
   // GET Project
-  app.get('/api/projects/:projectId', function (req, res) {
+  app.get('/api/project/:projectId', function (req, res) {
     // logger.info(req)
     ProjectService.detail(req.params.projectId, function (err, projects) {
       if(err) return res.json(err, 400)
@@ -36,10 +36,10 @@ module.exports.createRoutes = function (app, logger) {
   })
 
   //should this be joined -> should it return object with both project info and it's tasks???
-  app.get('/api/projects/:projectId/tasks', function (req, res) {
-    TaskService.list(req.params.projectId, function (err, projects) {
-      if(err) return res.json(err, 400)
-      return res.json(projects, 201)
-    })
-  })
+  // app.get('/api/project/:projectId/tasks', function (req, res) {
+  //   TaskService.list(req.params.projectId, function (err, projects) {
+  //     if(err) return res.json(err, 400)
+  //     return res.json(projects, 201)
+  //   })
+  // })
 }

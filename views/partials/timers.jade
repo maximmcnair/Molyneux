@@ -1,0 +1,39 @@
+.timers
+  //- pre {{currentTimer | json}}
+  //- header
+  //-   .col-md-4
+  //-     ul.nav.nav-pills
+  //-       li(ng-click="getToday()").active
+  //-         a Today
+  //-       li(ng-click="getThisWeek()")
+  //-         a This Week
+  //-       li(ng-click="getThisMonth()")
+  //-         a This Month
+  //-   .col-md-4
+  //-     .btn Start
+  //-     .btn End
+
+  timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
+    .timer__desc
+      h2(ng-bind="timer.title", ng-if="!editable").timer__title
+      input(ng-model="timer.title", ng-if="editable")
+      h4(ng-bind="timer.project", ng-if="!editable").timer__project
+      input(ng-model="timer.project", ng-if="editable")
+      span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
+    .timer__time
+      h3
+        i.fa.fa-clock-o
+        | {{timePretty(timer.total)}}
+    //- .timer__btn
+    //-   a(ng-click="continue()").btn.btn-default Continue
+    //- h6(ng-bind="timer.date")
+    //- .clearfix
+    //- .col-md-2
+    //-   dl
+    //-     dt Total:
+    //-     dd(ng-bind="timePretty(timer.total)", ng-if="!editable").badge
+    //-     dd(ng-if="editable")
+    //-       input(type="time", ng-model="timer.total")
+    //-   a(ng-click="delete(timer)")
+    //-     .glyphicon.glyphicon-remove
+    //-     | Delete

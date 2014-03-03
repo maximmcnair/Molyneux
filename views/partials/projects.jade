@@ -1,3 +1,9 @@
+.projects
+  h1 Projects
+  project(ng-repeat="project in projects | reverse", projects="projects", ng-dblclick="edit()").project
+    .project__desc
+      h2(ng-bind="project.title", ng-if="!editable").project__title
+
 //- section.projects.row
 //-   div(ng-repeat="project in projects").col-md-4
 //-     a(href="/projects/{{project._id}}").panel.panel-default

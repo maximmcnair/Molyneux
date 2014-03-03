@@ -18,11 +18,15 @@ angular.module('myApp', [
   // , 'btford.socket-io'
 ]).
 config(function ($routeProvider, $locationProvider) {
-  // $routeProvider.
-    // when('/projects', {
-    //   templateUrl: 'partials/projects',
-    //   controller: 'ProjectsCtrl'
-    // }).
+  $routeProvider.
+    when('/', {
+      templateUrl: 'partials/timers',
+      controller: 'TimersCtrl'
+    }).
+    when('/projects', {
+      templateUrl: 'partials/projects',
+      controller: 'ProjectsCtrl'
+    }).
     // when('/projects/:projectId', {
     //   templateUrl: 'partials/project',
     //   controller: 'ProjectCtrl'
@@ -35,9 +39,9 @@ config(function ($routeProvider, $locationProvider) {
     //   templateUrl: 'partials/login',
     //   controller: 'LoginCtrl'
     // }).
-    // otherwise({
-    //   redirectTo: '/projects'
-    // });
+    otherwise({
+      redirectTo: '/projects'
+    });
 
   $locationProvider.html5Mode(true);
 })

@@ -23,12 +23,10 @@ html(ng-app="myApp")
         ul
           li.is-active
             i.fa.fa-clock-o
-            a Timers
-            //- a(href="/projects") Timers
+            a(href="/") Timers
           li
             i.fa.fa-copy
-            //- a(href="/") Projects
-            a Projects
+            a(href="/projects") Projects
         //- if username
         //-   ul.nav.navbar-nav.navbar-right
         //-     li
@@ -65,7 +63,8 @@ html(ng-app="myApp")
                   p(ng-show="timerForm.name.$invalid && !timerForm.name.$pristine").form-err A title is required
                 .form-group.timer__basic__project
                   label(for="project").sr-only Project
-                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project for project in projects").form-control
+                  //- input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project for project in projects").form-control
+                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project as project.title for project in projects").form-control
                 .form-group.timer__basic__btn
                   button(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
                   button(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time
@@ -85,45 +84,7 @@ html(ng-app="myApp")
                   //-   button(ng-click="open($event)").btn.btn-default
                   //-     i.glyphicon.glyphicon-calendar
 
-        div(ng-controller="TimersCtrl").container.timers
-          //- pre {{currentTimer | json}}
-          //- header
-          //-   .col-md-4
-          //-     ul.nav.nav-pills
-          //-       li(ng-click="getToday()").active
-          //-         a Today
-          //-       li(ng-click="getThisWeek()")
-          //-         a This Week
-          //-       li(ng-click="getThisMonth()")
-          //-         a This Month
-          //-   .col-md-4
-          //-     .btn Start
-          //-     .btn End
-
-          timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
-            .timer__desc
-              h2(ng-bind="timer.title", ng-if="!editable").timer__title
-              input(ng-model="timer.title", ng-if="editable")
-              h4(ng-bind="timer.project", ng-if="!editable").timer__project
-              input(ng-model="timer.project", ng-if="editable")
-              span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
-            .timer__time
-              h3
-                i.fa.fa-clock-o
-                | {{timePretty(timer.total)}}
-            .timer__btn
-              a.btn.btn-default Start Timer
-            //- h6(ng-bind="timer.date")
-            //- .clearfix
-            //- .col-md-2
-            //-   dl
-            //-     dt Total:
-            //-     dd(ng-bind="timePretty(timer.total)", ng-if="!editable").badge
-            //-     dd(ng-if="editable")
-            //-       input(type="time", ng-model="timer.total")
-            //-   a(ng-click="delete(timer)")
-            //-     .glyphicon.glyphicon-remove
-            //-     | Delete
+        div(ng-view).container
 
       //- .container
       //-   //- block body
@@ -160,9 +121,9 @@ html(ng-app="myApp")
     script(src='js/app.js')
     script(src='js/services.js')
     //- script(src='js/controllers/project.js')
-    //- script(src='js/controllers/projects.js')
     //- script(src='js/controllers/users.js')
     script(src='js/controllers/timer.js')
     script(src='js/controllers/timers.js')
+    script(src='js/controllers/projects.js')
     script(src='js/filters.js')
     script(src='js/directives.js')

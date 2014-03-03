@@ -63,7 +63,23 @@ angular.module('myApp.services', [])
       }
     )
 })
-
+.factory('ProjectService', function ($resource){
+  return $resource('/api/project/:Id'
+    , { Id: "@Id"
+      }
+    , { 'get':
+        { method: 'GET'
+        , isArray: true
+        }
+      , 'save':
+        { method: 'POST'
+        }
+      , 'update':
+        { method: 'PUT'
+        }
+      }
+    )
+})
 .factory('CurrentTimer', function ($resource){
   return {}
 })
