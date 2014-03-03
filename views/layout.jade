@@ -38,12 +38,14 @@ html(ng-app="myApp")
         h1.header-logo Talllies
       nav.nav
         ul
-          li.is-active
-            i.fa.fa-clock-o
-            a(href="/") Timers
-          li
-            i.fa.fa-copy
-            a(href="/projects") Projects
+          a(href="/")
+            li.is-active
+              i.fa.fa-clock-o
+              | Timers
+          a(href="/projects")
+            li
+              i.fa.fa-copy
+              | Projects
         //- if username
         //-   ul.nav.navbar-nav.navbar-right
         //-     li

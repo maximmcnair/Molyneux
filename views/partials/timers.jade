@@ -1,17 +1,12 @@
 .timers
   //- pre {{currentTimer | json}}
-  //- header
-  //-   .col-md-4
-  //-     ul.nav.nav-pills
-  //-       li(ng-click="getToday()").active
-  //-         a Today
-  //-       li(ng-click="getThisWeek()")
-  //-         a This Week
-  //-       li(ng-click="getThisMonth()")
-  //-         a This Month
-  //-   .col-md-4
-  //-     .btn Start
-  //-     .btn End
+  nav.timers-nav
+    .btn(ng-click="getToday()").is-active Today
+    .btn(ng-click="getThisWeek()") This Week
+    .btn(ng-click="getThisMonth()") This Month
+    //- .col-md-4
+    //-   .btn Start
+    //-   .btn End
 
   timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
     .timer__desc
