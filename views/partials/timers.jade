@@ -17,9 +17,11 @@
     .timer__desc
       h2(ng-bind="timer.title", ng-if="!editable").timer__title
       input(ng-model="timer.title", ng-if="editable")
-      h4(ng-bind="timer.project", ng-if="!editable").timer__project
-      input(ng-model="timer.project", ng-if="editable")
-      span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
+      h4(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
+      //- input(ng-model="timer.project", ng-if="editable")
+      .timer__tags(ng-if="timer.tags")
+        i.fa.fa-tags
+        span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
     .timer__time
       h3
         i.fa.fa-clock-o

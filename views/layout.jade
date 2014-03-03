@@ -13,6 +13,25 @@ html(ng-app="myApp")
     //- script(type="text/javascript", src="//use.typekit.net/ocs1xrk.js")
     //- script(type="text/javascript").
     //-   try{Typekit.load();}catch(e){}
+    script(type="text/javascript").
+      (function() {
+        var config = {
+          kitId: 'ocs1xrk'
+        };
+        var d = false;
+        var tk = document.createElement('script');
+        tk.src = '//use.typekit.net/' + config.kitId + '.js';
+        tk.type = 'text/javascript';
+        tk.async = 'true';
+        tk.onload = tk.onreadystatechange = function() {
+          var rs = this.readyState;
+          if (d || rs && rs != 'complete' && rs != 'loaded') return;
+          d = true;
+          try { Typekit.load(config); } catch (e) {}
+        };
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(tk, s);
+      })();
   body
     aside.aside-nav
       header

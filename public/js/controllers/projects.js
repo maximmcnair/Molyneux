@@ -5,7 +5,6 @@ angular.module('myApp.controllers')
       console.log(res)
     })
 
-
     $scope.createProject = function () {
       console.log('create project')
       var newProject = new ProjectService($scope.project)

@@ -2,11 +2,7 @@ angular.module('myApp.controllers')
   .controller('TimerCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
     $scope.timer = {
       tags: [
-        // { name: 'front end'
-        // , value: 'front end'
-        // }
       ]
-    // , title: 'Hello'
     }
 
     $scope.timePretty = timePretty
@@ -17,11 +13,6 @@ angular.module('myApp.controllers')
       increment()
     })
 
-    // $scope.projects =
-    // [ 'Creo'
-    // , 'Ingredo'
-    // , 'Woven'
-    // ]
     $scope.projects = ProjectService.get({}, function (res) {
       console.log(res)
     })
