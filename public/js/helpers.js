@@ -41,3 +41,23 @@ function timePretty(dateObject){
   }
   return '0sec'; //'just now' //or other string you like;
 }
+
+function getMonday(d) {
+  d = new Date(d)
+  var day = d.getDay()
+    , diff = d.getDate() - day + (day == 0 ? -6:1) // adjust when day is sunday
+    , monday = new Date(d.setDate(diff))
+    , mondayMorning = new Date(monday.setHours(0))
+    , mondayMorning = new Date(mondayMorning.setMinutes(0))
+    , mondayMorning = new Date(mondayMorning.setSeconds(0))
+  return mondayMorning
+}
+
+function getTodayMorning(d) {
+  var today = new Date(d)
+    , todayMorning = new Date(today.setHours(0))
+    , todayMorning = new Date(todayMorning.setMinutes(0))
+    , todayMorning = new Date(todayMorning.setSeconds(0))
+
+  return todayMorning
+}
