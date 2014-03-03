@@ -44,18 +44,12 @@ angular.module('myApp.controllers')
       }
     }
 
+    $scope.tags = []
 
-
-    console.log($scope.projects)
-
-    // $scope.tags = ['front end', 'backend', 'bugs']
-
-    $scope.tags = [
-      {value: 'front end', name: 'front end'}
-    , {value: 'back end', name: 'back end'}
-    , {value: 'bugs', name: 'bugs'}
-    , {value: 'phase 2', name: 'phase 2'}
-    ]
+    $http.get('/api/tags').success(function(data){
+      console.log('tags GET success', data)
+      $scope.tags = data
+    })
 
     $scope.startTimer = function  (data) {
       var newTimer = new TimerService(data)

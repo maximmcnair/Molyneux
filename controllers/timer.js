@@ -51,3 +51,14 @@ module.exports.delete = function (timerId, callback) {
     }
   })
 }
+
+module.exports.tags = function (callback) {
+  TimerModel.find().distinct('tags', function(err, results){
+    if ( err ){
+      console.log('Tags error', err)
+      return callback(err)
+    }
+    console.log(results)
+    return callback(null, results)
+  })
+}

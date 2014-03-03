@@ -67,6 +67,17 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
     })
   })
 
+  app.get('/api/tags', function (req, res) {
+    TimerService.tags(function (err, tags) {
+      if(err){
+        console.log(err)
+        return res.json(err, 400)
+      }
+      console.log(tags)
+      return res.json(tags, 201)
+    })
+  })
+
   app.get('/api/timer/:timerId', function (req, res) {
     TimerService.detail(req.params.timerId, function (err, timer) {
       if(err) return res.json(err, 400)

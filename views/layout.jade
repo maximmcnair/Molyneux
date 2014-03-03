@@ -5,9 +5,7 @@ html(ng-app="myApp")
     base(href='/')
     title Molyneux
     link(rel='stylesheet', href='/css/app.css')
-    //- link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
-    //- link(rel='stylesheet', href='/bower_components/angular-tags/dist/angular-tags-0.2.10.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/main.css')
     script.
@@ -71,7 +69,7 @@ html(ng-app="myApp")
               .container
                 .form-group.timer__advanced__tags
                   label.sr-only Tags
-                  tags(data-options="{addable: true}", data-src="tag.value as tag.name for tag in tags", data-model="timer.tags")
+                  tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
                 //- .form-group.form-icon.timer__advanced__time
                 //-   i.fa.fa-clock-o
                 //-   label(for="currentTime").sr-only Current Time
