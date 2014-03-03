@@ -8,9 +8,6 @@ angular.module('myApp.controllers')
         }
       })
     })
-    $scope.projects = ProjectService.get({}, function (res) {
-      console.log(res)
-    })
     $scope.getProjectTitle = function (id) {
       for (var i = $scope.projects.length - 1; i >= 0; i--) {
         if($scope.projects[i]._id === id){
@@ -18,6 +15,11 @@ angular.module('myApp.controllers')
         }
       }
     }
+
+    $scope.filter = 'today'
+    $scope.projects = ProjectService.get({}, function (res) {
+      console.log(res)
+    })
 
 
     // Add timer to scope on broadcast
@@ -27,16 +29,19 @@ angular.module('myApp.controllers')
     $scope.getToday = function () {
       $scope.timers = TimerService.get({},function (res) {
         console.log('getToday', res)
+        $scope.filter = 'today'
       })
     }
     $scope.getThisWeek = function () {
       $scope.timers = TimerService.get({},function (res) {
         console.log('getThisWeek', res)
+        $scope.filter = 'week'
       })
     }
     $scope.getThisMonth = function () {
       $scope.timers = TimerService.get({},function (res) {
         console.log('getThisMonth', res)
+        $scope.filter = 'month'
       })
     }
   })
