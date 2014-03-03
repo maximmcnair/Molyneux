@@ -12,9 +12,9 @@ html(ng-app="myApp")
     link(rel='stylesheet', href='/css/main.css')
     script.
       var user = '#{userId}'
-    script(type="text/javascript", src="//use.typekit.net/ocs1xrk.js")
-    script(type="text/javascript").
-      try{Typekit.load();}catch(e){}
+    //- script(type="text/javascript", src="//use.typekit.net/ocs1xrk.js")
+    //- script(type="text/javascript").
+    //-   try{Typekit.load();}catch(e){}
   body
     aside.aside-nav
       header
@@ -63,8 +63,7 @@ html(ng-app="myApp")
                   p(ng-show="timerForm.name.$invalid && !timerForm.name.$pristine").form-err A title is required
                 .form-group.timer__basic__project
                   label(for="project").sr-only Project
-                  //- input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project for project in projects").form-control
-                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project as project.title for project in projects").form-control
+                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
                 .form-group.timer__basic__btn
                   button(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
                   button(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time

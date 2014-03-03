@@ -36,8 +36,13 @@ angular.module('myApp.controllers')
     $scope.$on('ProjectAdded', function(event, project) {
       $scope.projects.push(project)
     })
-
-
+    $scope.formatLabel = function (model) {
+      for (var i = 0; i < $scope.projects.length; i++) {
+        if ($scope.projects[i] && model === $scope.projects[i]._id){
+          return $scope.projects[i].title
+        }
+      }
+    }
 
 
 
