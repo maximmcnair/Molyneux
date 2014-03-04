@@ -1,39 +1,16 @@
 angular.module('myApp.controllers')
   .controller('TimersCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
 
-    $scope.filter = 'today'
+    // $scope.filter = 'today'
+    $scope.filter = ''
     $scope.totalItems = 30
     $scope.currentPage = 1
     $scope.pageSize = 5
+    $scope.query = {}
 
-    $http.get('/api/timer', {
-      params: {
-        pageSize: $scope.pageSize
-      , page: $scope.currentPage
-      }
-    }).success(function(res){
-      console.log('GET timers', res)
-      $scope.totalItems = res.totalItems
-      $scope.currentPage = res.page
-      $scope.timers = res.results
 
-      // Find active timer
-      res.results.filter(function(timer){
-        if(timer.active){
-          console.log('active: ', timer)
-          $rootScope.$broadcast('CurrentTimerChange', timer)
-        }
-      })
-    })
-
-    $scope.$watch('currentPage', function() {
-      console.log($scope.currentPage)
-      $http.get('/api/timer', {
-        params: {
-          pageSize: $scope.pageSize
-        , page: $scope.currentPage
-        }
-      }).success(function(res){
+    function getTimers(params) {
+      $http.get('/api/timer', {params: params}).success(function(res){
         console.log('GET timers', res)
         $scope.totalItems = res.totalItems
         $scope.currentPage = res.page
@@ -47,6 +24,18 @@ angular.module('myApp.controllers')
           }
         })
       })
+    }
+
+    $scope.$watch('currentPage', function() {
+      var params = {
+        pageSize: $scope.pageSize
+      , page: $scope.currentPage
+      }
+      for (var attrname in $scope.query) {
+        params[attrname] = $scope.query[attrname]
+      }
+      console.log(params)
+      getTimers(params)
     })
 
     $scope.projects = ProjectService.get({}, function (res) {
@@ -77,28 +66,26 @@ angular.module('myApp.controllers')
       var beginning = getTodayMorning(new Date())
         , now = new Date()
 
-      console.log(beginning, now)
-      $scope.timers = TimerService.get({},function (res) {
-        console.log('getToday', res)
-        $scope.filter = 'today'
-      })
+      // console.log(beginning, now)
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'today'
     }
     $scope.getThisWeek = function () {
       var beginning = getMonday(new Date())
         , now = new Date()
 
       console.log(beginning, now)
-      $scope.timers = TimerService.get({},function (res) {
-        console.log('getThisWeek', res)
-        $scope.filter = 'week'
-      })
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'week'
     }
-    // $scope.getThisMonth = function () {
-    //   $scope.timers = TimerService.get({},function (res) {
-    //     console.log('getThisMonth', res)
-    //     $scope.filter = 'month'
-    //   })
-    // }
 
     $scope.getProjectTitle = function (id) {
       for (var i = $scope.projects.length - 1; i >= 0; i--) {
