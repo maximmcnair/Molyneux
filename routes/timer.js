@@ -30,6 +30,8 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('setup timer routes')
 
   app.get('/api/timer', function (req, res) {
+    console.log(req.query)
+
     var query = {}
       , options = {}
 
@@ -54,16 +56,30 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
       options.sort = req.query.sort
     }
     // Add pagination to options if exists
-    if (req.query.pagination && req.query.pagination.pageSize) {
-      options.limit = req.query.pagination.pageSize
-      if (req.query.pagination.page) {
-        options.skip = (req.query.pagination.page - 1) * req.query.pagination.pageSize
+    if (req.query && req.query.pageSize) {
+      options.limit = req.query.pageSize
+      if (req.query.page) {
+        options.skip = (req.query.page - 1) * req.query.pageSize
       }
     }
 
     TimerService.list(query, options, function (err, timers) {
-      if(err) return res.json(err, 400)
-      return res.json(timers, 201)
+      if(err){
+        logger.error(err)
+        return res.json(err, 400)
+      }
+      TimerService.count(query, function (err, count) {
+        if(err){
+          logger.error(err)
+          return res.json(err, 400)
+        }
+        res.json(
+          { results: timers
+          , page: parseFloat(req.query.page)
+          , pageSize: parseFloat(req.query.pageSize)
+          , totalItems: count
+        })
+      })
     })
   })
 

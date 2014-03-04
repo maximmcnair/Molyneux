@@ -11,11 +11,16 @@ module.exports.create = function (data, callback) {
 }
 
 module.exports.list = function (query, options, callback) {
-  console.log('query:', query)
-  console.log('options:', options)
-  TimerModel.find(query, function (err, timers) {
+  TimerModel.find(query).skip(options.skip).limit(options.limit).execFind(function(err, timers) {
     if(err) return callback(err)
     callback(null, timers)
+  })
+}
+
+module.exports.count = function (query, callback) {
+  TimerModel.count(query, function(err, count) {
+    if(err) return callback(err)
+    callback(null, count)
   })
 }
 

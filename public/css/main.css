@@ -114,3 +114,4 @@ input:focus,textarea:focus{background-color:#233f56}
 .decipher-tags-invalid{color:#fff}
 .decipher-tags-controls{margin-top:8px;min-height:28px}
 .decipher-tags-icon{margin:5px 10px 0 0;color:#fff}
+.pagination .active{background:#f00}

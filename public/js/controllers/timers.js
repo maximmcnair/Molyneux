@@ -1,8 +1,24 @@
 angular.module('myApp.controllers')
   .controller('TimersCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
 
-    $scope.timers = TimerService.get({},function (res) {
-      res.filter(function(timer){
+    $scope.filter = 'today'
+    $scope.totalItems = 30
+    $scope.currentPage = 1
+    $scope.pageSize = 2
+
+    $http.get('/api/timer', {
+      params: {
+        pageSize: $scope.pageSize
+      , page: $scope.currentPage
+      }
+    }).success(function(res){
+      console.log('GET timers', res)
+      $scope.totalItems = res.totalItems
+      $scope.currentPage = res.page
+      $scope.timers = res.results
+
+      // Find active timer
+      res.results.filter(function(timer){
         if(timer.active){
           console.log('active: ', timer)
           $rootScope.$broadcast('CurrentTimerChange', timer)
@@ -10,11 +26,32 @@ angular.module('myApp.controllers')
       })
     })
 
-    $scope.filter = 'today'
+    $scope.$watch('currentPage', function() {
+      console.log($scope.currentPage)
+      $http.get('/api/timer', {
+        params: {
+          pageSize: $scope.pageSize
+        , page: $scope.currentPage
+        }
+      }).success(function(res){
+        console.log('GET timers', res)
+        $scope.totalItems = res.totalItems
+        $scope.currentPage = res.page
+        $scope.timers = res.results
+
+        // Find active timer
+        res.results.filter(function(timer){
+          if(timer.active){
+            console.log('active: ', timer)
+            $rootScope.$broadcast('CurrentTimerChange', timer)
+          }
+        })
+      })
+    })
+
     $scope.projects = ProjectService.get({}, function (res) {
       console.log(res)
     })
-
     // Add timer to scope on broadcast
     $scope.$on('TimersAdd', function(event, timer) {
       var timerExists = false
@@ -70,4 +107,5 @@ angular.module('myApp.controllers')
         }
       }
     }
+
   })
