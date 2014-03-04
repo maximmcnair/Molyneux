@@ -25,7 +25,7 @@
         i.fa.fa-clock-o
         | {{timePretty(timer.total)}}
     .timer__btn
-      a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
+      //- a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
       a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop
       a(ng-click="save()", ng-if="editable").btn.btn-primary Save
       a(ng-click="remove()")
