@@ -1,3 +1,22 @@
-.pagination
-  .active
-    background red
+ul.pagination
+  @extends .list-no-style
+  li
+    float left
+  a
+    min-width 42px
+    height 42px
+    display block
+    text-align center
+    padding-top 10px
+    margin-right 5px
+    border-radius 3px
+    background #b4bac2
+    color #41494f
+    cursor pointer
+    text-decoration none
+    transition all .3s
+    &:hover
+      background darken(#b4bac2, 10%)
+  .active a
+    background #41494f
+    color #ffffff
