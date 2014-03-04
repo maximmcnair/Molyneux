@@ -27,6 +27,14 @@ angular.module('myApp.controllers')
     $scope.$on('ProjectAdded', function(event, project) {
       $scope.projects.push(project)
     })
+    $scope.$on('ProjectRemoved', function(event, project) {
+      console.log('projects remove', project.title)
+      for (var i = $scope.projects.length - 1; i >= 0; i--) {
+        if($scope.projects[i]._id === project._id){
+          $scope.projects.splice(i, 1)
+        }
+      }
+    })
     $scope.formatLabel = function (model) {
       for (var i = 0; i < $scope.projects.length; i++) {
         if ($scope.projects[i] && model === $scope.projects[i]._id){

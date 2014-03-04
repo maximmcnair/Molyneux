@@ -15,4 +15,12 @@ angular.module('myApp.controllers')
         $scope.project = ''
       })
     }
+    $scope.$on('ProjectRemoved', function(event, project) {
+      console.log('projects remove', project.title)
+      for (var i = $scope.projects.length - 1; i >= 0; i--) {
+        if($scope.projects[i]._id === project._id){
+          $scope.projects.splice(i, 1)
+        }
+      }
+    })
   })

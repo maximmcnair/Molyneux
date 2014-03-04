@@ -70,6 +70,14 @@ angular.module('myApp.directives', [])
         }
         $scope.remove = function () {
           console.log('remove')
+          $http.delete('/api/project/' + $scope.project._id).
+            success(function(data, status, headers, config) {
+              console.log('success', data)
+              $rootScope.$broadcast('ProjectRemoved', $scope.project)
+            }).
+            error(function(data, status, headers, config) {
+              console.log('error', data)
+            })
         }
       }
     }
