@@ -13,17 +13,21 @@
       h2(ng-bind="timer.title", ng-if="!editable").timer__title
       input(ng-model="timer.title", ng-if="editable")
       h4(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
-      //- input(ng-model="timer.project", ng-if="editable")
+      input(ng-if="editable", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)")
       .timer__tags(ng-if="timer.tags")
-        i.fa.fa-tags
-        span(ng-repeat="tag in timer.tags", ng-bind="tag", ng-if="!editable").tag
+        div(ng-if="!editable")
+          i.fa.fa-tags
+          span(ng-repeat="tag in timer.tags", ng-bind="tag").tag
+        div(ng-if="editable")
+          tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
     .timer__time
       h3
         i.fa.fa-clock-o
         | {{timePretty(timer.total)}}
     .timer__btn
-      a(ng-click="continue()", ng-if="!timer.active").btn.btn-default Continue
-      a(ng-click="stop()", ng-if="timer.active").btn.btn-warning Stop
+      a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
+      a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop
+      a(ng-click="save()", ng-if="editable").btn.btn-primary Save
       a(ng-click="remove()")
         i.fa.fa-times
         | Remove

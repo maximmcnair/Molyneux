@@ -84,9 +84,10 @@ input:focus,textarea:focus{background-color:#233f56}
 .timer-focus .timer__advanced{height:71px;padding:10px 0;display:block}
 .timer-focus .timer__advanced__time,.timer-focus .timer__advanced__date,.timer-focus .timer__advanced__tags{opacity:1;-ms-filter:none;filter:none}
 .timers{margin-top:40px}
-.timer{background:#fff;zoom:1;margin-bottom:10px;-webkit-border-radius:4px;border-radius:4px;display:block;padding:15px}
+.timer{background:#fff;zoom:1;margin-bottom:10px;-webkit-border-radius:4px;border-radius:4px;display:block;padding:15px;}
 .timer:before,.timer:after{content:"";display:table}
 .timer:after{clear:both}
+.timer input{background:#fff;-webkit-border-radius:3px;border-radius:3px;border:2px solid #454545;color:#454545}
 .timer__title{font-size:25px;margin:0;color:#41494f;width:100%}
 .timer__project{margin:0}
 .timer__desc{width:480px;margin-right:20px;float:left}
