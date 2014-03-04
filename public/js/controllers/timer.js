@@ -53,6 +53,7 @@ angular.module('myApp.controllers')
     $scope.startTimer = function  (data) {
       var newTimer = new TimerService(data)
       newTimer.active = true
+      newTimer.start = new Date()
       newTimer.total = 0
       newTimer.$save({}, function (res) {
         console.log('success', res)
@@ -76,8 +77,11 @@ angular.module('myApp.controllers')
 
     $scope.stopTimer = function (data) {
       data.active = false
-      console.log(data)
-
+      // Calculate new total
+      var currentTime = new Date().getTime()
+        , startTime = new Date(data.start)
+      data.total = currentTime - startTime
+      // Ajax to server
       $http.put('/api/timer/' + data._id, data).
         success(function(data, status, headers, config) {
           console.log('success', data)
@@ -93,10 +97,11 @@ angular.module('myApp.controllers')
 
     // Start timer counter
     function increment(){
-      console.log('increment')
       if($scope.currentTimer && $scope.currentTimer.active === true){
         // Increment time
-        $scope.currentTimer.total += 1000
+        var currentTime = new Date().getTime()
+          , startTime = new Date($scope.currentTimer.start)
+        $scope.currentTimer.total = currentTime - startTime
 
         // If task is still active loop increment
         $timeout(function () {
@@ -105,7 +110,7 @@ angular.module('myApp.controllers')
         }, 1000)
       }
     }
-  
+
     $scope.getProjectTitle = function (id) {
       for (var i = $scope.projects.length - 1; i >= 0; i--) {
         if($scope.projects[i]._id === id){
