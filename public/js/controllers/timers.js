@@ -4,7 +4,7 @@ angular.module('myApp.controllers')
     $scope.filter = 'today'
     $scope.totalItems = 30
     $scope.currentPage = 1
-    $scope.pageSize = 2
+    $scope.pageSize = 5
 
     $http.get('/api/timer', {
       params: {
