@@ -17,7 +17,16 @@ angular.module('myApp.controllers')
 
     // Add timer to scope on broadcast
     $scope.$on('TimersAdd', function(event, timer) {
-      $scope.timers.push(timer)
+      var timerExists = false
+      for (var i = $scope.timers.length - 1; i >= 0; i--) {
+        if($scope.timers[i]._id === timer._id){
+          timerExists = true
+          $scope.timers[i] = timer
+        }
+      }
+      if(!timerExists){
+        $scope.timers.push(timer)
+      }
     })
     $scope.getToday = function () {
       var beginning = getTodayMorning(new Date())

@@ -21,8 +21,9 @@
       h3
         i.fa.fa-clock-o
         | {{timePretty(timer.total)}}
-    //- .timer__btn
-    //-   a(ng-click="continue()").btn.btn-default Continue
+    .timer__btn
+      a(ng-click="continue()", ng-if="!timer.active").btn.btn-default Continue
+      a(ng-click="stop()", ng-if="timer.active").btn.btn-warning Stop
     //- h6(ng-bind="timer.date")
     //- .clearfix
     //- .col-md-2

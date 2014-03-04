@@ -8,7 +8,7 @@ angular.module('myApp.directives', [])
       elm.text(version)
     }
   })
-  .directive('timer', function (TimerService, $rootScope) {
+  .directive('timer', function (TimerService, $rootScope, $http) {
     return {
       restrict: 'E'
     , scope: true
@@ -37,6 +37,16 @@ angular.module('myApp.directives', [])
         // }
         $scope.continue = function () {
           console.log('continue', $scope.timer._id)
+
+          $scope.timer.active = true
+          $http.put('/api/timer/' + $scope.timer._id, $scope.timer).
+            success(function(data, status, headers, config) {
+              console.log('success', data)
+              $rootScope.$broadcast('CurrentTimerChange', $scope.timer)
+            }).
+            error(function(data, status, headers, config) {
+              console.log('error', data)
+            })
         }
       }
     }
