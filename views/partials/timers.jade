@@ -24,6 +24,10 @@
     .timer__btn
       a(ng-click="continue()", ng-if="!timer.active").btn.btn-default Continue
       a(ng-click="stop()", ng-if="timer.active").btn.btn-warning Stop
+      a(ng-click="remove()")
+        i.fa.fa-times
+        | Remove
+
     //- h6(ng-bind="timer.date")
     //- .clearfix
     //- .col-md-2

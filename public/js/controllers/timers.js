@@ -28,6 +28,14 @@ angular.module('myApp.controllers')
         $scope.timers.push(timer)
       }
     })
+    $scope.$on('TimerRemoved', function(event, timer) {
+      console.log('timers remove', timer.title)
+      for (var i = $scope.timers.length - 1; i >= 0; i--) {
+        if($scope.timers[i]._id === timer._id){
+          $scope.timers.splice(i, 1)
+        }
+      }
+    })
     $scope.getToday = function () {
       var beginning = getTodayMorning(new Date())
         , now = new Date()

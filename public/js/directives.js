@@ -16,22 +16,6 @@ angular.module('myApp.directives', [])
         $scope.timePretty = timePretty
 
         $scope.editable = false
-        // $scope.delete = function (data) {
-        //   TimerService.delete({}, {'Id': data._id}).$promise.then(
-        //     function( success ){
-        //       for (var i = 0; i < $scope.$parent.timers.length; i++){
-        //         if ($scope.$parent.timers[i]._id && $scope.$parent.timers[i]._id == data._id){
-        //           console.log($scope.$parent.timers[i]._id)
-        //           $scope.$parent.timers.splice(i, 1)
-        //           break
-        //         }
-        //       }
-        //     },
-        //     function( error ){
-        //       console.log('error', error);
-        //     }
-        //   )
-        // }
         // $scope.edit = function () {
         //   $scope.editable = !$scope.editable
         // }
@@ -43,6 +27,17 @@ angular.module('myApp.directives', [])
             success(function(data, status, headers, config) {
               console.log('success', data)
               $rootScope.$broadcast('CurrentTimerChange', $scope.timer)
+            }).
+            error(function(data, status, headers, config) {
+              console.log('error', data)
+            })
+        }
+        $scope.remove = function () {
+          console.log('remove', $scope.timer.title)
+          $http.delete('/api/timer/' + $scope.timer._id).
+            success(function(data, status, headers, config) {
+              console.log('success', data)
+              $rootScope.$broadcast('TimerRemoved', $scope.timer)
             }).
             error(function(data, status, headers, config) {
               console.log('error', data)
