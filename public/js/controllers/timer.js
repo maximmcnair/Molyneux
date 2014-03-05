@@ -3,6 +3,7 @@ angular.module('myApp.controllers')
     $scope.timer = {
       tags: [
       ]
+    , date: new Date()
     }
 
     $scope.timePretty = timePretty

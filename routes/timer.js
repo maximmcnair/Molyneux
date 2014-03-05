@@ -38,8 +38,8 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
     // Add date query if exists
     if(req.query.start && req.query.stop){
       query.date = {
-        '$gte': req.query.start
-      , '$lt': req.query.end
+        '$gte': new Date(req.query.start)
+      , '$lt': new Date(req.query.end)
       }
     }
     // Add Project to query if exists
