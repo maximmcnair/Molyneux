@@ -8,6 +8,11 @@ angular.module('myApp.controllers')
     $scope.pageSize = 5
     $scope.query = {}
 
+    $scope.paginationViewable = false
+
+    function isPaginationViewable() {
+      $scope.paginationViewable = $scope.totalItems > $scope.pageSize
+    }
 
     function getTimers() {
       var params = {
@@ -23,6 +28,7 @@ angular.module('myApp.controllers')
         $scope.totalItems = res.totalItems
         $scope.currentPage = res.page
         $scope.timers = res.results
+        isPaginationViewable()
 
         // Find active timer
         res.results.filter(function(timer){
@@ -35,6 +41,7 @@ angular.module('myApp.controllers')
     }
 
     $scope.$watch('currentPage', function() {
+      console.log('current page update')
       getTimers()
     })
 
