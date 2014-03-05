@@ -30,18 +30,17 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('setup timer routes')
 
   app.get('/api/timer', function (req, res) {
-    console.log(req.query)
-
     var query = {}
       , options = {}
 
     // Add date query if exists
-    if(req.query.start && req.query.stop){
+    if(req.query.start && req.query.end){
       query.date = {
-        '$gte': new Date(req.query.start)
-      , '$lt': new Date(req.query.end)
+        '$gte': JSON.parse(req.query.start)
+      , '$lt': JSON.parse(req.query.end)
       }
     }
+    // console.log(query)
     // Add Project to query if exists
     if(req.query.project){
       query.project = req.query.project
