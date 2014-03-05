@@ -9,7 +9,15 @@ angular.module('myApp.controllers')
     $scope.query = {}
 
 
-    function getTimers(params) {
+    function getTimers() {
+      var params = {
+        pageSize: $scope.pageSize
+      , page: $scope.currentPage
+      }
+      for (var attrname in $scope.query) {
+        params[attrname] = $scope.query[attrname]
+      }
+      console.log(params)
       $http.get('/api/timer', {params: params}).success(function(res){
         console.log('GET timers', res)
         $scope.totalItems = res.totalItems
@@ -27,15 +35,7 @@ angular.module('myApp.controllers')
     }
 
     $scope.$watch('currentPage', function() {
-      var params = {
-        pageSize: $scope.pageSize
-      , page: $scope.currentPage
-      }
-      for (var attrname in $scope.query) {
-        params[attrname] = $scope.query[attrname]
-      }
-      console.log(params)
-      getTimers(params)
+      getTimers()
     })
 
     $scope.projects = ProjectService.get({}, function (res) {
