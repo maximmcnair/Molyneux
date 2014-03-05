@@ -67,14 +67,14 @@ input:focus,textarea:focus{background-color:#233f56}
 .header-timer{background:#41494f;-webkit-box-shadow:0 10px rgba(54,62,69,0.1);box-shadow:0 10px rgba(54,62,69,0.1);position:fixed;top:0;left:0;right:0;z-index:999;padding-left:170px;}
 .header-timer input{background:#535a5f;width:100%;height:51px;}
 .header-timer input:focus{background:#626b71}
-.timer__current__basic{padding:10px 0}
+.timer__current__basic{-webkit-animation:fadeIn .5s;-moz-animation:fadeIn .5s;-o-animation:fadeIn .5s;-ms-animation:fadeIn .5s;animation:fadeIn .5s;padding:10px 0}
 .timer__current__title{width:340px;float:left;font-size:18px;color:#fff;margin:13px 20px 0 0}
 .timer__current__project{width:160px;float:left;color:#b4bac2;min-height:10px;font-size:18px;margin:13px 20px 0 0}
 .timer__current__time{width:160px;float:left;font-size:18px;color:#fff;margin:13px 20px 0 0;}
 .timer__current__time i{margin-right:10px;font-size:20px}
 .timer__current__btn{width:160px;float:left;}
 .timer__current__btn .btn{width:100%}
-.timer__basic{background:#41494f;padding:10px 0;height:69px;zoom:1}
+.timer__basic{background:#41494f;-webkit-animation:fadeIn .5s;-moz-animation:fadeIn .5s;-o-animation:fadeIn .5s;-ms-animation:fadeIn .5s;animation:fadeIn .5s;padding:10px 0;height:69px;zoom:1}
 .timer__basic:before,.timer__basic:after{content:"";display:table}
 .timer__basic:after{clear:both}
 .timer__basic__title{width:340px;margin-right:20px;float:left}
