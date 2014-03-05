@@ -36,14 +36,14 @@ html(ng-app="myApp")
     aside.aside-nav
       header
         h1.header-logo Talllies
-      nav.nav
+      nav(ng-controller="NavCtrl").nav
         ul
           a(href="/")
-            li.is-active
+            li(ng-class="{'is-active': path === '/'}")
               i.fa.fa-clock-o
               | Timers
           a(href="/projects")
-            li
+            li(ng-class="{'is-active': path === '/projects'}")
               i.fa.fa-copy
               | Projects
         //- if username
@@ -144,6 +144,7 @@ html(ng-app="myApp")
     script(src='js/controllers/timer.js')
     script(src='js/controllers/timers.js')
     script(src='js/controllers/projects.js')
+    script(src='js/controllers/nav.js')
     script(src='js/directives/currentTimer.js')
     script(src='js/directives/timer.js')
     script(src='js/directives/project.js')
