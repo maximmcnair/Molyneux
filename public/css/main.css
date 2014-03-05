@@ -3,6 +3,7 @@
 .no-margin-top{margin-top:0}
 .sr-only{display:none}
 .truncate,.timer__current__title,.timer__title{width:250px;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;display:block}
+.is-hided{display:none}
 *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 img,video{max-width:100%;height:auto;width:auto;vertical-align:top}
 .clearfix:before,.clearfix:after{content:" ";display:table}

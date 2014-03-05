@@ -85,6 +85,7 @@ angular.module('myApp.controllers')
       }
       if(!timerExists){
         $scope.timers.push(timer)
+        isPaginationViewable()
       }
     })
     $scope.$on('TimerRemoved', function(event, timer) {
