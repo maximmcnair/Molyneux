@@ -4,13 +4,13 @@
 
 exports.index = function(req, res){
   if (req.isAuthenticated()) {
-    res.render('index', {
+    res.render('app', {
       username: req.user.username
     , userId: req.user._id
     , avatar: req.user.avatar
     })
   } else {
-    res.redirect('/login')
+    res.render('index')
   }
 }
 

@@ -20,12 +20,21 @@
 .nav
   ul
     @extends .list-no-style
+  a
+    text-decoration none
   li
     text-align center
     font-size 25px
     padding 50px 0px
+    transition background .3s
+    &:hover
+      background #41494f
+      color #ffffff
   .is-active
     background #41494f
+    &:hover
+      background #41494f
+      color #ffffff
   i
     display block
     font-size 40px

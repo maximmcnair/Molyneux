@@ -34,7 +34,7 @@ html(ng-app="myApp")
       })();
   body
     aside.aside-nav
-      header
+      header.header-main
         h1.header-logo Talllies
       nav(ng-controller="NavCtrl").nav
         ul
@@ -46,6 +46,9 @@ html(ng-app="myApp")
             li(ng-class="{'is-active': path === '/projects'}")
               i.fa.fa-copy
               | Projects
+          a(href="/logout", target="_self")
+            li
+              | Signout
         //- if username
         //-   ul.nav.navbar-nav.navbar-right
         //-     li
