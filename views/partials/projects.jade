@@ -1,5 +1,11 @@
 .projects
-  form(name="projectForm", novalidate)
+  div(ng-if="projects.length === 0").timer
+    h1 You haven't created any projects yet.
+    form(name="projectForm", novalidate)
+      input(type="text", id="title", placeholder="Title*", ng-model="project.title", autocomplete="off", required).form-control
+      button(ng-click="createProject()", ng-disabled="projectForm.$invalid").btn.btn-primary Create
+
+  form(name="projectForm", novalidate, ng-if="projects.length !== 0")
     input(type="text", id="title", placeholder="Title*", ng-model="project.title", autocomplete="off", required).form-control
     button(ng-click="createProject()", ng-disabled="projectForm.$invalid").btn.btn-primary Create
 
