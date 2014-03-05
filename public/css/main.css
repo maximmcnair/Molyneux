@@ -21,7 +21,18 @@ a{text-decoration:none;font-weight:800;color:inherit}
 small{color:#fff;font-size:16px}
 body,html{margin:0;padding:0;height:100%;background:#eeeff0}
 .container{max-width:880px;margin:0 auto}
-a.btn,.btn,button{font-family:"proxima-nova-soft",sans-serif;padding:15px 30px;margin-right:10px;-webkit-border-radius:4px;border-radius:4px;display:inline-block;background-color:#b4bac2;color:#fff;font-size:15px;font-weight:800;-webkit-transition:background-color .3s;-moz-transition:background-color .3s;-o-transition:background-color .3s;-ms-transition:background-color .3s;transition:background-color .3s;cursor:pointer;text-align:center;border:0;}
+.timers,.projects{-webkit-animation:fadeIn .3s;-moz-animation:fadeIn .3s;-o-animation:fadeIn .3s;-ms-animation:fadeIn .3s;animation:fadeIn .3s}
+@-moz-keyframes fadeIn{0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0)}
+100%{opacity:1;-ms-filter:none;filter:none}
+}@-webkit-keyframes fadeIn{0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0)}
+100%{opacity:1;-ms-filter:none;filter:none}
+}@-o-keyframes fadeIn{0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0)}
+100%{opacity:1;-ms-filter:none;filter:none}
+}@-ms-keyframes fadeIn{0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0)}
+100%{opacity:1;-ms-filter:none;filter:none}
+}@keyframes fadeIn{0%{opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0)}
+100%{opacity:1;-ms-filter:none;filter:none}
+}a.btn,.btn,button{font-family:"proxima-nova-soft",sans-serif;padding:15px 30px;margin-right:10px;-webkit-border-radius:4px;border-radius:4px;display:inline-block;background-color:#b4bac2;color:#fff;font-size:15px;font-weight:800;-webkit-transition:background-color .3s;-moz-transition:background-color .3s;-o-transition:background-color .3s;-ms-transition:background-color .3s;transition:background-color .3s;cursor:pointer;text-align:center;border:0;}
 a.btn:hover,.btn:hover,button:hover{background-color:#9fa7b1}
 a.btn[disabled="disabled"],.btn[disabled="disabled"],button[disabled="disabled"]{cursor:not-allowed}
 a.btn.is-active,.btn.is-active,button.is-active{background:#41494f;color:#fff}
