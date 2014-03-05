@@ -1,12 +1,38 @@
 angular.module('myApp.controllers')
   .controller('TimersCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
 
-    // $scope.filter = 'today'
-    $scope.filter = ''
-    $scope.totalItems = 30
+    $scope.filter = 'today'
+    $scope.totalItems = 0
     $scope.currentPage = 1
     $scope.pageSize = 5
     $scope.query = {}
+
+    $scope.getToday = function () {
+      var beginning = getTodayMorning(new Date())
+        , now = new Date()
+
+      // console.log(beginning, now)
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'today'
+    }
+    $scope.getThisWeek = function () {
+      var beginning = getMonday(new Date())
+        , now = new Date()
+
+      console.log(beginning, now)
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'week'
+    }
+
+    $scope.getToday()
 
     $scope.paginationViewable = false
 
@@ -69,30 +95,6 @@ angular.module('myApp.controllers')
         }
       }
     })
-    $scope.getToday = function () {
-      var beginning = getTodayMorning(new Date())
-        , now = new Date()
-
-      // console.log(beginning, now)
-      $scope.query = {
-        start: beginning
-      , end: now
-      }
-      getTimers()
-      $scope.filter = 'today'
-    }
-    $scope.getThisWeek = function () {
-      var beginning = getMonday(new Date())
-        , now = new Date()
-
-      console.log(beginning, now)
-      $scope.query = {
-        start: beginning
-      , end: now
-      }
-      getTimers()
-      $scope.filter = 'week'
-    }
 
     $scope.getProjectTitle = function (id) {
       for (var i = $scope.projects.length - 1; i >= 0; i--) {
