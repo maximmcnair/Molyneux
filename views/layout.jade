@@ -82,7 +82,8 @@ html(ng-app="myApp")
                   p(ng-show="timerForm.name.$invalid && !timerForm.name.$pristine").form-err A title is required
                 .form-group.timer__basic__project
                   label(for="project").sr-only Project
-                  input(type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
+                  input(ng-if="projects.length !== 0", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
+                  a(ng-if="projects.length === 0", ng-click="createProject()").btn.btn-default Create a project to assign timer
                 .form-group.timer__basic__btn
                   a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
                   a(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time

@@ -1,5 +1,5 @@
 angular.module('myApp.controllers')
-  .controller('TimerCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
+  .controller('TimerCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http, $location) {
     $scope.timer = {
       tags: [
       ]
@@ -162,4 +162,12 @@ angular.module('myApp.controllers')
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
     $scope.format = $scope.formats[0];
+
+
+    //========================================================
+    //  Create project
+    //========================================================
+    $scope.createProject = function () {
+      $location.path('/projects')
+    }
   })
