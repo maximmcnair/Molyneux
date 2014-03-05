@@ -9,7 +9,7 @@
     //-   .btn End
 
   div(ng-if="timers.length === 0").timer
-    h1 You have no timers for {{filter}}
+    h1 You have no timers {{filter}}
     h3 Start a timer in the toolbar above.
 
   timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
