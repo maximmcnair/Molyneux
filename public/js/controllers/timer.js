@@ -120,6 +120,18 @@ angular.module('myApp.controllers')
       }
     }
 
+    //========================================================
+    //  Nav expansion
+    //========================================================
+    $scope.navOpen = false
+    $scope.$watch('timer.title', function () {
+      if($scope.timer && $scope.timer.title && $scope.timer.title.length >= 1){
+        $scope.navOpen = true
+      } else {
+        $scope.navOpen = false
+      }
+      $rootScope.navOpen = $scope.navOpen
+    })
 
     //========================================================
     // Date stuff

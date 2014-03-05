@@ -56,7 +56,7 @@ html(ng-app="myApp")
         //-       | #{username}
 
 
-    .content-wrapper
+    .content-wrapper(ng-class="{'nav-open': navOpen}")
       section.content
         //- pre Model: {{timer | json}}
         header(ng-controller="TimerCtrl").header-timer
@@ -73,7 +73,7 @@ html(ng-app="myApp")
               //- div(ng-if="currentTimer.tags").clearfix.timer__current__tags
               //-   span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
 
-          form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': timer.title}")
+          form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': navOpen}")
             .timer__basic
               .container
                 .form-group.timer__basic__title
@@ -83,7 +83,7 @@ html(ng-app="myApp")
                 .form-group.timer__basic__project
                   label(for="project").sr-only Project
                   input(ng-if="projects.length !== 0", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
-                  a(ng-if="projects.length === 0", ng-click="createProject()").btn.btn-default Create a project to assign timer
+                  a(ng-if="projects.length === 0", ng-click="createProject()").btn.btn-default Create a project to assign timer to
                 .form-group.timer__basic__btn
                   a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
                   a(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time
