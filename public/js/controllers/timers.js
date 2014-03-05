@@ -29,7 +29,7 @@ angular.module('myApp.controllers')
       , end: now
       }
       getTimers()
-      $scope.filter = 'week'
+      $scope.filter = 'this week'
     }
 
     $scope.getToday()
