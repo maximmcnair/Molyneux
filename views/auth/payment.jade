@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  section.login
+    a(href="/")
+      img(src="/img/logo.png").logo--centre
+
+    form(action="/payment", method="POST")#payment-form.form-signup
+      h2 Setup Payment
+      span.payment-errors
+
+      div.form-row
+        label
+          span Card Number
+          input(type="text", size="20", data-stripe="number")
+
+      div.form-row
+        label
+          span CVC
+          input(type="text", size="4", data-stripe="cvc")
+
+      div.form-row
+        label
+          span Expiration (MM/YYYY)
+          input(type="text", size="2", data-stripe="exp-month")
+          span / 
+          input(type="text", size="4", data-stripe="exp-year")
+
+      button(type="submit").btn.btn--primary-su Submit Payment
+
+append scripts
+  script(src='https://js.stripe.com/v2/')
+  script.
+    Stripe.setPublishableKey('#{stripe}')
+
+    //- jQuery(function($) {
+    $('#payment-form').submit(function(event) {
+      var $form = $(this)
+
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true)
+      Stripe.createToken($form, stripeResponseHandler)
+
+      // Prevent the form from submitting with the default action
+      event.preventDefault()
+      return false
+    })
+    //- })
+
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and submit
+        $form.get(0).submit();
+      }
+    }
+  script.
+    mixpanel.track('payment view')

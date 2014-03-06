@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  section.login
+    a(href="/")
+      img(src="/img/logo.png").logo--centre
+
+    form(action="/login", method="post", data-validate="parsley").form-login
+      h2 Login
+      if message
+        small.err #{message}
+
+      if email
+        input(type="text", name="email", placeholder="Email", tabindex="1", value="#{email}", data-required="true", data-type="email").input-top
+      else
+        input(type="text", name="email", placeholder="Email", tabindex="1", data-required="true", data-type="email").input-top
+
+      input(type="password", name="password", placeholder="Password", tabindex="2", data-required="true").input-btm
+
+      input(type="submit", value="Login").btn.btn--primary-su
+
+    a(href="/signup").form__small
+      | Don't have an account? 
+      b Sign up
+
+    a(href="/forgot").form__small
+      | Forgotten password?
+
+    //- b.title-center or
+
+    //- a(href="/auth/twitter").btn.btn--twitter
+    //-   i.icon-twitter
+    //-   | Login with Twitter
+append scripts
+  script(src="/js/vendor/parsley.js")
+  script.
+    mixpanel.track('login view')

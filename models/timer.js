@@ -3,20 +3,21 @@ var mongoose = require('mongoose')
 // Timer schema
 var timerSchema = mongoose.Schema({
     user: String
+  , team: String
   , title: String
   , project: String
   , tags: Array
   , active: Boolean
   , date: Date
-  , start: 
+  , start:
     { type: String
     , default: '0'
     }
-  , stop: 
+  , stop:
     { type: String
     , default: '0'
     }
-  , total: 
+  , total:
     { type: Number
     , default: 0
     }

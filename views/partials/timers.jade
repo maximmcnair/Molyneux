@@ -28,6 +28,9 @@
       h3
         i.fa.fa-clock-o
         | {{timePretty(timer.total)}}
+      h3
+        i.fa.fa-calendar-o
+        | {{datePretty(timer.date)}}
     .timer__btn
       //- a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
       a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop

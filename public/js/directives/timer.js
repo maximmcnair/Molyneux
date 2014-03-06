@@ -5,6 +5,7 @@ angular.module('myApp')
     , scope: true
     , controller: function ($scope, $element) {
         $scope.timePretty = timePretty
+        $scope.datePretty = datePretty
 
         //========================================================
         //  Editable func

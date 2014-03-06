@@ -30,6 +30,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('setup timer routes')
 
   app.get('/api/timer', function (req, res) {
+  console.log(req.user.team)
     var query = {}
       , options = {}
 
@@ -83,7 +84,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   })
 
   app.get('/api/tags', function (req, res) {
-    TimerService.tags(function (err, tags) {
+    TimerService.tags(req.user.team, function (err, tags) {
       if(err){
         console.log(err)
         return res.json(err, 400)
@@ -96,6 +97,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   app.get('/api/timer/:timerId', function (req, res) {
     TimerService.detail(req.params.timerId, function (err, timer) {
       if(err) return res.json(err, 400)
+      if(req.user.team !== timer.team) return res.json(401)
       return res.json(timer, 201)
     })
   })
@@ -103,6 +105,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   app.post('/api/timer', function (req, res) {
     var data = req.body
     data.user = req.user._id
+    data.team = req.user.team
     TimerService.create(data, function (err, timer) {
       if(err){
         logger.error('timer save ERROR', err)

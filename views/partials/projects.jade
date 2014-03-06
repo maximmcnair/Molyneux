@@ -1,17 +1,14 @@
 .projects
   //- pre {{projects | json}}
 
-  div(ng-if="projects.length === 0").timer
-    h1 You haven't created any projects yet.
+  div.project-form.element
     //- pre {{project | json}}
     form(name="projectForm", novalidate)
-      input(type="text", id="title", placeholder="Title*", ng-model="project.title", autocomplete="off", required).form-control
-      button(ng-click="createProject(project)", ng-disabled="projectForm.$invalid").btn.btn-primary Create
-
-  //- form(name="projectForm", novalidate, ng-if="projects.length !== 0")
-  //- form(name="projectForm", novalidate)
-  //-   input(type="text", id="title", placeholder="Title*", ng-model="project.title", autocomplete="off", required).form-control
-  //-   button(ng-click="createProject()", ng-disabled="projectForm.$invalid").btn.btn-primary Create
+      legend
+        h1(ng-if="projects.length === 0") You haven't created any projects yet.
+        | Create a project
+      input(type="text", id="title", placeholder="Project title", ng-model="project.title", autocomplete="off", required).form-control
+      button(ng-click="createProject(project)", ng-disabled="projectForm.$invalid").btn.btn-default Create
 
   project(ng-repeat="project in projects | reverse", projects="projects", ng-dblclick="edit()").project
     .project__desc

@@ -1,13 +1,26 @@
 .project
-  background #ffffff
-  clearfix()
-  margin-bottom 10px
-  border-radius 4px
-  display block
-  padding 15px
-  input
-    background #ffffff
-    border-radius 3px
-    border 2px solid #454545
-    color #454545
-    
+  @extends .element
+
+.project-form
+  margin-bottom 15px
+
+.project-form__input
+  border 2px solid $colorGreyLight
+  color $colorGreyDark
+  padding 13px
+  border-radius 3px
+  background $colorGreyPlain
+  width 340px
+  margin-right 20px
+  transition all .3s
+  &:focus
+    border-color #41494f
+    background $colorGreyPlain
+  &::-webkit-input-placeholder
+    color $colorGreyLight
+  &:-moz-placeholder
+    color $colorGreyLight
+  &::-moz-placeholder
+    color $colorGreyLight
+  &:-ms-input-placeholder
+    color $colorGreyLight

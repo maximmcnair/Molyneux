@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  section.login
+    a(href="/")
+      img(src="/img/logo.png").logo--centre
+
+    form(action="/signup", method="post", data-validate="parsley").form-signup
+      h2 Signup
+      if message
+        small.err #{message}
+      input(type="text", name="name", placeholder="Name", data-required="true").input-top.input-username
+      if (err === 'email')
+        input(type="text", name="email", placeholder="Email*", value="#{email}", data-required="true", data-type="email").input-mid.input-email.has--error
+      else
+        input(type="text", name="email", placeholder="Email", data-required="true", data-type="email").input-mid.input-email
+
+      if (err === 'password')
+        input(type="password", name="password", placeholder="Password", data-required="true", data-minlength="6").input-btm.input-password.has--error
+        input(type="password", name="repeatPassword", placeholder="Repeat Password", data-required="true", data-minlength="6").input-btm.input-password.has--error
+      else
+        input(type="password", name="password", placeholder="Password", data-required="true", data-minlength="6").input-btm.input-password
+        input(type="password", name="repeatPassword", placeholder="Repeat Password", data-required="true", data-minlength="6").input-btm.input-password
+
+      input(type="submit", value="Signup").btn.btn--primary-su
+
+    a(href="/login").form__small
+      | Have an account? 
+      b Login
+append scripts
+  script(src="/js/vendor/parsley.js")
+  script.
+    mixpanel.track('signup view')

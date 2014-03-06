@@ -69,3 +69,47 @@ function getTodayMorning(d) {
 //     }
 //   }
 // }
+
+function datePretty(date) {
+  console.log('date', date)
+  console.log('dateOBJ', new Date(date))
+  var num = parseFloat(date)
+    , newDate = new Date( num )
+    , monthNames = [
+        "January"
+      , "February"
+      , "March"
+      , "April"
+      , "May"
+      , "June"
+      , "July"
+      , "August"
+      , "September"
+      , "October"
+      , "November"
+      , "December"
+      ]
+    , fullDate = monthNames[newDate.getMonth()]
+    , day = newDate.getDate();
+
+  switch (day) {
+    case 1:
+    case 21:
+    case 31:
+      var suffix = 'st';
+      break;
+    case 2:
+    case 22:
+      var suffix = 'nd';
+      break;
+    case 3:
+    case 23:
+      var suffix = 'rd';
+      break;
+    default:
+      var suffix = 'th';
+      break;
+  }
+
+  return day + suffix + ' ' + fullDate;
+}

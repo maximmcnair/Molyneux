@@ -1,2 +1,103 @@
-h1 Welcome
-a(href="/login").btn Login
+extends layout
+block content
+  .wrapper.landing__intro
+    header.landing__header
+      nav.landing__nav
+        a(href="/login") Login
+        a(href="/signup").btn Signup
+
+      a(href="/").landing__logo
+        img(src="/img/logo.png")
+
+//-     div.intro
+//-       .intro__desc
+//-         h1 See where your time spent on projects really goes.
+//-         p
+//-           | Talllies focuses on tasks rather than time slots. Focusing your recording of 
+//-           | time on outcomes allows you to analyse how your time is spent and create 
+//-           | more accurate estimates next time around.
+
+//-         a(href="/signup").btn.btn--cta Try now for 7 days free
+
+//-       .intro__screenshot
+//-         img(src="/img/landing/app-screenshot.png", alt="Talllies time tracking")
+
+//-   .bg-light.landing__features
+//-     .wrapper
+//-       .clearfix
+//-         .centre
+//-           h2.features__intro Features
+
+//-         .landing__feature
+//-           .feature__screenshot
+//-             img(src="/img/landing/talllies-screenshot-tasks.jpg")
+//-           .feature__desc
+//-             h3 Task Specific
+
+//-             p
+//-               | With Talllies you track your time on tasks rather than time slots. Recording 
+//-               | time in this maner allows you to easily see how long each task has taken you, 
+//-               | even if they were completed over a long period.
+
+//-             p
+//-               | A breakdown of your time on each task is only ever a click away. Talllies 
+//-               | shows each time period spent on that task as well as a total. You can also add 
+//-               | time periods in the past if you forgot to record it.
+
+//-         .landing__feature
+//-           .feature__screenshot
+//-             img(src="/img/landing/talllies-screenshot-estimates.jpg")
+//-           .feature__desc
+//-             h3 Estimates
+//-             p
+//-               | We’ve learned from experience that a task will swell in complexilty 
+//-               | to fill the time you've allow for it to take, many know this as Parkinson's Law. 
+
+//-             p
+//-               | We built Estimates to be a core feature of Talllies to target this exact problem, 
+//-               | by holding yourself to a estimate you will trim the fat and focus on what is truly important.
+
+//-             small
+//-               | Talllies will also present this information back you next time (see Intelligent Suggestions)
+
+
+//-         .landing__feature
+//-           .feature__screenshot
+//-             img(src="/img/landing/talllies-screenshot-reports.jpg")
+//-           .feature__desc
+//-             h3 Powerful Reports
+//-             p
+//-               | While tracking you total time for each task is great for knowing how long each 
+//-               | task took and predicting future task time requirements, sometimes you just 
+//-               | want to know what you’ve worked on for the last week.
+
+//-             p
+//-               | Talllies’ Reports allows you to create a report for a time period, and if needed, 
+//-               | to only search certain projects. This will create a breakdown of what percentage 
+//-               | of time was spent on each project and will show you a list of total time 
+//-               | spent on tasks within that period.
+
+//-         .landing__feature
+//-           .feature__screenshot
+//-             img(src="/img/landing/talllies-screenshot-suggestions.jpg")
+//-           .feature__desc
+//-             h3 Intelligent suggestions for your next task
+//-             p
+//-               | Recording time by tasks really comes into it’s own when creating an estimate 
+//-               | for your next task. Talllies will give you autocomplete suggestions for task 
+//-               | names, and when selected, will search for suggested estimates based on how 
+//-               | long that task has taken in the past.
+
+
+//-   .landing__signup
+//-     .wrapper
+//-       p SIMPLE PRICING
+//-       h3 £5 for one user with unlimited projects
+//-       .btn--centre
+//-         a(href="/signup").btn.btn--cta Signup Now
+
+
+//- append scripts
+//-   script.
+//-     mixpanel.track('landing page view')
+//-     ga('send', 'pageview', 'Landing Page')

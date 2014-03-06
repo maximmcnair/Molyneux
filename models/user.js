@@ -16,7 +16,7 @@ var UserSchema = new Schema({
   }
 , team:
   { type: String
-  , required: true
+  // , required: true
   }
 , email:
   { type: Email
@@ -29,6 +29,9 @@ var UserSchema = new Schema({
   }
 , avatar:
   { type: String
+  }
+, admin:
+  { type: Boolean
   }
 })
 

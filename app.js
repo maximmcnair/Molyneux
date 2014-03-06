@@ -99,42 +99,8 @@ app.get('/api/team/:teamId/members', team.getMembers)
 require('./routes/project').createRoutes(app, logger)
 require('./routes/task').createRoutes(app, logger, eventEmitter)
 require('./routes/timer').createRoutes(app, logger, eventEmitter)
+require('./routes/auth').createRoutes(app, logger, eventEmitter)
 
-// Basic auth routes
-app.get('/login', function (req, res) {
-  res.render('login')
-})
-app.post('/login', function (req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) {
-      console.log(err)
-      res.redirect('/')
-    }
-
-    // if (!user) {
-    //   console.log(err)
-    //   return res.send(401)
-    // }
-
-    req.logIn(user, function(err) {
-      if (err) {
-        console.log(err)
-        res.redirect('/')
-      }
-
-      console.log('Login success: ', user)
-      // res.json({
-      //   name: user.username
-      // , email: user.email
-      // })
-      res.redirect('/')
-    })
-  })(req, res, next)
-})
-app.get('/logout', function(req, res){
-  req.logout()
-  res.redirect('/')
-})
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
