@@ -10,12 +10,15 @@
       input(type="text", id="title", placeholder="Project title", ng-model="project.title", autocomplete="off", required).form-control
       button(ng-click="createProject(project)", ng-disabled="projectForm.$invalid").btn.btn-default Create
 
-  project(ng-repeat="project in projects | reverse", projects="projects", ng-dblclick="edit()").project
+  input(ng-model="searchText", placeholder="Search", ng-if="projects.length > 0")
+
+  project(ng-repeat="project in projects | reverse | filter:searchText", projects="projects").project
     .project__desc
       h2(ng-bind="project.title", ng-if="!editable").project__title
       input(ng-model="project.title", ng-if="editable")
       a(ng-click="save()", ng-if="editable").btn.btn-default Save
-      a(ng-click="remove()", ng-if="editable").btn.btn-warning Remove
+      a(ng-click="edit()", ng-if="!editable").btn Edit
+      a(ng-click="remove()").btn Remove
 
 //- section.projects.row
 //-   div(ng-repeat="project in projects").col-md-4
