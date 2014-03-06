@@ -1,0 +1,30 @@
+.reports
+  .element
+    h3 Create a report
+
+    form
+      .form-group
+        label(for="projects") Projects
+        input(type="text", id="projects", placeholder="Projects", ng-model="query.projects", required).form-control
+
+      .form-group
+        label(for="tags") Tags
+        input(type="text", id="tags", placeholder="Tags", ng-model="query.tags", required).form-control
+
+      .form-group
+        label(for="start") From
+        input(type="text", id="start", placeholder="Start Date", ng-model="query.start", required).form-control
+
+      .form-group
+        label(for="end") To
+        input(type="text", id="end", placeholder="End Date", ng-model="query.end", required).form-control
+
+      .form-group
+        a(ng-click="search()").btn.btn-primary
+          i.fa.fa-search
+          | Search
+
+    h3 Quick Date Options
+    a.btn.btn-default Today
+    a.btn.btn-default This Week
+    a.btn.btn-default This Month

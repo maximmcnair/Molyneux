@@ -27,6 +27,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/projects',
       controller: 'ProjectsCtrl'
     }).
+    when('/reports', {
+      templateUrl: 'partials/reports',
+      controller: 'ReportsCtrl'
+    }).
     // when('/projects/:projectId', {
     //   templateUrl: 'partials/project',
     //   controller: 'ProjectCtrl'

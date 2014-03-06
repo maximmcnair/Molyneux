@@ -59,6 +59,10 @@ input:focus,textarea:focus{background-color:#233f56}
 .element:after,.timer:after,.project:after{clear:both}
 .element input,.timer input,.project input{background:#fff;-webkit-border-radius:3px;border-radius:3px;border:3px solid #eeeff0;color:#6b7680;font-weight:800;padding:12px;}
 .element input:focus,.timer input:focus,.project input:focus{border-color:#6b7680;background:#fff}
+.element input::-webkit-input-placeholder,.timer input::-webkit-input-placeholder,.project input::-webkit-input-placeholder{color:#6b7680}
+.element input:-moz-placeholder,.timer input:-moz-placeholder,.project input:-moz-placeholder{color:#6b7680}
+.element input::-moz-placeholder,.timer input::-moz-placeholder,.project input::-moz-placeholder{color:#6b7680}
+.element input:-ms-input-placeholder,.timer input:-ms-input-placeholder,.project input:-ms-input-placeholder{color:#6b7680}
 .aside-nav{width:170px;position:fixed;background:#363e45;color:#eeeff0;height:100%;z-index:9999;top:0;bottom:0;left:0}
 .header-logo{margin:0;font-size:25px;text-align:center;height:69px;padding-top:15px}
 .nav a{text-decoration:none}
@@ -121,10 +125,6 @@ input:focus,textarea:focus{background-color:#233f56}
 .project-form{margin-bottom:15px}
 .project-form__input{border:2px solid #b4bac2;color:#363e45;padding:13px;-webkit-border-radius:3px;border-radius:3px;background:#eeeff0;width:340px;margin-right:20px;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;}
 .project-form__input:focus{border-color:#41494f;background:#eeeff0}
-.project-form__input::-webkit-input-placeholder{color:#b4bac2}
-.project-form__input:-moz-placeholder{color:#b4bac2}
-.project-form__input::-moz-placeholder{color:#b4bac2}
-.project-form__input:-ms-input-placeholder{color:#b4bac2}
 .tag{padding:5px;background:#b4bac2;-webkit-border-radius:3px;border-radius:3px;font-size:11px;text-transform:uppercase;font-weight:800;color:#fff;margin-right:5px}
 .decipher-tags{height:51px;margin:0 10px;padding:0 5px 5px 5px;-webkit-border-radius:4px;border-radius:4px}
 .decipher-tags-taglist{margin-bottom:4px;display:inline}
