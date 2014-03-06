@@ -1,17 +1,54 @@
 angular.module('myApp.controllers')
   .controller('TimersCtrl', function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http) {
-    //========================================================
-    //  Get todays timers
-    //========================================================
-    $scope.timers = undefined
+
+    $scope.filter = 'today'
+    $scope.totalItems = 0
+    $scope.currentPage = 1
+    $scope.pageSize = 5
+    $scope.query = {}
+
+    $scope.getToday = function () {
+      var beginning = getTodayMorning(new Date())
+        , now = new Date()
+
+      // console.log(beginning, now)
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'today'
+    }
+    $scope.getThisWeek = function () {
+      var beginning = getMonday(new Date())
+        , now = new Date()
+
+      console.log(beginning, now)
+      $scope.query = {
+        start: beginning
+      , end: now
+      }
+      getTimers()
+      $scope.filter = 'this week'
+    }
+
+    $scope.getToday()
+
+    $scope.paginationViewable = false
+
+    function isPaginationViewable() {
+      $scope.paginationViewable = $scope.totalItems > $scope.pageSize
+    }
 
     function getTimers() {
       var params = {
         pageSize: $scope.pageSize
       , page: $scope.currentPage
-      , start: getTodayMorning(new Date())
-      , end: new Date()
       }
+      for (var attrname in $scope.query) {
+        params[attrname] = $scope.query[attrname]
+      }
+      console.log(params)
       $http.get('/api/timer', {params: params}).success(function(res){
         console.log('GET timers', res)
         $scope.totalItems = res.totalItems
@@ -29,7 +66,15 @@ angular.module('myApp.controllers')
       })
     }
 
-    
+    $scope.$watch('currentPage', function() {
+      console.log('current page update')
+      getTimers()
+    })
+
+    $scope.projects = ProjectService.get({}, function (res) {
+      console.log(res)
+    })
+    // Add timer to scope on broadcast
     $scope.$on('TimersAdd', function(event, timer) {
       var timerExists = false
       for (var i = $scope.timers.length - 1; i >= 0; i--) {
@@ -52,28 +97,6 @@ angular.module('myApp.controllers')
       }
     })
 
-
-    //========================================================
-    //  Pagination
-    //========================================================
-    $scope.totalItems = 0
-    $scope.currentPage = 1
-    $scope.pageSize = 5
-    $scope.paginationViewable = false
-    function isPaginationViewable() {
-      $scope.paginationViewable = $scope.totalItems > $scope.pageSize
-    }
-    $scope.$watch('currentPage', function() {
-      console.log('current page update')
-      getTimers()
-    })
-
-    //========================================================
-    //  Helpers
-    //========================================================
-    $scope.projects = ProjectService.get({}, function (res) {
-      console.log(res)
-    })
     $scope.getProjectTitle = function (id) {
       for (var i = $scope.projects.length - 1; i >= 0; i--) {
         if($scope.projects[i]._id === id){
@@ -81,4 +104,5 @@ angular.module('myApp.controllers')
         }
       }
     }
+
   })
