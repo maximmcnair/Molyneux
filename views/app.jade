@@ -48,8 +48,20 @@ html(ng-app="myApp")
               | Projects
           a(href="/reports")
             li(ng-class="{'is-active': path === '/reports'}")
-              i.fa.fa-copy
+              i.fa.fa-tasks
               | Reports
+          //- a(href="/clients")
+          //-   li(ng-class="{'is-active': path === '/clients'}")
+          //-     i.fa.fa-copy
+          //-     | Clients
+          a(href="/team")
+            li(ng-class="{'is-active': path === '/team'}")
+              i.fa.fa-users
+              | Team
+          a(href="/settings")
+            li(ng-class="{'is-active': path === '/settings'}")
+              i.fa.fa-cogs
+              | Settings
           a(href="/logout", target="_self").nav-signout
             li
               img(src="#{avatar}")

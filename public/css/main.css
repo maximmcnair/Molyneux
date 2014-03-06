@@ -70,7 +70,7 @@ input:focus,textarea:focus{background-color:#233f56}
 .nav li:hover{background:#41494f;color:#fff}
 .nav .is-active{background:#41494f;}
 .nav .is-active:hover{background:#41494f}
-.nav i{margin-right:5px}
+.nav i{margin-right:10px}
 .nav-signout{position:absolute;bottom:0}
 .content-wrapper{margin:93px 0 0 170px;}
 .content-wrapper.nav-open{margin-top:170px}
