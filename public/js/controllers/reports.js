@@ -26,7 +26,7 @@ angular.module('myApp.controllers')
     }
 
     $scope.search = function () {
-      console.log($scope.query)
+      getTimers()
     }
 
 

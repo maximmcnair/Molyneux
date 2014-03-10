@@ -63,13 +63,8 @@ function getTodayMorning() {
 
 function getFirstMorningOfMonth() {
   var today = new Date()
-    // , todayMorning = new Date(today.setHours(0))
-    // , todayMorning = new Date(todayMorning.setMinutes(0))
-    // , todayMorning = new Date(todayMorning.setSeconds(0))
+    , firstDay = new Date(today.getFullYear(), today.getMonth(), 1)
 
-  var firstDay = new Date(today.getFullYear(), today.getMonth(), 1)
-
-  console.log(firstDay)
   return firstDay
 }
 
