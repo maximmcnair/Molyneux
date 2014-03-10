@@ -58,6 +58,10 @@ html(ng-app="myApp")
             li(ng-class="{'is-active': path === '/team'}")
               i.fa.fa-users
               | Team
+          a(href="/help")
+            li(ng-class="{'is-active': path === '/help'}")
+              i.fa.fa-question
+              | Help
           a(href="/settings")
             li(ng-class="{'is-active': path === '/settings'}")
               i.fa.fa-cogs

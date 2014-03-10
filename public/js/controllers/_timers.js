@@ -4,7 +4,7 @@ angular.module('myApp.controllers')
     $scope.filter = 'today'
     $scope.totalItems = 0
     $scope.currentPage = 1
-    $scope.pageSize = 5
+    $scope.pageSize = 1
     $scope.query = {}
 
     $scope.getToday = function () {

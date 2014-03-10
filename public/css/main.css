@@ -54,15 +54,15 @@ input:focus,textarea:focus{background-color:#233f56}
 :-moz-placeholder{color:#fff}
 ::-moz-placeholder{color:#fff}
 :-ms-input-placeholder{color:#fff}
-.element,.timer,.project{background:#fff;zoom:1;margin-bottom:10px;-webkit-border-radius:4px;border-radius:4px;display:block;padding:15px;}
-.element:before,.timer:before,.project:before,.element:after,.timer:after,.project:after{content:"";display:table}
-.element:after,.timer:after,.project:after{clear:both}
-.element input,.timer input,.project input{background:#fff;-webkit-border-radius:3px;border-radius:3px;border:3px solid #eeeff0;color:#6b7680;font-weight:800;padding:12px;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;}
-.element input:focus,.timer input:focus,.project input:focus{border-color:#6b7680;background:#fff}
-.element input::-webkit-input-placeholder,.timer input::-webkit-input-placeholder,.project input::-webkit-input-placeholder{color:#6b7680}
-.element input:-moz-placeholder,.timer input:-moz-placeholder,.project input:-moz-placeholder{color:#6b7680}
-.element input::-moz-placeholder,.timer input::-moz-placeholder,.project input::-moz-placeholder{color:#6b7680}
-.element input:-ms-input-placeholder,.timer input:-ms-input-placeholder,.project input:-ms-input-placeholder{color:#6b7680}
+.element,.timer,.project,.results{background:#fff;zoom:1;margin-bottom:10px;-webkit-border-radius:4px;border-radius:4px;display:block;padding:15px;}
+.element:before,.timer:before,.project:before,.results:before,.element:after,.timer:after,.project:after,.results:after{content:"";display:table}
+.element:after,.timer:after,.project:after,.results:after{clear:both}
+.element input,.timer input,.project input,.results input{background:#fff;-webkit-border-radius:3px;border-radius:3px;border:3px solid #eeeff0;color:#6b7680;font-weight:800;padding:12px;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;}
+.element input:focus,.timer input:focus,.project input:focus,.results input:focus{border-color:#6b7680;background:#fff}
+.element input::-webkit-input-placeholder,.timer input::-webkit-input-placeholder,.project input::-webkit-input-placeholder,.results input::-webkit-input-placeholder{color:#6b7680}
+.element input:-moz-placeholder,.timer input:-moz-placeholder,.project input:-moz-placeholder,.results input:-moz-placeholder{color:#6b7680}
+.element input::-moz-placeholder,.timer input::-moz-placeholder,.project input::-moz-placeholder,.results input::-moz-placeholder{color:#6b7680}
+.element input:-ms-input-placeholder,.timer input:-ms-input-placeholder,.project input:-ms-input-placeholder,.results input:-ms-input-placeholder{color:#6b7680}
 .aside-nav{width:170px;position:fixed;background:#363e45;color:#eeeff0;height:100%;z-index:9999;top:0;bottom:0;left:0}
 .header-logo{margin:0;font-size:25px;text-align:center;height:69px;padding-top:15px}
 .nav a{text-decoration:none}
@@ -70,7 +70,7 @@ input:focus,textarea:focus{background-color:#233f56}
 .nav li:hover{background:#41494f;color:#fff}
 .nav .is-active{background:#41494f;}
 .nav .is-active:hover{background:#41494f}
-.nav i{margin-right:10px}
+.nav i{width:15px;text-align:center;margin-right:11px}
 .nav-signout{position:absolute;bottom:0}
 .content-wrapper{margin:93px 0 0 170px;}
 .content-wrapper.nav-open{margin-top:170px}
@@ -140,3 +140,9 @@ ul.pagination li{float:left}
 ul.pagination a{min-width:42px;height:42px;display:block;text-align:center;padding-top:10px;margin-right:5px;-webkit-border-radius:3px;border-radius:3px;background:#b4bac2;color:#41494f;cursor:pointer;text-decoration:none;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;}
 ul.pagination a:hover{background:#9fa7b1}
 ul.pagination .active a{background:#41494f;color:#fff}
+.results{padding:0;overflow:hidden;}
+.results table{width:100%}
+.results thead{background:#363e45;}
+.results thead th{color:#fff}
+.results th,.results td{width:25%;display:block;float:left;text-align:left;padding:10px}
+.results tr:nth-of-type(2n){background:#eff6fc}

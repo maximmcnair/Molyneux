@@ -13,11 +13,15 @@
 
       .form-group
         label(for="start") From
-        input(type="text", id="start", placeholder="Start Date", ng-model="query.start", required).form-control
+        i.fa.fa-calendar-o
+        input(type="text", datepicker-popup="{{format}}", ng-model="query.start")
+        //- input(type="text", id="start", placeholder="Start Date", ng-model="query.start", required).form-control
 
       .form-group
         label(for="end") To
-        input(type="text", id="end", placeholder="End Date", ng-model="query.end", required).form-control
+        i.fa.fa-calendar-o
+        input(type="text", datepicker-popup="{{format}}", ng-model="query.end")
+        //- input(type="text", id="end", placeholder="End Date", ng-model="query.end", required).form-control
 
       .form-group
         a(ng-click="search()").btn.btn-primary
@@ -25,6 +29,24 @@
           | Search
 
     h3 Quick Date Options
-    a.btn.btn-default Today
-    a.btn.btn-default This Week
-    a.btn.btn-default This Month
+    a(ng-click="setQueryToday()").btn.btn-default Today
+    a(ng-click="setQueryWeek()").btn.btn-default This Week
+    a(ng-click="setQueryMonth()").btn.btn-default This Month
+
+  .results
+    table
+      thead
+        tr
+          th Title
+          th Project
+          th Date
+          th Time
+      tbody
+        tr(ng-repeat="result in results")
+          td {{result.title}}
+          td {{getProjectTitle(result.project)}}
+          td {{datePretty(result.date)}}
+          td {{timePretty(result.total)}}
+
+  //- div(ng-class="{'is-hided': !paginationViewable}")
+  //-   pagination(total-items="totalItems", page="currentPage", items-per-page="pageSize", direction-links="false")

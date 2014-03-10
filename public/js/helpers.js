@@ -1,4 +1,3 @@
-
 function hrsToMillSec(hrs){
   return hrs * 60 * 60 * 1000
 }
@@ -42,8 +41,8 @@ function timePretty(dateObject){
   return '0sec'; //'just now' //or other string you like;
 }
 
-function getMonday(d) {
-  d = new Date(d)
+function getMonday() {
+  d = new Date()
   var day = d.getDay()
     , diff = d.getDate() - day + (day == 0 ? -6:1) // adjust when day is sunday
     , monday = new Date(d.setDate(diff))
@@ -53,13 +52,25 @@ function getMonday(d) {
   return mondayMorning
 }
 
-function getTodayMorning(d) {
-  var today = new Date(d)
+function getTodayMorning() {
+  var today = new Date()
     , todayMorning = new Date(today.setHours(0))
     , todayMorning = new Date(todayMorning.setMinutes(0))
     , todayMorning = new Date(todayMorning.setSeconds(0))
 
   return todayMorning
+}
+
+function getFirstMorningOfMonth() {
+  var today = new Date()
+    // , todayMorning = new Date(today.setHours(0))
+    // , todayMorning = new Date(todayMorning.setMinutes(0))
+    // , todayMorning = new Date(todayMorning.setSeconds(0))
+
+  var firstDay = new Date(today.getFullYear(), today.getMonth(), 1)
+
+  console.log(firstDay)
+  return firstDay
 }
 
 // function getTitle(id, array){
@@ -113,3 +124,5 @@ function datePretty(date) {
 
   return day + suffix + ' ' + fullDate;
 }
+
+var dateFormat = 'dd MMMM yyyy'
