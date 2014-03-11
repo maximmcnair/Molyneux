@@ -27,6 +27,8 @@ angular.module('myApp.controllers')
         // $scope.currentPage = res.page
         $scope.results = res.results
         // isPaginationViewable()
+
+        createGraph(res.results)
       })
     }
 
@@ -144,5 +146,70 @@ angular.module('myApp.controllers')
         start: getFirstMorningOfMonth()
       , end: new Date()
       }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $scope.chartObject = undefined
+    // BarChart / PieChart / ColumnChart
+
+
+    var createGraph = function (results){
+      var projects = {}
+
+      // Get totals for each project
+      results.forEach(function (timer) {
+        if(projects[timer.project]){
+          projects[timer.project].total += (timer.total / 1000 / 60 / 60 / 60)
+        } else {
+          projects[timer.project] = {
+            title: $scope.getProjectTitle(timer.project)
+          , total: timer.total
+          }
+        }
+      })
+
+      $scope.chartObject = {}
+
+      // Format totals into chartdata
+      $scope.chartObject.data = {
+        "cols": [
+          {id: "t", label: "Topping", type: "string"},
+          {id: "s", label: "Slices", type: "number"}
+        ],
+        "rows": []}
+
+      for (var key in projects) {
+        var obj = projects[key]
+          , row = {c: []}
+        for (var prop in obj) {
+          if(obj.hasOwnProperty(prop)){
+            console.log(prop + " = " + obj[prop])
+            row.c.push({v: obj[prop]})
+          }
+        }
+        $scope.chartObject.data.rows.push(row)
+      }
+
+// {c: [
+//   {v: "Mushrooms"},
+//   {v: 3}
+// ]}
+      $scope.chartObject.cssStyle = 'height:600px; width:100%;'
+      $scope.chartObject.type = 'ColumnChart'
     }
   })

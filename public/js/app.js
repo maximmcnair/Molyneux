@@ -6,6 +6,7 @@ angular.module('myApp', [
     'ngRoute'
   , 'ngResource'
   , 'ui.bootstrap'
+  , 'googlechart'
 
   , 'myApp.controllers'
   , 'myApp.filters'

@@ -38,6 +38,8 @@
           | Search
 
   .results
+    div(google-chart, chart="chartObject")
+
     h3(ng-if="results.length === 0") No timers found
     table(ng-if="results.length")
       thead
