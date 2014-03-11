@@ -1,37 +1,41 @@
 .reports
   .element
     h3 Create a report
+    pre {{query | json}}
 
-    form
-      .form-group
-        label(for="projects") Projects
-        input(type="text", id="projects", placeholder="Projects", ng-model="query.projects", required).form-control
+    form.form-report
+      .form-report__date
+        .form-report__date__from
+          label(for="start").form-report__label From
+          //- i.fa.fa-calendar-o
+          input(type="text", datepicker-popup="{{format}}", ng-model="query.start").form-report__input
 
-      .form-group
-        label(for="tags") Tags
-        input(type="text", id="tags", placeholder="Tags", ng-model="query.tags", required).form-control
+        .form-report__date__to
+          label(for="end").form-report__label To
+          //- i.fa.fa-calendar-o
+          input(type="text", datepicker-popup="{{format}}", ng-model="query.end").form-report__input
 
-      .form-group
-        label(for="start") From
-        i.fa.fa-calendar-o
-        input(type="text", datepicker-popup="{{format}}", ng-model="query.start")
-        //- input(type="text", id="start", placeholder="Start Date", ng-model="query.start", required).form-control
+        .form-report__date__quick
+          //- h3 Quick Date Options
+          a(ng-click="setQueryToday()").btn.btn-default Today
+          a(ng-click="setQueryWeek()").btn.btn-default This Week
+          a(ng-click="setQueryMonth()").btn.btn-default This Month
 
-      .form-group
-        label(for="end") To
-        i.fa.fa-calendar-o
-        input(type="text", datepicker-popup="{{format}}", ng-model="query.end")
-        //- input(type="text", id="end", placeholder="End Date", ng-model="query.end", required).form-control
+      .form-report__second_row__tags
+        label(for="projects").form-report__label Projects
+        div.form-report__input
+          select(ui-select2="projectsOptions", multiple, ng-model="query.projects", id="projects")
+            option(ng-repeat="project in projects", ng-bind="project.title", value="{{project._id}}")
 
-      .form-group
+      .form-report__second_row__projects
+        label(for="tags").form-report__label Tags
+        div.form-report__input
+          input(type="text", ui-select2="tagsOptions", ng-model="query.tags", id="tags")
+
+      .form-report__submit
         a(ng-click="search()").btn.btn-primary
           i.fa.fa-search
           | Search
-
-    h3 Quick Date Options
-    a(ng-click="setQueryToday()").btn.btn-default Today
-    a(ng-click="setQueryWeek()").btn.btn-default This Week
-    a(ng-click="setQueryMonth()").btn.btn-default This Month
 
   .results
     h3(ng-if="results.length === 0") No timers found

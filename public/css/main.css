@@ -146,3 +146,19 @@ ul.pagination .active a{background:#41494f;color:#fff}
 .results thead th{color:#fff}
 .results th,.results td{width:25%;display:block;float:left;text-align:left;padding:10px}
 .results tr:nth-of-type(2n){background:#eff6fc}
+.form-report__label{width:55px;float:left;padding-top:15px}
+.form-report__input{float:left;width:150px}
+.form-report__date{zoom:1;margin-bottom:25px}
+.form-report__date:before,.form-report__date:after{content:"";display:table}
+.form-report__date:after{clear:both}
+.form-report__date__from,.form-report__date__to{width:235px;float:left}
+.form-report__date__quick .btn{padding-left:14px;padding-right:14px}
+.form-report__second_row__tags,.form-report__second_row__projects{zoom:1;margin-bottom:25px;}
+.form-report__second_row__tags:before,.form-report__second_row__projects:before,.form-report__second_row__tags:after,.form-report__second_row__projects:after{content:"";display:table}
+.form-report__second_row__tags:after,.form-report__second_row__projects:after{clear:both}
+.form-report__second_row__tags .form-report__input,.form-report__second_row__projects .form-report__input{width:650px}
+.form-report__second_row__tags .select2-container,.form-report__second_row__projects .select2-container{min-width:400px}
+.form-report__submit{zoom:1;}
+.form-report__submit:before,.form-report__submit:after{content:"";display:table}
+.form-report__submit:after{clear:both}
+.form-report__submit .btn{float:right}

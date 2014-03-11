@@ -30,7 +30,7 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
   logger.info('setup timer routes')
 
   app.get('/api/timer', function (req, res) {
-  console.log(req.user.team)
+    logger.info('GET timers', req.query)
     var query = {}
       , options = {}
 
@@ -43,8 +43,8 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
     }
     // console.log(query)
     // Add Project to query if exists
-    if(req.query.project){
-      query.project = req.query.project
+    if(req.query.projects){
+      query.project = req.query.projects
     }
     // Add Tags to query if exists
     if(req.query.tags && req.query.tags.length !== 0){
@@ -62,6 +62,8 @@ module.exports.createRoutes = function (app, logger, eventEmitter) {
         options.skip = (req.query.page - 1) * req.query.pageSize
       }
     }
+
+    logger.info('GET timers', query, options, 'User:', req.user._id)
 
     TimerService.list(query, options, function (err, timers) {
       if(err){

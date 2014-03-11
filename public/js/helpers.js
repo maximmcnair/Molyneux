@@ -77,8 +77,8 @@ function getFirstMorningOfMonth() {
 // }
 
 function datePretty(date) {
-  console.log('date', date)
-  console.log('dateOBJ', new Date(date))
+  // console.log('date', date)
+  // console.log('dateOBJ', new Date(date))
   var num = parseFloat(date)
     , newDate = new Date( num )
     , monthNames = [

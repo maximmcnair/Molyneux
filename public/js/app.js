@@ -15,6 +15,7 @@ angular.module('myApp', [
   // 3rd party dependencies
   // , 'angularFileUpload'
   , 'decipher.tags'
+  , 'ui.select2'
   // , 'btford.socket-io'
 ]).
 config(function ($routeProvider, $locationProvider) {

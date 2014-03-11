@@ -6,6 +6,8 @@ html(ng-app="myApp")
     title Molyneux
     link(rel='stylesheet', href='/css/app.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
+    link(rel='stylesheet', href='/bower_components/select2/select2.css')
+    link(rel='stylesheet', href='/css/select2-bootstrap.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/main.css')
     script.
@@ -54,18 +56,18 @@ html(ng-app="myApp")
           //-   li(ng-class="{'is-active': path === '/clients'}")
           //-     i.fa.fa-copy
           //-     | Clients
-          a(href="/team")
-            li(ng-class="{'is-active': path === '/team'}")
-              i.fa.fa-users
-              | Team
-          a(href="/help")
-            li(ng-class="{'is-active': path === '/help'}")
-              i.fa.fa-question
-              | Help
-          a(href="/settings")
-            li(ng-class="{'is-active': path === '/settings'}")
-              i.fa.fa-cogs
-              | Settings
+          //- a(href="/team")
+          //-   li(ng-class="{'is-active': path === '/team'}")
+          //-     i.fa.fa-users
+          //-     | Team
+          //- a(href="/help")
+          //-   li(ng-class="{'is-active': path === '/help'}")
+          //-     i.fa.fa-question
+          //-     | Help
+          //- a(href="/settings")
+          //-   li(ng-class="{'is-active': path === '/settings'}")
+          //-     i.fa.fa-cogs
+          //-     | Settings
           a(href="/logout", target="_self").nav-signout
             li
               img(src="#{avatar}")
@@ -111,10 +113,13 @@ html(ng-app="myApp")
 
     //- script(src='/socket.io/socket.io.js')
     //- script(src='bower_components/angular-socket-io/socket.js')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/bower_components/select2/select2.js')
     script(src='/bower_components/angular/angular.js')
+    script(src='/bower_components/angular-ui-select2/src/select2.js')
     script(src='/bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
     script(src='/bower_components/angular-route/angular-route.js')
-    script(src='bower_components/angular-resource/angular-resource.js')
+    script(src='/bower_components/angular-resource/angular-resource.js')
     script(src='/js/lib/angular-tags-0.2.10-tpls.js')
 
 
