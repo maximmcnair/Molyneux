@@ -144,7 +144,7 @@ ul.pagination .active a{background:#41494f;color:#fff}
 .results table{width:100%}
 .results thead{background:#363e45;}
 .results thead th{color:#fff}
-.results th,.results td{width:25%;display:block;float:left;text-align:left;padding:10px}
+.results th,.results td{text-align:left;padding:10px}
 .results tr:nth-of-type(2n){background:#eff6fc}
 .form-report__label{width:55px;float:left;padding-top:15px}
 .form-report__input{float:left;width:150px}

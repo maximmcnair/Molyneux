@@ -44,12 +44,15 @@
         tr
           th Title
           th Project
+          th Tags
           th Date
           th Time
       tbody
         tr(ng-repeat="result in results")
           td {{result.title}}
           td {{getProjectTitle(result.project)}}
+          td
+            span(ng-repeat="tag in result.tags", ng-bind="tag").tag
           td {{datePretty(result.date)}}
           td {{timePretty(result.total)}}
 
