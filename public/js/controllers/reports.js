@@ -173,12 +173,15 @@ angular.module('myApp.controllers')
 
       // Get totals for each project
       results.forEach(function (timer) {
-        if(projects[timer.project]){
-          projects[timer.project].total += (timer.total / 1000 / 60 / 60 / 60)
-        } else {
-          projects[timer.project] = {
-            title: $scope.getProjectTitle(timer.project)
-          , total: timer.total
+        var projectTitle = $scope.getProjectTitle(timer.project)
+        if(timer.total != undefined && projectTitle != undefined){
+          if(projects[timer.project]){
+            projects[timer.project].total =+ (timer.total / 1000)
+          } else {
+            projects[timer.project] = {
+              title: projectTitle
+            , total: (timer.total / 1000)
+            }
           }
         }
       })
@@ -188,8 +191,8 @@ angular.module('myApp.controllers')
       // Format totals into chartdata
       $scope.chartObject.data = {
         "cols": [
-          {id: "t", label: "Topping", type: "string"},
-          {id: "s", label: "Slices", type: "number"}
+          {id: "t", label: "Project", type: "string"},
+          {id: "s", label: "Minutes", type: "number"}
         ],
         "rows": []}
 
@@ -198,17 +201,12 @@ angular.module('myApp.controllers')
           , row = {c: []}
         for (var prop in obj) {
           if(obj.hasOwnProperty(prop)){
-            console.log(prop + " = " + obj[prop])
             row.c.push({v: obj[prop]})
           }
         }
         $scope.chartObject.data.rows.push(row)
       }
 
-// {c: [
-//   {v: "Mushrooms"},
-//   {v: 3}
-// ]}
       $scope.chartObject.cssStyle = 'height:600px; width:100%;'
       $scope.chartObject.type = 'ColumnChart'
     }
