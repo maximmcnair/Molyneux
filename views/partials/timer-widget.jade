@@ -12,6 +12,7 @@
     //-   span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
 
 form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': navOpen}")
+  //- pre {{timer | json}}
   .timer__basic
     .container
       .form-group.timer__basic__title
@@ -23,20 +24,22 @@ form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focu
         input(ng-if="projects.length !== 0", type="text", id="project", placeholder="Select project (type name)", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
         a(ng-if="projects.length === 0", ng-click="createProject()").btn.btn-default Create a project to assign timer to
       .form-group.timer__basic__btn
-        a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time").btn.btn-primary Start Timer
-        a(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time").btn.btn-primary Add Time
+        a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time && todaysDate()").btn.btn-primary Start Timer
+        a(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time || !todaysDate()").btn.btn-primary Add Time
   .timer__advanced
     .container
       .form-group.timer__advanced__tags
         label.sr-only Tags
         tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
-      //- .form-group.form-icon.timer__advanced__time
-      //-   i.fa.fa-clock-o
-      //-   label(for="currentTime").sr-only Current Time
-      //-   input(type="time", id="currentTime", placeholder="Current Time", ng-model="timer.time").form-control
+      .form-group.form-icon.timer__advanced__time
+        i.fa.fa-clock-o
+        label(for="currentTime").sr-only Current Time
+        input(type="time", id="currentTime", placeholder="Current Time", ng-model="timer.time").form-control
       .form-group.form-icon.timer__advanced__date
         i.fa.fa-calendar-o
         input(type="text", datepicker-popup="{{format}}", ng-model="timer.date", is-open="opened", datepicker-options="dateOptions", date-disabled="disabled(date, mode)", close-text="Close")
-      //-   //- span.input-group-btn
-      //-   //-   button(ng-click="open($event)").btn.btn-default
-      //-   //-     i.glyphicon.glyphicon-calendar
+  .timer__error
+    h3(ng-if="errors", ng-bind="errors")
+    //-   //- span.input-group-btn
+    //-   //-   button(ng-click="open($event)").btn.btn-default
+    //-   //-     i.glyphicon.glyphicon-calendar

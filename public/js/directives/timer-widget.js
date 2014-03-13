@@ -7,11 +7,13 @@ angular.module('myApp')
     //   }
     , templateUrl: 'partials/timer-widget'
     , controller: function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http, $location) {
-        $scope.timer = {
+        var defaultTimer = {
           tags: [
           ]
         , date: new Date()
         }
+        $scope.timer = defaultTimer
+        $scope.errors = undefined
 
         $scope.timePretty = timePretty
 
@@ -65,7 +67,7 @@ angular.module('myApp')
           newTimer.total = 0
           newTimer.$save({}, function (res) {
             console.log('success', res)
-            $scope.timer = {}
+            $scope.timer = defaultTimer
             $scope.currentTimer = res
             increment()
           })
@@ -77,7 +79,7 @@ angular.module('myApp')
           newTimer.total = hrsToMillSec(time[0]) + minsToMillSec(time[1])
           newTimer.$save({}, function (res) {
             console.log('success', res)
-            $scope.timer = {}
+            $scope.timer = defaultTimer
             // $scope.timers.push(res)
             $rootScope.$broadcast('TimersAdd', res)
           })
@@ -181,6 +183,27 @@ angular.module('myApp')
 
         $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
         $scope.format = $scope.formats[0];
+
+        //========================================================
+        //  Todays date
+        //========================================================
+        $scope.todaysDate = function () {
+          var a = new Date($scope.timer.date)
+            , aMill = a.setMilliseconds(0)
+            , aSec = new Date(aMill).setSeconds(0)
+            , b = new Date()
+            , bMill = b.setMilliseconds(0)
+            , bSec = new Date(bMill).setSeconds(0)
+          // console.log(a.setMilliseconds(0).setSeconds(0), b.setMilliseconds(0).setSeconds(0))
+          // console.log('**', a.setMilliseconds(0).setSeconds(0) == b.setMilliseconds(0).setSeconds(0))
+          console.log(aSec == bSec)
+          return aSec == bSec
+        }
+        // $scope.todaysDate()
+        // $scope.$watch('timer.date', function (date) {
+        //   console.log(date)
+        //   $scope.todaysDate()
+        // })
 
 
         //========================================================
