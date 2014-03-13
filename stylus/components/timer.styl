@@ -3,6 +3,8 @@
 
 .timer
   @extends .element
+  height 81px
+  position relative
   input
     background #ffffff
     border-radius 3px
@@ -17,7 +19,11 @@
   width 100%
 
 .timer__project
-  margin 0
+  margin 0 20px 0 0
+  color #a1a5a8
+  float left
+  font-size 15px
+  font-weight 600
 
 .timer__desc
   width 480px
@@ -30,17 +36,36 @@
     color #b4bac2
 
 .timer__time
-  width 128px
+  width 178px
   float left
+  h3
+    margin-top 12px
+    color #535a5f
   i
     font-size 20px
     margin-right 5px
+    font-size: 29px;
+    vertical-align: -5px;
+    color #535a5f
 
 .timer__btn
   width 160px
   float right
   .btn
     width 100%
+
+.timer__remove
+  position absolute
+  right -30px
+  top 31px
+  cursor pointer
+  i
+    font-size 22px
+    color #888888
+    transition color .5s
+    &:hover
+      color $colorRed
+
 
 //==============================================================================
 //  Timers nav | ^timer ^nav

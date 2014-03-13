@@ -6,7 +6,7 @@
     //-   .btn(ng-click="getToday()", ng-class="{'is-active': filter === 'today'}") Today
     //-   .btn(ng-click="getThisWeek()", ng-class="{'is-active': filter === 'this week'}") This Week
 
-  div(ng-if="timers.length === 0").timer
+  div(ng-if="timers.length === 0").element
     h1 You have no timers for today
     h3 Start a timer in the toolbar above.
 
@@ -16,13 +16,14 @@
 
   timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
     .timer__desc
-      h2(ng-bind="timer.title", ng-if="!editable").timer__title
-      input(ng-model="timer.title", ng-if="editable")
-      h4(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
-      input(ng-if="editable", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)")
+      h2(ng-if="!editable").timer__title
+        | {{timer.title}}
+      //- input(ng-model="timer.title", ng-if="editable")
+      //- input(ng-if="editable", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)")
       .timer__tags(ng-if="timer.tags")
+        small(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
         div(ng-if="!editable")
-          i.fa.fa-tags
+          //- i.fa.fa-tags
           span(ng-repeat="tag in timer.tags", ng-bind="tag").tag
         div(ng-if="editable")
           tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
@@ -37,9 +38,8 @@
       a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
       a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop
       a(ng-click="save()", ng-if="editable").btn.btn-primary Save
-      a(ng-click="remove()")
+      a(ng-click="remove()").timer__remove
         i.fa.fa-times
-        | Remove
 
   div(ng-class="{'is-hided': !paginationViewable}")
     pagination(total-items="totalItems", page="currentPage", items-per-page="pageSize", direction-links="false")
