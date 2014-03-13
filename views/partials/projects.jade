@@ -7,18 +7,20 @@
       legend
         h1(ng-if="projects.length === 0") You haven't created any projects yet.
         | Create a project
-      input(type="text", id="title", placeholder="Project title", ng-model="project.title", autocomplete="off", required).form-control
-      button(ng-click="createProject(project)", ng-disabled="projectForm.$invalid").btn.btn-default Create
+      .project-form__input
+        input(type="text", id="title", placeholder="Project title", ng-model="project.title", autocomplete="off", required).form-control
+        button(ng-click="createProject(project)", ng-disabled="projectForm.$invalid").btn.btn-default Create
 
-  input(ng-model="searchText", placeholder="Search", ng-if="projects.length > 0")
+  //- input(ng-model="searchText", placeholder="Search", ng-if="projects.length > 0")
 
   project(ng-repeat="project in projects | reverse | filter:searchText", projects="projects").project
     .project__desc
       h2(ng-bind="project.title", ng-if="!editable").project__title
       input(ng-model="project.title", ng-if="editable")
+    .project__actions
       a(ng-click="save()", ng-if="editable").btn.btn-default Save
       a(ng-click="edit()", ng-if="!editable").btn Edit
-      a(ng-click="remove()").btn Remove
+      a(ng-click="remove()").btn.btn-remove Remove
 
 //- section.projects.row
 //-   div(ng-repeat="project in projects").col-md-4

@@ -1,18 +1,48 @@
-.project
-  @extends .element
-
 .project-form
   margin-bottom 15px
+  legend
+    color: #454545;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding-top: 15px;
+    float: left;
+
+// .project-form__input
+//   border 2px solid $colorGreyLight
+//   color $colorGreyDark
+//   padding 13px
+//   border-radius 3px
+//   background $colorGreyPlain
+//   width 340px
+//   margin-right 20px
+//   transition all .3s
+//   &:focus
+//     border-color #41494f
+//     background $colorGreyPlain
 
 .project-form__input
-  border 2px solid $colorGreyLight
-  color $colorGreyDark
-  padding 13px
-  border-radius 3px
-  background $colorGreyPlain
-  width 340px
+  float right
+  input
+    margin-right: 20px;
+    width: 340px;
+  .btn
+    width: 134px;
+
+.project
+  @extends .element
+  height 82px
+
+.project__desc
+  width 480px
   margin-right 20px
-  transition all .3s
-  &:focus
-    border-color #41494f
-    background $colorGreyPlain
+  float left
+  h2
+    margin-top -2px
+
+.project__actions
+  width 223px
+  float right
+
+a.btn-remove
+  margin-right 0px

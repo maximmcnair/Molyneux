@@ -128,9 +128,16 @@ input:focus,textarea:focus{background-color:#233f56}
 .timers-nav{margin-bottom:10px;zoom:1}
 .timers-nav:before,.timers-nav:after{content:"";display:table}
 .timers-nav:after{clear:both}
-.project-form{margin-bottom:15px}
-.project-form__input{border:2px solid #b4bac2;color:#363e45;padding:13px;-webkit-border-radius:3px;border-radius:3px;background:#eeeff0;width:340px;margin-right:20px;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;}
-.project-form__input:focus{border-color:#41494f;background:#eeeff0}
+.project-form{margin-bottom:15px;}
+.project-form legend{color:#454545;font-size:16px;text-transform:uppercase;font-weight:800;padding-top:15px;float:left}
+.project-form__input{float:right;}
+.project-form__input input{margin-right:20px;width:340px}
+.project-form__input .btn{width:134px}
+.project{height:82px}
+.project__desc{width:480px;margin-right:20px;float:left;}
+.project__desc h2{margin-top:-2px}
+.project__actions{width:223px;float:right}
+a.btn-remove{margin-right:0}
 .tag{padding:3px 5px;background:#b4bac2;-webkit-border-radius:3px;border-radius:3px;font-size:11px;text-transform:uppercase;font-weight:800;color:#fff;margin-right:5px}
 .decipher-tags{height:51px;margin:0 10px;padding:0 5px 5px 5px;-webkit-border-radius:4px;border-radius:4px}
 .decipher-tags-taglist{margin-bottom:4px;display:inline}
