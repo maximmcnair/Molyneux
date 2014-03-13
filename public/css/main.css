@@ -138,7 +138,7 @@ input:focus,textarea:focus{background-color:#233f56}
 .project__desc h2{margin-top:-2px}
 .project__actions{width:223px;float:right}
 a.btn-remove{margin-right:0}
-.tag{padding:3px 5px;background:#b4bac2;-webkit-border-radius:3px;border-radius:3px;font-size:11px;text-transform:uppercase;font-weight:800;color:#fff;margin-right:5px}
+.tag{padding:3px 5px;background:#b4bac2;-webkit-border-radius:3px;border-radius:3px;font-size:11px;text-transform:uppercase;font-weight:800;color:#fff;margin-right:5px;white-space:nowrap}
 .decipher-tags{height:51px;margin:0 10px;padding:0 5px 5px 5px;-webkit-border-radius:4px;border-radius:4px}
 .decipher-tags-taglist{margin-bottom:4px;display:inline}
 .decipher-tags-tag{display:inline-block;-webkit-border-radius:3px;border-radius:3px;background-color:#2b3137;color:#535a5f;font-weight:800;padding:2px 5px;margin-right:5px;margin-top:5px}
@@ -159,6 +159,8 @@ ul.pagination .active a{background:#41494f;color:#fff}
 .results thead th{color:#fff}
 .results th,.results td{text-align:left;padding:10px}
 .results tr:nth-of-type(2n){background:#eff6fc}
+.results__column-title{width:40%}
+.results__column-project,.results__column-tags,.results__column-date,.results__column-time{width:15%}
 .form-report__label{width:55px;float:left;padding-top:15px}
 .form-report__input{float:left;width:150px}
 .form-report__date{zoom:1;margin-bottom:25px}

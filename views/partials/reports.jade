@@ -38,24 +38,24 @@
           | Search
 
   .results
-    div(google-chart, chart="chartObject")
+    //- div(google-chart, chart="chartObject")
     h3(ng-if="results.length === 0") No timers found
     table(ng-if="results.length")
       thead
         tr
-          th Title
-          th Project
-          th Tags
-          th Date
-          th Time
+          th.results__column-title Title
+          th.results__column-project Project
+          th.results__column-tags Tags
+          th.results__column-date Date
+          th.results__column-time Time
       tbody
         tr(ng-repeat="result in results")
-          td {{result.title}}
-          td {{getProjectTitle(result.project)}}
-          td
+          td.results__column-title {{result.title}}
+          td.results__column-project {{getProjectTitle(result.project)}}
+          td.results__column-tags
             span(ng-repeat="tag in result.tags", ng-bind="tag").tag
-          td {{datePretty(result.date)}}
-          td {{timePretty(result.total)}}
+          td.results__column-date {{datePretty(result.date)}}
+          td.results__column-time {{timePretty(result.total)}}
 
   //- div(ng-class="{'is-hided': !paginationViewable}")
   //-   pagination(total-items="totalItems", page="currentPage", items-per-page="pageSize", direction-links="false")
