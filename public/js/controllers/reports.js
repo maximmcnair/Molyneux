@@ -91,16 +91,18 @@ angular.module('myApp.controllers')
     //   {text: 'Woven', id: 11234},
     //   {text: 'Ingredo', id: 26543546}
     // ];
-    // $scope.projectsOptions = {
-    //   tags: availableProjects,
-    //   multiple: true,
-    //   formatResult: function (item) {
-    //     return item.text
-    //   },
-    //   formatSelection: function (item) {
-    //     return item.text
-    //   }
-    // }
+    $scope.projectsOptions = {
+      // tags: availableProjects,
+      // multiple: true,
+      // formatResult: function (item) {
+      //   return item.text
+      // },
+      // formatSelection: function (item) {
+      //   return item.text
+      // }
+      containerCssClass: 'report__project__container'
+    , dropdownCssClass: 'report__project__dropdown'
+    }
 
     $scope.tagsOptions = {
       'multiple': true,
