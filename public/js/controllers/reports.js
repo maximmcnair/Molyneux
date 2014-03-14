@@ -130,24 +130,18 @@ angular.module('myApp.controllers')
     $scope.datePretty = datePretty
 
     $scope.setQueryToday = function () {
-      $scope.query = {
-        start: getTodayMorning()
-      , end: new Date()
-      }
+      $scope.query['start'] = getTodayMorning()
+      $scope.query['end'] = new Date()
     }
 
     $scope.setQueryWeek = function () {
-      $scope.query = {
-        start: getMonday()
-      , end: new Date()
-      }
+      $scope.query['start'] = getMonday()
+      $scope.query['end'] = new Date()
     }
 
     $scope.setQueryMonth = function () {
-      $scope.query = {
-        start: getFirstMorningOfMonth()
-      , end: new Date()
-      }
+      $scope.query['start'] = getFirstMorningOfMonth()
+      $scope.query['end'] = new Date()
     }
 
 
