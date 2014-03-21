@@ -9,7 +9,10 @@
   div(ng-if="timers.length === 0").element.no-timers
     i.fa.fa-clock-o
     h1 You have no timers for today
-    h3 Get started by creating one above
+    h3
+      | Get started by creating one above, or 
+      a(href="/reports") create a report 
+      | to see past timers
 
   dl(ng-if="todayTotal")
     dt Total time:

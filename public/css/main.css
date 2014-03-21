@@ -18,7 +18,8 @@ p{font-size:16px;line-height:22px}
 h1{font-size:30px;text-align:center;}
 @media $mediaTab{h1{font-size:84px}
 }h2{font-size:40px;margin:0 0 10px 0}
-a{text-decoration:none;font-weight:800;color:inherit}
+a{text-decoration:none;font-weight:800;color:#7e9bb8;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;text-decoration:none;}
+a:hover{text-decoration:none;color:#b2c3d4}
 small{color:#fff;font-size:16px}
 body,html{margin:0;padding:0;height:100%;background:#eeeff0}
 .container{max-width:880px;margin:0 auto}
