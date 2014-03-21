@@ -137,7 +137,7 @@ input:focus,textarea:focus{background-color:#233f56}
 .timers-nav:before,.timers-nav:after{content:"";display:table}
 .timers-nav:after{clear:both}
 .project-form{margin-bottom:15px;}
-.project-form legend{color:#454545;font-size:16px;text-transform:uppercase;font-weight:800;padding-top:15px;float:left}
+.project-form legend{color:#454545;font-size:16px;font-weight:800;padding-top:15px;float:left}
 .project-form__input{float:right;}
 .project-form__input input{margin-right:20px;width:340px}
 .project-form__input .btn{width:134px}
