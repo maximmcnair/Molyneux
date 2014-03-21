@@ -4,7 +4,7 @@
       .timer__current__desc
         h3(ng-bind="currentTimer.title")
         h5(ng-bind="getProjectTitle(currentTimer.project)")
-        div.timer__current__tags
+        div.timer__current__tags(ng-if="currentTimer.tags")
           i.fa.fa-tags
           span(ng-repeat="tag in currentTimer.tags", ng-bind="tag").tag
       .timer__current__time

@@ -7,12 +7,11 @@ angular.module('myApp')
     //   }
     , templateUrl: 'partials/timer-widget'
     , controller: function ($scope, $rootScope, TimerService, ProjectService, $timeout, $http, $location) {
-        var defaultTimer = {
+        $scope.timer = {
           tags: [
           ]
         , date: new Date()
         }
-        $scope.timer = defaultTimer
         $scope.errors = undefined
 
         $scope.timePretty = timePretty
@@ -67,7 +66,11 @@ angular.module('myApp')
           newTimer.total = 0
           newTimer.$save({}, function (res) {
             console.log('success', res)
-            $scope.timer = defaultTimer
+            $scope.timer = {
+                tags: [
+                ]
+              , date: new Date()
+              }
             $scope.currentTimer = res
             increment()
           })
@@ -79,7 +82,11 @@ angular.module('myApp')
           newTimer.total = hrsToMillSec(time[0]) + minsToMillSec(time[1])
           newTimer.$save({}, function (res) {
             console.log('success', res)
-            $scope.timer = defaultTimer
+            $scope.timer = {
+                tags: [
+                ]
+              , date: new Date()
+              }
             // $scope.timers.push(res)
             $rootScope.$broadcast('TimersAdd', res)
           })

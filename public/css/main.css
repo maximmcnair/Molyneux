@@ -82,8 +82,8 @@ input:focus,textarea:focus{background-color:#233f56}
 .timer__current__basic{-webkit-animation:fadeIn .5s;-moz-animation:fadeIn .5s;-o-animation:fadeIn .5s;-ms-animation:fadeIn .5s;animation:fadeIn .5s;padding:9px 0 7px 0}
 .timer__current__desc{width:515px;float:left;}
 .timer__current__desc h3{font-size:25px;color:#fff;margin:-4px 0 0 0}
-.timer__current__desc h5{margin:0;font-size:16px;display:inline;color:#b4bac2}
-.timer__current__tags{display:inline;margin-left:20px;}
+.timer__current__desc h5{margin:0;font-size:16px;display:inline;margin-right:20px;color:#b4bac2}
+.timer__current__tags{display:inline;}
 .timer__current__tags i{color:#b4bac2;margin-right:7px}
 .timer__current__time{width:175px;float:left;font-size:16px;color:#fff;margin:13px 20px 0 0;}
 .timer__current__time i{margin-right:10px;font-size:30px;vertical-align:-5px}
