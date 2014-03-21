@@ -1,15 +1,17 @@
 .timer__current(ng-if="currentTimer")
   .container
     .clearfix.timer__current__basic
-      h3(ng-bind="currentTimer.title").timer__current__title
-      h5(ng-bind="getProjectTitle(currentTimer.project)").timer__current__project
-      h3.timer__current__time
+      .timer__current__desc
+        h3(ng-bind="currentTimer.title")
+        h5(ng-bind="getProjectTitle(currentTimer.project)")
+        div.timer__current__tags
+          i.fa.fa-tags
+          span(ng-repeat="tag in currentTimer.tags", ng-bind="tag").tag
+      .timer__current__time
         i.fa.fa-clock-o
         | {{timePretty(currentTimer.total)}}
-      .timer__current__btn
+      .timer__current__action
         a(ng-click="stopTimer(currentTimer)").btn.btn-warning Stop Timer
-    //- div(ng-if="currentTimer.tags").clearfix.timer__current__tags
-    //-   span(ng-repeat="tag in currentTimer.tags", ng-bind="tag.name").label.label-info
 
 form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': navOpen}")
   //- pre {{timer | json}}

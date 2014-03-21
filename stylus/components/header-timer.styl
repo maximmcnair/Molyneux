@@ -26,35 +26,41 @@
 //==============================================================================
 .timer__current__basic
   animation fadeIn .5s
-  padding 10px 0px
+  padding 9px 0 7px 0
 
-.timer__current__title
-  @extends .truncate
-  width 340px
+.timer__current__desc
+  width 515px
   float left
-  font-size 18px
-  color #ffffff
-  margin 13px 20px 0 0
-
-.timer__current__project
-  width 160px
-  float left
-  color #b4bac2
-  min-height 10px
-  font-size 18px
-  margin 13px 20px 0 0
+  // margin 13px 20px 0 0
+  h3
+    @extends .truncate
+    font-size 25px
+    color #ffffff
+    margin -4px 0px 0px 0px
+  h5
+    margin 0
+    font-size 16px
+    display inline
+    color #b4bac2
+.timer__current__tags
+  display inline
+  margin-left 20px
+  i
+    color #b4bac2
+    margin-right 7px
 
 .timer__current__time
-  width 160px
+  width 175px
   float left
-  font-size 18px
+  font-size 16px
   color #ffffff
   margin 13px 20px 0 0
   i
     margin-right 10px
-    font-size 20px
+    font-size 30px
+    vertical-align -5px
 
-.timer__current__btn
+.timer__current__action
   width 160px
   float left
   .btn
