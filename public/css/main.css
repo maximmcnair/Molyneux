@@ -111,6 +111,10 @@ input:focus,textarea:focus{background-color:#233f56}
 .timer-focus .timer__advanced{height:71px;padding:10px 0;display:block}
 .timer-focus .timer__advanced__time,.timer-focus .timer__advanced__date,.timer-focus .timer__advanced__tags{opacity:1;-ms-filter:none;filter:none}
 .timers{margin-top:40px}
+.no-timers{position:relative;overflow:hidden;padding:30px 0 40px 250px;}
+.no-timers i{font-size:280px;color:#d5d5d5;position:absolute;top:-38px;left:-10px}
+.no-timers h1{text-align:left;margin:0}
+.no-timers h3{margin:0}
 .timer{height:81px;position:relative;}
 .timer input{background:#fff;-webkit-border-radius:3px;border-radius:3px;border:2px solid #454545;color:#454545}
 .timer__title{font-size:25px;margin:0;color:#41494f;width:100%}

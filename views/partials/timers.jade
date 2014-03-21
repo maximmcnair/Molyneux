@@ -6,9 +6,10 @@
     //-   .btn(ng-click="getToday()", ng-class="{'is-active': filter === 'today'}") Today
     //-   .btn(ng-click="getThisWeek()", ng-class="{'is-active': filter === 'this week'}") This Week
 
-  div(ng-if="timers.length === 0").element
+  div(ng-if="timers.length === 0").element.no-timers
+    i.fa.fa-clock-o
     h1 You have no timers for today
-    h3 Start a timer in the toolbar above.
+    h3 Get started by creating one above
 
   dl(ng-if="todayTotal")
     dt Total time:

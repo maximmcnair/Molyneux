@@ -8,12 +8,12 @@
         .form-report__date__from
           label(for="start").form-report__label From
           //- i.fa.fa-calendar-o
-          input(type="text", datepicker-popup="{{format}}", ng-model="query.start", datepicker-showWeekNumbers="false").form-report__input
+          input(type="text", datepicker-popup="{{format}}", ng-model="query.start", placeholder="Start date").form-report__input
 
         .form-report__date__to
           label(for="end").form-report__label To
           //- i.fa.fa-calendar-o
-          input(type="text", datepicker-popup="{{format}}", ng-model="query.end").form-report__input
+          input(type="text", datepicker-popup="{{format}}", ng-model="query.end", placeholder="End date").form-report__input
 
         .form-report__date__quick
           //- h3 Quick Date Options
