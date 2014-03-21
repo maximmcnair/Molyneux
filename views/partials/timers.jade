@@ -1,10 +1,5 @@
 .timers
   //- pre {{currentTimer | json}}
-  header
-    h3 Today Timers
-    //- nav.timers-nav
-    //-   .btn(ng-click="getToday()", ng-class="{'is-active': filter === 'today'}") Today
-    //-   .btn(ng-click="getThisWeek()", ng-class="{'is-active': filter === 'this week'}") This Week
 
   div(ng-if="timers.length === 0").element.no-timers
     i.fa.fa-clock-o
@@ -14,36 +9,44 @@
       a(href="/reports") create a report 
       | to see past timers
 
-  dl(ng-if="todayTotal")
-    dt Total time:
-    dd(ng-bind="todayTotal")
 
-  timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
-    .timer__desc
-      h2(ng-if="!editable").timer__title
-        | {{timer.title}}
-      //- input(ng-model="timer.title", ng-if="editable")
-      //- input(ng-if="editable", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)")
-      .timer__tags(ng-if="timer.tags")
-        small(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
-        div(ng-if="!editable")
-          //- i.fa.fa-tags
-          span(ng-repeat="tag in timer.tags", ng-bind="tag").tag
-        div(ng-if="editable")
-          tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
-    .timer__time
-      h3
-        i.fa.fa-clock-o
-        | {{timePretty(timer.total)}}
-      //- h3
-      //-   i.fa.fa-calendar-o
-      //-   | {{datePretty(timer.date)}}
-    .timer__btn
-      a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
-      a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop
-      a(ng-click="save()", ng-if="editable").btn.btn-primary Save
-      a(ng-click="remove()").timer__remove
-        i.fa.fa-times
+  div(ng-if="timers.length !== 0")
+    header
+      h3 Today Timers
+      //- nav.timers-nav
+      //-   .btn(ng-click="getToday()", ng-class="{'is-active': filter === 'today'}") Today
+      //-   .btn(ng-click="getThisWeek()", ng-class="{'is-active': filter === 'this week'}") This Week
+
+    dl(ng-if="todayTotal")
+      dt Total time:
+      dd(ng-bind="todayTotal")
+
+    timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
+      .timer__desc
+        h2(ng-if="!editable").timer__title
+          | {{timer.title}}
+        //- input(ng-model="timer.title", ng-if="editable")
+        //- input(ng-if="editable", type="text", id="project", placeholder="Project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)")
+        .timer__tags(ng-if="timer.tags")
+          small(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
+          div(ng-if="!editable")
+            //- i.fa.fa-tags
+            span(ng-repeat="tag in timer.tags", ng-bind="tag").tag
+          div(ng-if="editable")
+            tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
+      .timer__time
+        h3
+          i.fa.fa-clock-o
+          | {{timePretty(timer.total)}}
+        //- h3
+        //-   i.fa.fa-calendar-o
+        //-   | {{datePretty(timer.date)}}
+      .timer__btn
+        a(ng-click="continue()", ng-if="!timer.active && !editable").btn.btn-default Continue
+        a(ng-click="stop()", ng-if="timer.active && !editable").btn.btn-warning Stop
+        a(ng-click="save()", ng-if="editable").btn.btn-primary Save
+        a(ng-click="remove()").timer__remove
+          i.fa.fa-times
 
   div(ng-class="{'is-hided': !paginationViewable}")
     pagination(total-items="totalItems", page="currentPage", items-per-page="pageSize", direction-links="false")
