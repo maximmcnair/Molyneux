@@ -10,6 +10,7 @@ module.exports = function(grunt) {
           }
         , files:
           { 'public/css/main.css': 'stylus/main.styl'
+          , 'public/css/index.css': 'stylus/index.styl'
           }
         }
       , compressed:
@@ -19,6 +20,7 @@ module.exports = function(grunt) {
           }
         , files:
           { 'public/css/main.css': 'stylus/main.styl'
+          , 'public/css/index.css': 'stylus/index.styl'
           }
         }
       }

@@ -2,8 +2,8 @@ extends ../layout
 
 block content
   section.login
-    a(href="/")
-      img(src="/img/logo.png").logo--centre
+    a(href="/").landing__logo
+      img(src="/img/logo.png")
 
     form(action="/signup", method="post", data-validate="parsley").form-signup
       h2 Signup

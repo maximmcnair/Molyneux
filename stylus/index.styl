@@ -1,0 +1,137 @@
+@import 'nib'
+
+@import './mixins.styl'
+
+@import './foundation/variables.styl'
+@import './foundation/helpers.styl'
+@import './foundation/base.styl'
+@import './foundation/typography.styl'
+@import './foundation/structure.styl'
+@import './foundation/btns.styl'
+@import './foundation/forms.styl'
+@import './foundation/animation.styl'
+
+html
+body
+  background #363e45
+
+.landing__login
+  position absolute
+  top 10px
+  right 10px
+  border-radius 3px
+  padding 5px 10px
+  background #818a91
+  color #363e45
+  &:hover
+    background #71c78b
+    color #363e45
+
+.landing__intro
+  clearfix()
+  h1
+    font-size 34px
+    color #ffffff
+    text-align center
+    margin 0 0 6px 0
+  h2
+    font-size 16px
+    color #818a91
+    text-align center
+    margin 0 0 35px 0
+
+  .btn
+    background #71c78b
+    font-size 22px
+    font-weight 800
+    width 300px
+    margin 0 auto 100px auto
+    display block
+
+.landing__logo
+  margin 10px auto 60px auto
+  display block
+  text-align center
+
+.landing__screenshot
+  margin 0 auto
+  display block
+
+
+
+
+.landing__features
+  padding 50px 0px
+  background #252a2f
+  clearfix()
+  h3
+    font-size 21px
+    color #ffffff
+    margin 0 0 10px 0
+  p
+    font-size 15px
+    color #eeeff0
+    margin 0
+  .btn
+    background #71c78b
+    font-size 22px
+    font-weight 800
+    width 300px
+    margin 50px auto 100px auto
+    display block
+
+.landing__features__feature
+  width 258px
+  margin-right 103px
+  float left
+  text-align center
+
+.no-margin-right
+  margin-right 0px
+
+.content
+  width 980px
+  margin 0 auto
+
+
+
+
+.form-login
+.form-signin
+  width 460px
+  margin 0 auto
+  background #ffffff
+  padding 13px 25px 30px 25px
+  border-radius 3px
+  input
+    width 100%
+    margin-bottom 20px
+  .btn
+    height 60px
+    margin-bottom 0px
+    background $colorGreen
+  h2
+    text-align center
+    margin-bottom 10px
+    font-size: 25px;
+    font-weight: 700;
+    color #363e45
+  p
+    font-size 15px
+    text-align center
+    color $colorTypeSecondary
+    max-width 80%
+    line-height 18px
+    margin 0px auto 20px auto
+  .err
+    color $colorWarning
+    font-size 16px
+    text-align center
+    display block
+    margin-bottom 14px
+
+.form__small
+  text-align: center;
+  margin-top: 20px;
+  display: block;
+  color: #6b7680;
