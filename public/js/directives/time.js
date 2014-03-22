@@ -25,7 +25,7 @@ angular.module('myApp')
         })
 
         function calcTotal () {
-          return parseInt($scope.hour * 60) + parseInt($scope.minutes)
+          return parseInt($scope.hour * 60 * 60 * 1000) + parseInt($scope.minutes * 60 * 1000)
         }
       }
     }

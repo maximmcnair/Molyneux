@@ -9,6 +9,7 @@ var timerSchema = mongoose.Schema({
   , tags: Array
   , active: Boolean
   , date: Date
+  , before: Number
   , start:
     { type: String
     , default: '0'

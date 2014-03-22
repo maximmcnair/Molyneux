@@ -10,7 +10,6 @@ angular.module('myApp')
         $scope.timer = {
           tags: [
           ]
-        , title: 'he'
         , date: new Date()
         }
         // $scope.france = 1123
@@ -65,7 +64,7 @@ angular.module('myApp')
           var newTimer = new TimerService(data)
           newTimer.active = true
           newTimer.start = new Date()
-          newTimer.total = 0
+          newTimer.total = data.before
           newTimer.$save({}, function (res) {
             // console.log('success', res)
             $scope.timer = {
@@ -99,7 +98,7 @@ angular.module('myApp')
           // Calculate new total
           var currentTime = new Date().getTime()
             , startTime = new Date(data.start)
-          data.total = currentTime - startTime
+          data.total = data.before + (currentTime - startTime)
           // Ajax to server
           $http.put('/api/timer/' + data._id, data).
             success(function(data, status, headers, config) {
@@ -120,7 +119,7 @@ angular.module('myApp')
             // Increment time
             var currentTime = new Date().getTime()
               , startTime = new Date($scope.currentTimer.start)
-            $scope.currentTimer.total = currentTime - startTime
+            $scope.currentTimer.total = $scope.currentTimer.before + (currentTime - startTime)
 
             // If task is still active loop increment
             $timeout(function () {
