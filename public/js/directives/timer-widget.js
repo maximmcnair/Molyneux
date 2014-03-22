@@ -10,8 +10,11 @@ angular.module('myApp')
         $scope.timer = {
           tags: [
           ]
+        , title: 'he'
         , date: new Date()
+        , time: 1123
         }
+        // $scope.france = 1123
         $scope.errors = undefined
 
         $scope.timePretty = timePretty
@@ -23,7 +26,7 @@ angular.module('myApp')
         })
 
         $scope.projects = ProjectService.get({}, function (res) {
-          console.log(res)
+          // console.log(res)
         })
         $scope.$on('ProjectEdited', function(event, editedProject) {
           for (var i = $scope.projects.length - 1; i >= 0; i--) {
@@ -31,13 +34,13 @@ angular.module('myApp')
               $scope.projects[i] = editedProject
             }
           }
-          console.log($scope.projects)
+          // console.log($scope.projects)
         })
         $scope.$on('ProjectAdded', function(event, project) {
           $scope.projects.push(project)
         })
         $scope.$on('ProjectRemoved', function(event, project) {
-          console.log('projects remove', project.title)
+          // console.log('projects remove', project.title)
           for (var i = $scope.projects.length - 1; i >= 0; i--) {
             if($scope.projects[i]._id === project._id){
               $scope.projects.splice(i, 1)
@@ -55,7 +58,7 @@ angular.module('myApp')
         $scope.tags = []
 
         $http.get('/api/tags').success(function(data){
-          console.log('tags GET success', data)
+          // console.log('tags GET success', data)
           $scope.tags = data
         })
 
@@ -65,7 +68,7 @@ angular.module('myApp')
           newTimer.start = new Date()
           newTimer.total = 0
           newTimer.$save({}, function (res) {
-            console.log('success', res)
+            // console.log('success', res)
             $scope.timer = {
                 tags: [
                 ]
@@ -81,7 +84,7 @@ angular.module('myApp')
           var time = newTimer.time.split(':')
           newTimer.total = hrsToMillSec(time[0]) + minsToMillSec(time[1])
           newTimer.$save({}, function (res) {
-            console.log('success', res)
+            // console.log('success', res)
             $scope.timer = {
                 tags: [
                 ]
@@ -101,13 +104,13 @@ angular.module('myApp')
           // Ajax to server
           $http.put('/api/timer/' + data._id, data).
             success(function(data, status, headers, config) {
-              console.log('success', data)
+              // console.log('success', data)
               $scope.currentTimer = undefined
               // $scope.timers.push(data)
               $rootScope.$broadcast('TimersAdd', data)
             }).
             error(function(data, status, headers, config) {
-              console.log('error', data)
+              // console.log('error', data)
             })
         }
 
@@ -203,12 +206,12 @@ angular.module('myApp')
             , bSec = new Date(bMill).setSeconds(0)
           // console.log(a.setMilliseconds(0).setSeconds(0), b.setMilliseconds(0).setSeconds(0))
           // console.log('**', a.setMilliseconds(0).setSeconds(0) == b.setMilliseconds(0).setSeconds(0))
-          console.log(aSec == bSec)
+          // console.log(aSec == bSec)
           return aSec == bSec
         }
         // $scope.todaysDate()
         // $scope.$watch('timer.date', function (date) {
-        //   console.log(date)
+          // console.log(date)
         //   $scope.todaysDate()
         // })
 
@@ -219,6 +222,10 @@ angular.module('myApp')
         $scope.createProject = function () {
           $location.path('/projects')
         }
+
+
+
       }
+
     }
   })

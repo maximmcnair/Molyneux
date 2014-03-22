@@ -1,0 +1,12 @@
+.time-widget
+  i.fa.fa-clock-o
+  label(for="currentTime").sr-only Current Time
+  input(type="text", ng-model="hour", number).time-widget__value
+  strong.time-widget__title hr
+  input(type="text", ng-model="minutes", number, minute).time-widget__value
+  strong.time-widget__title min
+
+
+
+  //- input(type="time", id="currentTime", placeholder="Current Time", ng-model="timer.time").form-control
+  //- onkeypress="return isNumberKey(event)"

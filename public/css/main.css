@@ -50,7 +50,7 @@ input,textarea{font-family:"proxima-nova-soft",sans-serif;padding:15px;font-size
 input:focus,textarea:focus{background-color:#233f56}
 .form-icon{position:relative;}
 .form-icon input{padding-left:40px}
-.form-icon i{position:absolute;left:15px;top:15px;color:#fff;font-size:22px}
+.form-icon i{position:absolute;left:12px;top:15px;color:#fff;font-size:22px}
 ::-webkit-input-placeholder{color:#fff}
 :-moz-placeholder{color:#fff}
 ::-moz-placeholder{color:#fff}
@@ -92,8 +92,8 @@ input:focus,textarea:focus{background-color:#233f56}
 .timer__basic{background:#363e45;-webkit-animation:fadeIn .5s;-moz-animation:fadeIn .5s;-o-animation:fadeIn .5s;-ms-animation:fadeIn .5s;animation:fadeIn .5s;padding:10px 0;height:69px;zoom:1}
 .timer__basic:before,.timer__basic:after{content:"";display:table}
 .timer__basic:after{clear:both}
-.timer__basic__title{width:340px;margin-right:20px;float:left}
-.timer__basic__project{width:340px;margin-right:20px;float:left}
+.timer__basic__title{width:350px;margin-right:10px;float:left}
+.timer__basic__project{width:350px;margin-right:10px;float:left}
 .timer__basic__btn{width:160px;float:left;}
 .timer__basic__btn .btn{width:100%}
 .timer__advanced{background:#2a3035;zoom:1;height:71px;padding:10px 0;}
@@ -101,12 +101,13 @@ input:focus,textarea:focus{background-color:#233f56}
 .timer__advanced:after{clear:both}
 .timer__advanced input{background:#41494f;}
 .timer__advanced input:focus{background:#41494f}
-.timer__advanced__tags{width:520px;float:left;margin-right:20px;background:#41494f;-webkit-border-radius:3px;border-radius:3px;}
+.timer__advanced__tags{width:710px;float:left;margin-right:10px;background:#41494f;-webkit-border-radius:3px;border-radius:3px;}
 .timer__advanced__tags input{min-width:160px;width:160px}
 .decipher-tags-tag{background:#2b3137;color:#535a5f;padding:5px 10px;text-transform:uppercase;}
 .decipher-tags-tag i{cursor:pointer}
-.timer__advanced__time{width:160px;float:left;margin-right:20px}
-.timer__advanced__date{width:160px;float:left}
+.timer__advanced__time{width:160px;float:left;margin-right:0;padding-left:30px;-webkit-border-radius:3px;border-radius:3px;background:#41494f;}
+.timer__advanced__time .time-widget__title{font-size:18px;color:#fff}
+.timer__advanced__time .time-widget__value{width:28px;padding:0;text-align:right;margin:0 5px 0 0}
 .form-group{position:relative;}
 .form-group .dropdown-menu{position:absolute;top:0;right:0;width:323px;}
 .form-group .dropdown-menu button{padding:4px}

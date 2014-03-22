@@ -204,6 +204,6 @@ angular.module('myApp.controllers')
       }
 
       $scope.chartObject.cssStyle = 'height:600px; width:100%;'
-      $scope.chartObject.type = 'ColumnChart'
+      $scope.chartObject.type = 'PieChart'
     }
   })
