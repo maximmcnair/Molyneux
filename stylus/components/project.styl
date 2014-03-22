@@ -31,6 +31,7 @@
 
 .project
   @extends .element
+  position relative
   height 82px
 
 .project__desc
@@ -41,8 +42,19 @@
     margin-top -2px
 
 .project__actions
-  width 223px
+  width 145px
   float right
+  .btn
+    width 100%
 
-a.btn-remove
-  margin-right 0px
+.project__remove
+  position absolute
+  right -30px
+  top 31px
+  cursor pointer
+  i
+    font-size 22px
+    color #888888
+    transition color .5s
+    &:hover
+      color $colorRed

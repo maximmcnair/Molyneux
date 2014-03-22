@@ -20,7 +20,8 @@
     .project__actions
       a(ng-click="save()", ng-if="editable").btn.btn-default Save
       a(ng-click="edit()", ng-if="!editable").btn Edit
-      a(ng-click="remove()").btn.btn-remove Remove
+      a(ng-click="remove()").project__remove
+        i.fa.fa-times
 
 //- section.projects.row
 //-   div(ng-repeat="project in projects").col-md-4
