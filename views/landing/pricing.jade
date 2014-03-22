@@ -1,0 +1,60 @@
+extends ../layout
+block content
+  header.landing__header
+    nav.landing__nav
+      a(href="/login").landing__login Login
+      //- a(href="/signup").btn Signup
+
+    a(href="/").landing__logo
+      img(src="/img/landing/logo.png")
+
+  section.landing__pricing
+    .content
+      h1 How big is your team?
+      h2 Try any plan for 2 months for free.
+
+      .landing__pricing__packages
+        .landing__pricing__package
+          h3 Free
+          h4
+            | $0
+            small /month
+          p
+            strong 2 
+            | projects
+          p
+            strong 15 
+            | tasks per project
+          p
+            strong 1 
+            | member
+
+        .landing__pricing__package
+          h3 Freelancer
+          h4
+            | $5
+            small /month
+          p
+            strong Unlimited 
+            | projects
+          p
+            strong Unlimited 
+            | tasks per project
+          p
+            strong 1 
+            | member
+
+        .landing__pricing__package
+          h3 Free
+          h4
+            | $0
+            small /month
+          p
+            strong Unlimited 
+            | projects
+          p
+            strong Unlimited 
+            | tasks per project
+          p
+            strong 10 
+            | member

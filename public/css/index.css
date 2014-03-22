@@ -71,6 +71,7 @@ html,body{background:#363e45}
 .landing__features:after{clear:both}
 .landing__features h3{font-size:21px;color:#fff;margin:0 0 10px 0}
 .landing__features p{font-size:15px;color:#eeeff0;margin:0}
+.landing__features img{margin-bottom:20px}
 .landing__features .btn{background:#71c78b;font-size:22px;font-weight:800;width:300px;margin:50px auto 100px auto;display:block}
 .landing__features__feature{width:258px;margin-right:103px;float:left;text-align:center}
 .no-margin-right{margin-right:0}

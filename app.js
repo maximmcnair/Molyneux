@@ -97,6 +97,7 @@ app.post('/api/file/upload', file.upload)
 // Team API
 app.get('/api/team/:teamId/members', team.getMembers)
 require('./routes/project').createRoutes(app, logger)
+require('./routes/landing').createRoutes(app, logger)
 require('./routes/task').createRoutes(app, logger, eventEmitter)
 require('./routes/timer').createRoutes(app, logger, eventEmitter)
 require('./routes/auth').createRoutes(app, logger, eventEmitter)
