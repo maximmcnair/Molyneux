@@ -12,7 +12,6 @@ angular.module('myApp')
           ]
         , title: 'he'
         , date: new Date()
-        , time: 1123
         }
         // $scope.france = 1123
         $scope.errors = undefined
