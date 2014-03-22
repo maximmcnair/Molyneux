@@ -1,10 +1,12 @@
 .time-widget
-  i.fa.fa-clock-o
   label(for="currentTime").sr-only Current Time
-  input(type="text", ng-model="hour", number).time-widget__value
-  strong.time-widget__title hr
-  input(type="text", ng-model="minutes", number, minute).time-widget__value
-  strong.time-widget__title min
+  label(for="hours")
+    i.fa.fa-clock-o
+    input(type="text", name="hours", ng-model="hour", number).time-widget__value
+    strong.time-widget__title hr
+  label(for="minutes")
+    input(type="text", name="minutes", ng-model="minutes", number, minute).time-widget__value
+    strong.time-widget__title min
 
 
 

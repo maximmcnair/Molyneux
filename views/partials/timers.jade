@@ -21,7 +21,7 @@
       dt Total time:
       dd(ng-bind="todayTotal")
 
-    timer(ng-repeat="timer in timers | reverse", timers="timers", ng-dblclick="edit()").timer
+    timer(ng-repeat="timer in timers track by $index | reverse", timers="timers", ng-dblclick="edit()").timer
       .timer__desc
         h2(ng-if="!editable").timer__title
           | {{timer.title}}
@@ -31,7 +31,7 @@
           small(ng-bind="getProjectTitle(timer.project)", ng-if="!editable").timer__project
           div(ng-if="!editable")
             //- i.fa.fa-tags
-            span(ng-repeat="tag in timer.tags", ng-bind="tag").tag
+            span(ng-repeat="tag in timer.tags track by $index", ng-bind="tag").tag
           div(ng-if="editable")
             tags(data-options="{addable: true}", data-src="tag as tag for tag in tags", data-model="timer.tags")
       .timer__time
