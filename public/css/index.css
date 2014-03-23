@@ -58,12 +58,13 @@ input:focus,textarea:focus{border-color:#7e9bb8}
 html,body{background:#363e45}
 .landing__login{position:absolute;top:10px;right:10px;-webkit-border-radius:3px;border-radius:3px;padding:5px 10px;background:#818a91;color:#363e45;}
 .landing__login:hover{background:#71c78b;color:#363e45}
-.landing__intro{zoom:1;}
-.landing__intro:before,.landing__intro:after{content:"";display:table}
-.landing__intro:after{clear:both}
-.landing__intro h1{font-size:34px;color:#fff;text-align:center;margin:0 0 6px 0}
-.landing__intro h2{font-size:16px;color:#818a91;text-align:center;margin:0 0 35px 0}
-.landing__intro .btn{background:#71c78b;font-size:22px;font-weight:800;width:300px;margin:0 auto 100px auto;display:block}
+.landing__intro,.landing__pricing,.landing__mailing-list{zoom:1;}
+.landing__intro:before,.landing__pricing:before,.landing__mailing-list:before,.landing__intro:after,.landing__pricing:after,.landing__mailing-list:after{content:"";display:table}
+.landing__intro:after,.landing__pricing:after,.landing__mailing-list:after{clear:both}
+.landing__intro h1,.landing__pricing h1,.landing__mailing-list h1{font-size:34px;color:#fff;text-align:center;margin:0 0 6px 0}
+.landing__intro h2,.landing__pricing h2,.landing__mailing-list h2{font-size:16px;color:#818a91;text-align:center;margin:0 0 35px 0}
+.landing__intro .btn,.landing__pricing .btn,.landing__mailing-list .btn{background:#71c78b;font-size:22px;font-weight:800;width:300px;margin:0 auto 100px auto;display:block;}
+.landing__intro .btn:hover,.landing__pricing .btn:hover,.landing__mailing-list .btn:hover{background:#47865a}
 .landing__logo{margin:10px auto 60px auto;display:block;text-align:center}
 .landing__screenshot{margin:0 auto;display:block}
 .landing__features{padding:50px 0;background:#252a2f;zoom:1;}
@@ -72,7 +73,8 @@ html,body{background:#363e45}
 .landing__features h3{font-size:21px;color:#fff;margin:0 0 10px 0}
 .landing__features p{font-size:15px;color:#eeeff0;margin:0}
 .landing__features img{margin-bottom:20px}
-.landing__features .btn{background:#71c78b;font-size:22px;font-weight:800;width:300px;margin:50px auto 100px auto;display:block}
+.landing__features .btn{background:#71c78b;font-size:22px;font-weight:800;width:300px;margin:50px auto 100px auto;display:block;}
+.landing__features .btn:hover{background:#47865a}
 .landing__features__feature{width:258px;margin-right:103px;float:left;text-align:center}
 .no-margin-right{margin-right:0}
 .content{width:980px;margin:0 auto}
@@ -83,3 +85,21 @@ html,body{background:#363e45}
 .form-login p,.form-signin p{font-size:15px;text-align:center;color:$colorTypeSecondary;max-width:80%;line-height:18px;margin:0 auto 20px auto}
 .form-login .err,.form-signin .err{color:$colorWarning;font-size:16px;text-align:center;display:block;margin-bottom:14px}
 .form__small{text-align:center;margin-top:20px;display:block;color:#6b7680}
+.landing__pricing__packages{zoom:1}
+.landing__pricing__packages:before,.landing__pricing__packages:after{content:"";display:table}
+.landing__pricing__packages:after{clear:both}
+.landing__pricing__package{width:258px;margin-right:103px;float:left;text-align:center;background:#2e353b;-webkit-border-radius:3px;border-radius:3px;overflow:hidden;color:#fff;-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s;-ms-transition:all .5s;transition:all .5s;cursor:pointer;}
+.landing__pricing__package h3{-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s;-ms-transition:all .5s;transition:all .5s;background:#252a2f;padding:30px 0;margin:0;color:#fff;font-size:22px}
+.landing__pricing__package h4{font-size:71px;margin:25px 0 40px 0;}
+.landing__pricing__package h4 small{font-size:16px}
+.landing__pricing__package p{-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s;-ms-transition:all .5s;transition:all .5s;color:#535a5f;}
+.landing__pricing__package p strong{color:#fff}
+.landing__pricing__package:hover{background:#71c78b;color:#fff;}
+.landing__pricing__package:hover h3{background:#47865a}
+.landing__pricing__package:hover p{color:#47865a}
+.landing__mailing-list h2{margin:0 auto 125px auto;width:60%}
+.form-mailing-list{background:#252a2f;padding:35px;width:660px;-webkit-border-radius:6px;border-radius:6px;margin:0 auto;zoom:1;}
+.form-mailing-list:before,.form-mailing-list:after{content:"";display:table}
+.form-mailing-list:after{clear:both}
+.form-mailing-list input{width:435px;margin:0;display:inline-block;border:0;height:56px;vertical-align:top;-webkit-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px}
+.form-mailing-list .btn{width:155px;height:56px;display:inline-block;-webkit-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;margin:0}

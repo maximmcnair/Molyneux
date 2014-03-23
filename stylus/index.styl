@@ -28,6 +28,8 @@ body
     color #363e45
 
 .landing__intro
+.landing__pricing
+.landing__mailing-list
   clearfix()
   h1
     font-size 34px
@@ -47,6 +49,8 @@ body
     width 300px
     margin 0 auto 100px auto
     display block
+    &:hover
+      background #47865a
 
 .landing__logo
   margin 10px auto 60px auto
@@ -81,6 +85,8 @@ body
     width 300px
     margin 50px auto 100px auto
     display block
+    &:hover
+      background #47865a
 
 .landing__features__feature
   width 258px
@@ -97,7 +103,9 @@ body
 
 
 
-
+//==============================================================================
+//  Login/signup | ^
+//==============================================================================
 .form-login
 .form-signin
   width 460px
@@ -137,3 +145,78 @@ body
   margin-top: 20px;
   display: block;
   color: #6b7680;
+
+
+//==============================================================================
+//  Pricing | ^
+//==============================================================================
+.landing__pricing__packages
+  clearfix()
+
+.landing__pricing__package
+  width 258px
+  margin-right 103px
+  float left
+  text-align center
+  background #2e353b
+  border-radius 3px
+  overflow hidden
+  color #ffffff
+  transition all .5s
+  cursor pointer
+  h3
+    transition all .5s
+    background #252a2f
+    padding 30px 0px
+    margin 0
+    color #ffffff
+    font-size 22px
+  h4
+    font-size 71px
+    margin 25px 0px 40px 0px
+    small
+      font-size 16px
+  p
+    transition all .5s
+    color #535a5f
+    strong
+      color #ffffff
+  &:hover
+    background #71c78b
+    color #ffffff
+    h3
+      background #47865a
+    p
+      color #47865a
+
+
+
+//==============================================================================
+//  Mailing list | ^
+//==============================================================================
+.landing__mailing-list
+  h2
+    margin 0 auto 125px auto
+    width 60%
+
+.form-mailing-list
+  background #252a2f
+  padding 35px
+  width 660px
+  border-radius 6px
+  margin 0 auto
+  clearfix()
+  input
+    width 435px
+    margin 0
+    display inline-block
+    border 0px
+    height 56px
+    vertical-align top
+    border-radius 3px 0px 0px 3px
+  .btn
+    width 155px
+    height 56px
+    display inline-block
+    border-radius 0px 3px 3px 0px
+    margin 0

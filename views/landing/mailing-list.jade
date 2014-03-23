@@ -1,2 +1,18 @@
 extends ../layout
 block content
+  header.landing__header
+    nav.landing__nav
+      a(href="/login").landing__login Login
+      //- a(href="/signup").btn Signup
+
+    a(href="/").landing__logo
+      img(src="/img/landing/logo.png")
+
+  section.landing__mailing-list
+    .content
+      h1 You caught us before we're ready for public release
+      h2 We'll be happy to let you know when we've finished up our testing. And for your early support we're gonna give you an extended free trial, just put your email in below & we'll let you know when we're good to go.
+
+      form.form-mailing-list
+        input(type="text", placeholder="Enter your email")
+        a.btn Submit
