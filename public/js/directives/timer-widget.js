@@ -61,7 +61,6 @@ angular.module('myApp')
         })
 
         $scope.startTimer = function  (data) {
-          console.log('start timer', data)
           var newTimer = new TimerService(data)
           newTimer.active = true
           newTimer.start = new Date()
@@ -75,22 +74,6 @@ angular.module('myApp')
               }
             $scope.currentTimer = res
             increment()
-          })
-        }
-        $scope.addTimer = function  (data) {
-          var newTimer = new TimerService(data)
-          newTimer.active = false
-          var time = newTimer.time.split(':')
-          newTimer.total = hrsToMillSec(time[0]) + minsToMillSec(time[1])
-          newTimer.$save({}, function (res) {
-            // console.log('success', res)
-            $scope.timer = {
-                tags: [
-                ]
-              , date: new Date()
-              }
-            // $scope.timers.push(res)
-            $rootScope.$broadcast('TimersAdd', res)
           })
         }
 
@@ -220,6 +203,31 @@ angular.module('myApp')
         //========================================================
         $scope.createProject = function () {
           $location.path('/projects')
+        }
+
+        //========================================================
+        //  Fixed timer
+        //========================================================
+        $scope.fixedTimer = false
+        $scope.triggerFixedTimer = function () {
+          $scope.fixedTimer = true
+        }
+        $scope.addTimer = function  (data) {
+          console.log(data)
+          // var newTimer = new TimerService(data)
+          // newTimer.active = false
+          // var time = newTimer.time.split(':')
+          // newTimer.total = hrsToMillSec(time[0]) + minsToMillSec(time[1])
+          // newTimer.$save({}, function (res) {
+          //   // console.log('success', res)
+          //   $scope.timer = {
+          //       tags: [
+          //       ]
+          //     , date: new Date()
+          //     }
+          //   // $scope.timers.push(res)
+          //   $rootScope.$broadcast('TimersAdd', res)
+          // })
         }
 
 
