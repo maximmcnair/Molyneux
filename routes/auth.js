@@ -13,7 +13,7 @@ module.exports.createRoutes = function (app, logger) {
     passport.authenticate('local', function(err, user, info) {
       if (err) {
         console.log(err)
-        res.redirect('/')
+        return res.redirect('/login')
       }
 
       // if (!user) {
@@ -24,7 +24,7 @@ module.exports.createRoutes = function (app, logger) {
       req.logIn(user, function(err) {
         if (err) {
           console.log(err)
-          res.redirect('/')
+          return res.redirect('/login')
         }
 
         console.log('Login success: ', user)
