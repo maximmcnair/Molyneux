@@ -30,6 +30,7 @@ body
 .landing__intro
 .landing__pricing
 .landing__mailing-list
+  overflow hidden
   clearfix()
   h1
     font-size 34px
@@ -56,16 +57,39 @@ body
   margin 10px auto 60px auto
   display block
   text-align center
+  animation fadeIn .3s ease-out
+
+.landing__content
+  h1
+    opacity 0
+    animation fadeIn .3s .3s ease-out
+    animation-fill-mode forwards
+  h2
+    opacity 0
+    animation fadeIn .3s .7s ease-out
+    animation-fill-mode forwards
+  .btn
+    opacity 0
+    animation fadeIn .3s 1s ease-out
+    animation-fill-mode forwards
 
 .landing__screenshot
   margin 0 auto
   display block
+  transform translate3d(0, 100%, 0)
+  animation screenshotIntro 1s .3s ease-out
+  animation-fill-mode forwards
 
+@keyframes screenshotIntro
+  0%
+    transform translate3d(0, 100%, 0)
+  100%
+    transform translate3d(0, 0, 0)
 
 
 
 .landing__features
-  padding 50px 0px
+  padding 150px 0px 100px 0px
   background #252a2f
   clearfix()
   h3
@@ -77,13 +101,13 @@ body
     color #eeeff0
     margin 0
   img
-    margin-bottom 20px
+    margin-bottom 40px
   .btn
     background #71c78b
     font-size 22px
     font-weight 800
     width 300px
-    margin 50px auto 100px auto
+    margin 80px auto 100px auto
     display block
     &:hover
       background #47865a
