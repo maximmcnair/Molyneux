@@ -61,6 +61,7 @@ angular.module('myApp')
         })
 
         $scope.startTimer = function  (data) {
+          console.log('start timer', data)
           var newTimer = new TimerService(data)
           newTimer.active = true
           newTimer.start = new Date()

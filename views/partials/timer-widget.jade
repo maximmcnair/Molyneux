@@ -13,8 +13,12 @@
       .timer__current__action
         a(ng-click="stopTimer(currentTimer)").btn.btn-warning Stop Timer
 
-form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focus': navOpen}")
+form(name="timerForm", novalidate, ng-submit="startTimer(timer)", ng-if="!currentTimer", ng-class="{'timer-focus': navOpen}")
   //- pre {{timer | json}}
+  //- pre timerForm.$invalid: {{timerForm.$invalid}}
+  //- pre timerForm.$valid: {{timerForm.$valid}}
+  //- pre timerForm.$pristine: {{timerForm.$pristine}}
+  //- pre timerForm.$dirty: {{timerForm.$dirty}}
   .timer__basic
     .container
       .form-group.timer__basic__title
@@ -26,7 +30,7 @@ form(name="timerForm", novalidate, ng-if="!currentTimer", ng-class="{'timer-focu
         input(ng-if="projects.length !== 0", type="text", id="project", placeholder="Select project", ng-model="timer.project", typeahead="project._id as project.title for project in projects | filter: $viewValue", typeahead-input-formatter="formatLabel($model)").form-control
         a(ng-if="projects.length === 0", ng-click="createProject()").btn.btn-default Create a project to assign timer to
       .form-group.timer__basic__btn
-        a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid").btn.btn-primary Start Timer
+        button(type="submit", ng-disabled="timerForm.$invalid").btn.btn-primary Start Timer
         //- a(ng-click="startTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="!timer.time && todaysDate()").btn.btn-primary Start Timer
         //- a(ng-click="addTimer(timer)", ng-disabled="timerForm.$invalid", ng-if="timer.time || !todaysDate()").btn.btn-primary Add Time
   .timer__advanced
