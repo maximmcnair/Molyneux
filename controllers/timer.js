@@ -11,7 +11,7 @@ module.exports.create = function (data, callback) {
 }
 
 module.exports.list = function (query, options, callback) {
-  TimerModel.find(query).skip(options.skip).limit(options.limit).execFind(function(err, timers) {
+  TimerModel.find(query).skip(options.skip).limit(options.limit).exec(function(err, timers) {
     if(err) return callback(err)
     callback(null, timers)
   })
