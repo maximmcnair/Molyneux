@@ -64,10 +64,10 @@ html(ng-app="myApp")
           //-   li(ng-class="{'is-active': path === '/help'}")
           //-     i.fa.fa-question
           //-     | Help
-          //- a(href="/settings")
-          //-   li(ng-class="{'is-active': path === '/settings'}")
-          //-     i.fa.fa-cogs
-          //-     | Settings
+          a(href="/settings")
+            li(ng-class="{'is-active': path === '/settings'}")
+              i.fa.fa-cogs
+              | Settings
           a(href="/logout", target="_self").nav-signout
             li
               i.fa.fa-sign-out
@@ -137,6 +137,7 @@ html(ng-app="myApp")
     script(src='js/controllers/timer.js')
     script(src='js/controllers/timers.js')
     script(src='js/controllers/projects.js')
+    script(src='js/controllers/settings.js')
     script(src='js/controllers/reports.js')
     script(src='js/controllers/nav.js')
     script(src='js/directives/timer-widget.js')

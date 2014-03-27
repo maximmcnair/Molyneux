@@ -33,6 +33,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/reports',
       controller: 'ReportsCtrl'
     }).
+    when('/settings', {
+      templateUrl: 'partials/settings',
+      controller: 'SettingsCtrl'
+    }).
     // when('/projects/:projectId', {
     //   templateUrl: 'partials/project',
     //   controller: 'ProjectCtrl'

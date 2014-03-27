@@ -1,0 +1,14 @@
+.element
+  h2 Settings
+  .form-group
+    label(for="username") Name
+    input(type="text", id="username", placeholder="Title*", ng-model="user.username", required).form-control
+    p(ng-show="user.username.$invalid && !user.username.$pristine").form-err A title is required
+  .form-group
+    label(for="email") Title
+    input(type="text", id="email", placeholder="Title*", ng-model="user.email", required).form-control
+    p(ng-show="user.email.$invalid && !user.email.$pristine").form-err A title is required
+  .form-group
+    label(for="title") Title
+    input(type="text", id="title", placeholder="Title*", ng-model="user.title", required).form-control
+    p(ng-show="user.name.$invalid && !user.name.$pristine").form-err A title is required
