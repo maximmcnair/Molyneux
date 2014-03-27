@@ -101,6 +101,7 @@ require('./routes/landing').createRoutes(app, logger)
 require('./routes/task').createRoutes(app, logger, eventEmitter)
 require('./routes/timer').createRoutes(app, logger, eventEmitter)
 require('./routes/auth').createRoutes(app, logger, eventEmitter)
+require('./routes/users').createRoutes(app, logger, eventEmitter)
 
 
 // redirect all others to the index (HTML5 history)
