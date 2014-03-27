@@ -30,7 +30,8 @@
     "grunt-cli": "~0.1",
     "grunt-reload": "~0.2",
     "grunt-contrib-watch": "~0.5.1",
-    "grunt-contrib-stylus": "~0.7.0"
+    "grunt-contrib-stylus": "~0.7.0",
+    "retricon": "0.0.3"
   },
   "scripts": {
     "start": "node server.js",

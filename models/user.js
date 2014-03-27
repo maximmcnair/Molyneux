@@ -4,6 +4,9 @@ var mongoose = require('mongoose')
   , bcrypt = require('bcrypt')
   , properties = require('../config')
 
+var retricon = require('retricon');
+var fmt = require('util').format;
+
 // Email schema type
 mongooseTypes.loadTypes(mongoose)
 Email = mongoose.SchemaTypes.Email
@@ -38,6 +41,7 @@ var UserSchema = new Schema({
 // Bcrypt middleware
 UserSchema.pre('save', function (next) {
   var user = this
+  if(user.email) user.avatar = retricon(user.email, {pixelSize: 16, bgColor: '#eeeff0'}).toDataURL()
   if(!user.isModified('password')) return next()
   user.hashPassword(user.password, function (hash) {
     user.password = hash

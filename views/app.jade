@@ -70,6 +70,9 @@ html(ng-app="myApp")
               | Settings
           a(href="/logout", target="_self").nav-signout
             li
+              img(src="#{avatar}").username__avatar
+              | #{username}
+            li
               i.fa.fa-sign-out
               | Signout
             //- li
