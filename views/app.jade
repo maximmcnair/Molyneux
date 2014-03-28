@@ -99,6 +99,25 @@ html(ng-app="myApp")
 
         div(ng-view).container
 
+        .team__progress
+          h3 Team Activity
+          .clearfix
+            img(src="#{avatar}").username__avatar
+            span.username__name Maxim McNair
+            span.username__timer__title Adding team activity
+            span.username__timer__project Talllies
+          .clearfix
+            img(src="#{avatar}").username__avatar
+            span.username__name Mark Davies
+            span.username__timer__title Server shit
+            span.username__timer__project Ingredo
+          .clearfix
+            img(src="#{avatar}").username__avatar
+            span.username__name Pete Keech
+            span.username__timer__title Setup project
+            span.username__timer__project Ingredo
+
+
       //- .container
       //-   //- block body
       //-   .row
